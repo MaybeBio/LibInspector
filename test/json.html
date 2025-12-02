@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: json</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>json</code></h1>
+<b>File Path:</b> <code>/home/nicai_zht/.local/share/mamba/envs/idr_llm/lib/python3.13/json/__init__.py</code><br>
+<br>
+<h2>Module Docstring</h2>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>JSON (JavaScript Object Notation) &lt;https://json.org&gt; is a subset of
+JavaScript syntax (ECMA-262 3rd edition) used as a lightweight data
+interchange format.
+
+:mod:`json` exposes an API familiar to users of the standard library
+:mod:`marshal` and :mod:`pickle` modules.  It is derived from a
+version of the externally maintained simplejson library.
+
+Encoding basic Python object hierarchies::
+
+    &gt;&gt;&gt; import json
+    &gt;&gt;&gt; json.dumps([&#x27;foo&#x27;, {&#x27;bar&#x27;: (&#x27;baz&#x27;, None, 1.0, 2)}])
+    &#x27;[&quot;foo&quot;, {&quot;bar&quot;: [&quot;baz&quot;, null, 1.0, 2]}]&#x27;
+    &gt;&gt;&gt; print(json.dumps(&quot;\&quot;foo\bar&quot;))
+    &quot;\&quot;foo\bar&quot;
+    &gt;&gt;&gt; print(json.dumps(&#x27;\u1234&#x27;))
+    &quot;\u1234&quot;
+    &gt;&gt;&gt; print(json.dumps(&#x27;\\&#x27;))
+    &quot;\\&quot;
+    &gt;&gt;&gt; print(json.dumps({&quot;c&quot;: 0, &quot;b&quot;: 0, &quot;a&quot;: 0}, sort_keys=True))
+    {&quot;a&quot;: 0, &quot;b&quot;: 0, &quot;c&quot;: 0}
+    &gt;&gt;&gt; from io import StringIO
+    &gt;&gt;&gt; io = StringIO()
+    &gt;&gt;&gt; json.dump([&#x27;streaming API&#x27;], io)
+    &gt;&gt;&gt; io.getvalue()
+    &#x27;[&quot;streaming API&quot;]&#x27;
+
+Compact encoding::
+
+    &gt;&gt;&gt; import json
+    &gt;&gt;&gt; mydict = {&#x27;4&#x27;: 5, &#x27;6&#x27;: 7}
+    &gt;&gt;&gt; json.dumps([1,2,3,mydict], separators=(&#x27;,&#x27;, &#x27;:&#x27;))
+    &#x27;[1,2,3,{&quot;4&quot;:5,&quot;6&quot;:7}]&#x27;
+
+Pretty printing::
+
+    &gt;&gt;&gt; import json
+    &gt;&gt;&gt; print(json.dumps({&#x27;4&#x27;: 5, &#x27;6&#x27;: 7}, sort_keys=True, indent=4))
+    {
+        &quot;4&quot;: 5,
+        &quot;6&quot;: 7
+    }
+
+Decoding JSON::
+
+    &gt;&gt;&gt; import json
+    &gt;&gt;&gt; obj = [&#x27;foo&#x27;, {&#x27;bar&#x27;: [&#x27;baz&#x27;, None, 1.0, 2]}]
+    &gt;&gt;&gt; json.loads(&#x27;[&quot;foo&quot;, {&quot;bar&quot;:[&quot;baz&quot;, null, 1.0, 2]}]&#x27;) == obj
+    True
+    &gt;&gt;&gt; json.loads(&#x27;&quot;\\&quot;foo\\bar&quot;&#x27;) == &#x27;&quot;foo\x08ar&#x27;
+    True
+    &gt;&gt;&gt; from io import StringIO
+    &gt;&gt;&gt; io = StringIO(&#x27;[&quot;streaming API&quot;]&#x27;)
+    &gt;&gt;&gt; json.load(io)[0] == &#x27;streaming API&#x27;
+    True
+
+Specializing JSON object decoding::
+
+    &gt;&gt;&gt; import json
+    &gt;&gt;&gt; def as_complex(dct):
+    ...     if &#x27;__complex__&#x27; in dct:
+    ...         return complex(dct[&#x27;real&#x27;], dct[&#x27;imag&#x27;])
+    ...     return dct
+    ...
+    &gt;&gt;&gt; json.loads(&#x27;{&quot;__complex__&quot;: true, &quot;real&quot;: 1, &quot;imag&quot;: 2}&#x27;,
+    ...     object_hook=as_complex)
+    (1+2j)
+    &gt;&gt;&gt; from decimal import Decimal
+    &gt;&gt;&gt; json.loads(&#x27;1.1&#x27;, parse_float=Decimal) == Decimal(&#x27;1.1&#x27;)
+    True
+
+Specializing JSON object encoding::
+
+    &gt;&gt;&gt; import json
+    &gt;&gt;&gt; def encode_complex(obj):
+    ...     if isinstance(obj, complex):
+    ...         return [obj.real, obj.imag]
+    ...     raise TypeError(f&#x27;Object of type {obj.__class__.__name__} &#x27;
+    ...                     f&#x27;is not JSON serializable&#x27;)
+    ...
+    &gt;&gt;&gt; json.dumps(2 + 1j, default=encode_complex)
+    &#x27;[2.0, 1.0]&#x27;
+    &gt;&gt;&gt; json.JSONEncoder(default=encode_complex).encode(2 + 1j)
+    &#x27;[2.0, 1.0]&#x27;
+    &gt;&gt;&gt; &#x27;&#x27;.join(json.JSONEncoder(default=encode_complex).iterencode(2 + 1j))
+    &#x27;[2.0, 1.0]&#x27;
+
+
+Using json.tool from the shell to validate and pretty-print::
+
+    $ echo &#x27;{&quot;json&quot;:&quot;obj&quot;}&#x27; | python -m json.tool
+    {
+        &quot;json&quot;: &quot;obj&quot;
+    }
+    $ echo &#x27;{ 1.2:3.4}&#x27; | python -m json.tool
+    Expecting property name enclosed in double quotes: line 1 column 3 (char 2)</code></pre>
+<br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+- ℹ️ <b>No Direct Entry Point</b>: This module seems to be a library intended for import, not direct execution.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>json.dumps</b>(<b>obj</b>, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys, <b>kw</b>)</td><td>Serialize <code></code>obj<code></code> to a JSON formatted <code></code>str<code></code>.</td></tr><tr><td><code>ƒ</code></td><td><b>json.load</b>(<b>fp</b>, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, <b>kw</b>)</td><td>Deserialize <code></code>fp<code></code> (a <code></code>.read()<code></code>-supporting file-like object containing</td></tr><tr><td><code>ƒ</code></td><td><b>json.dump</b>(<b>obj</b>, <b>fp</b>, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys, <b>kw</b>)</td><td>Serialize <code></code>obj<code></code> as a JSON formatted stream to <code></code>fp<code></code> (a</td></tr><tr><td><code>ƒ</code></td><td><b>json.loads</b>(<b>s</b>, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, <b>kw</b>)</td><td>Deserialize <code></code>s<code></code> (a <code></code>str<code></code>, <code></code>bytes<code></code> or <code></code>bytearray<code></code> instance</td></tr><tr><td><code>C</code></td><td><b>json.JSONDecoder</b>(object_hook, parse_float, parse_int, parse_constant, strict, object_pairs_hook)</td><td>Simple JSON &lt;https://json.org&gt; decoder</td></tr><tr><td><code>C</code></td><td><b>json.JSONEncoder</b>(skipkeys, ensure_ascii, check_circular, allow_nan, sort_keys, indent, separators, default)</td><td>Extensible JSON &lt;https://json.org&gt; encoder for Python data structures.</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import json
+
+# --- Top 20 Ranked Functions ---
+# 1. dumps
+result_1 = json.dumps(obj=..., kw=...)
+
+# 2. load
+result_2 = json.load(fp=..., kw=...)
+
+# 3. dump
+result_3 = json.dump(obj=..., fp=..., kw=...)
+
+# 4. loads
+result_4 = json.loads(s=..., kw=...)
+
+# --- Top 20 Core Classes Initialization ---
+# 1. JSONDecoder
+jsondecoder = json.JSONDecoder()
+
+# 2. JSONEncoder
+jsonencoder = json.JSONEncoder()</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>_json</b></td><td>9</td></tr><tr><td><b>re</b></td><td>8</td></tr><tr><td><b>_frozen_importlib_external</b></td><td>5</td></tr><tr><td><b>_frozen_importlib</b></td><td>5</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>_frozen_importlib_external</code></td><td>0.1738</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib</code></td><td>0.1738</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>re</code></td><td>0.1269</td><td>External</td><td>External Lib</td></tr><tr><td>4</td><td><code>_json</code></td><td>0.1269</td><td>External</td><td>External Lib</td></tr><tr><td>5</td><td><code>decoder</code></td><td>0.0891</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>6</td><td><code>encoder</code></td><td>0.0891</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>7</td><td><code>json</code></td><td>0.0735</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>8</td><td><code>scanner</code></td><td>0.0735</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>9</td><td><code>tool</code></td><td>0.0735</td><td>Internal</td><td>Interface / CLI</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_6[&quot;json&quot;] --&gt; id_7[&quot;decoder&quot;]
+    class id_6 core;
+    class id_7 core;
+    id_6[&quot;json&quot;] --&gt; id_4[&quot;encoder&quot;]
+    class id_6 core;
+    class id_4 core;
+    id_6[&quot;json&quot;] -.-&gt; id_8[&quot;_frozen_importlib_external&quot;]
+    class id_6 core;
+    class id_8 external;
+    id_6[&quot;json&quot;] -.-&gt; id_9[&quot;_frozen_importlib&quot;]
+    class id_6 core;
+    class id_9 external;
+    id_7[&quot;decoder&quot;] -.-&gt; id_10[&quot;re&quot;]
+    class id_7 core;
+    class id_10 external;
+    id_7[&quot;decoder&quot;] -.-&gt; id_8[&quot;_frozen_importlib_external&quot;]
+    class id_7 core;
+    class id_8 external;
+    id_7[&quot;decoder&quot;] -.-&gt; id_9[&quot;_frozen_importlib&quot;]
+    class id_7 core;
+    class id_9 external;
+    id_7[&quot;decoder&quot;] -.-&gt; id_0[&quot;_json&quot;]
+    class id_7 core;
+    class id_0 external;
+    id_4[&quot;encoder&quot;] -.-&gt; id_10[&quot;re&quot;]
+    class id_4 core;
+    class id_10 external;
+    id_4[&quot;encoder&quot;] -.-&gt; id_8[&quot;_frozen_importlib_external&quot;]
+    class id_4 core;
+    class id_8 external;
+    id_4[&quot;encoder&quot;] -.-&gt; id_9[&quot;_frozen_importlib&quot;]
+    class id_4 core;
+    class id_9 external;
+    id_4[&quot;encoder&quot;] -.-&gt; id_0[&quot;_json&quot;]
+    class id_4 core;
+    class id_0 external;
+    id_5[&quot;scanner&quot;] -.-&gt; id_10[&quot;re&quot;]
+    class id_5 core;
+    class id_10 external;
+    id_5[&quot;scanner&quot;] -.-&gt; id_8[&quot;_frozen_importlib_external&quot;]
+    class id_5 core;
+    class id_8 external;
+    id_5[&quot;scanner&quot;] -.-&gt; id_9[&quot;_frozen_importlib&quot;]
+    class id_5 core;
+    class id_9 external;
+    id_5[&quot;scanner&quot;] -.-&gt; id_0[&quot;_json&quot;]
+    class id_5 core;
+    class id_0 external;
+    id_3[&quot;tool&quot;] -.-&gt; id_8[&quot;_frozen_importlib_external&quot;]
+    class id_3 core;
+    class id_8 external;
+    id_3[&quot;tool&quot;] -.-&gt; id_9[&quot;_frozen_importlib&quot;]
+    class id_3 core;
+    class id_9 external;
+    id_2[&quot;JSONDecodeError&quot;] ==&gt; id_1[&quot;ValueError&quot;]
+    class id_2 core;
+    class id_1 external;
+    id_2[&quot;JSONDecodeError&quot;] ==&gt; id_1[&quot;ValueError&quot;]
+    class id_2 core;
+    class id_1 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_6[&quot;dump&quot;] --&gt;|obj| f_9[&quot;iterencode&quot;]
+    class f_6 func;
+    class f_9 func;
+    f_7[&quot;dumps&quot;] --&gt;|obj| f_8[&quot;encode&quot;]
+    class f_7 func;
+    class f_8 func;
+    f_10[&quot;load&quot;] --&gt; f_11[&quot;loads&quot;]
+    class f_10 func;
+    class f_11 func;
+    f_11[&quot;loads&quot;] --&gt; f_4[&quot;decode&quot;]
+    class f_11 func;
+    class f_4 func;
+    f_11[&quot;loads&quot;] --&gt;|s| f_5[&quot;detect_encoding&quot;]
+    class f_11 func;
+    class f_5 func;
+    f_11[&quot;loads&quot;] --&gt;|s| f_4[&quot;decode&quot;]
+    class f_11 func;
+    class f_4 func;
+    f_13[&quot;py_scanstring&quot;] --&gt;|s&lt;br&gt;end| f_2[&quot;_decode_uXXXX&quot;]
+    class f_13 func;
+    class f_2 func;
+    f_13[&quot;py_scanstring&quot;] --&gt;|s| f_2[&quot;_decode_uXXXX&quot;]
+    class f_13 func;
+    class f_2 func;
+    f_4[&quot;decode&quot;] --&gt;|s| f_14[&quot;raw_decode&quot;]
+    class f_4 func;
+    class f_14 func;
+    f_14[&quot;raw_decode&quot;] --&gt;|s&lt;br&gt;idx| f_15[&quot;scan_once&quot;]
+    class f_14 func;
+    class f_15 func;
+    f_8[&quot;encode&quot;] --&gt;|o| f_9[&quot;iterencode&quot;]
+    class f_8 func;
+    class f_9 func;
+    f_9[&quot;iterencode&quot;] --&gt;|markers&lt;br&gt;_encoder&lt;br&gt;indent&lt;br&gt;floatstr&lt;br&gt;_one_shot| f_3[&quot;_make_iterencode&quot;]
+    class f_9 func;
+    class f_3 func;
+    f_12[&quot;main&quot;] --&gt;|line| f_11[&quot;loads&quot;]
+    class f_12 main;
+    class f_11 func;
+    f_12[&quot;main&quot;] --&gt;|infile| f_10[&quot;load&quot;]
+    class f_12 main;
+    class f_10 func;
+    f_12[&quot;main&quot;] --&gt;|obj&lt;br&gt;outfile| f_6[&quot;dump&quot;]
+    class f_12 main;
+    class f_6 func;
+    f_0[&quot;Main_Script&quot;] --&gt; f_12[&quot;main&quot;]
+    class f_0 main;
+    class f_12 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>main</code>:</h4>
+<blockquote>You need these <b>10</b> components:</blockquote>
+<code>_make_iterencode, decode, detect_encoding, dump, iterencode, load, loads, main, raw_decode, scan_once</code><br>
+<br>
+<h4>To extract <code>loads</code>:</h4>
+<blockquote>You need these <b>5</b> components:</blockquote>
+<code>decode, detect_encoding, loads, raw_decode, scan_once</code><br>
+<br>
+<h4>To extract <code>dump</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_make_iterencode, dump, iterencode</code><br>
+<br>
+<h4>To extract <code>dumps</code>:</h4>
+<blockquote>You need these <b>4</b> components:</blockquote>
+<code>_make_iterencode, dumps, encode, iterencode</code><br>
+<br>
+<h4>To extract <code>load</code>:</h4>
+<blockquote>You need these <b>6</b> components:</blockquote>
+<code>decode, detect_encoding, load, loads, raw_decode, scan_once</code><br>
+<br>
+<h4>To extract <code>__init__</code>:</h4>
+<blockquote>You need these <b>1</b> components:</blockquote>
+<code>__init__</code><br>
+<br>
+<h4>To extract <code>py_scanstring</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_decode_uXXXX, py_scanstring</code><br>
+<br>
+<h4>To extract <code>decode</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>decode, raw_decode, scan_once</code><br>
+<br>
+<h4>To extract <code>raw_decode</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>raw_decode, scan_once</code><br>
+<br>
+<h4>To extract <code>encode</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_make_iterencode, encode, iterencode</code><br>
+<br>
+<h4>To extract <code>iterencode</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_make_iterencode, iterencode</code><br>
+<br>
+<h4>To extract <code>Main_Script</code>:</h4>
+<blockquote>You need these <b>11</b> components:</blockquote>
+<code>Main_Script, _make_iterencode, decode, detect_encoding, dump, iterencode, load, loads, main, raw_decode, scan_once</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>dump(obj, fp, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)</code></h4>
+<blockquote>Serialize <code></code>obj<code></code> as a JSON formatted stream to <code></code>fp<code></code> (a</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Serialize ``obj`` as a JSON formatted stream to ``fp`` (a
+``.write()``-supporting file-like object).
+
+If ``skipkeys`` is true then ``dict`` keys that are not basic types
+(``str``, ``int``, ``float``, ``bool``, ``None``) will be skipped
+instead of raising a ``TypeError``.
+
+If ``ensure_ascii`` is false, then the strings written to ``fp`` can
+contain non-ASCII characters if they appear in strings contained in
+``obj``. Otherwise, all such characters are escaped in JSON strings.
+
+If ``check_circular`` is false, then the circular reference check
+for container types will be skipped and a circular reference will
+result in an ``RecursionError`` (or worse).
+
+If ``allow_nan`` is false, then it will be a ``ValueError`` to
+serialize out of range ``float`` values (``nan``, ``inf``, ``-inf``)
+in strict compliance of the JSON specification, instead of using the
+JavaScript equivalents (``NaN``, ``Infinity``, ``-Infinity``).
+
+If ``indent`` is a non-negative integer, then JSON array elements and
+object members will be pretty-printed with that indent level. An indent
+level of 0 will only insert newlines. ``None`` is the most compact
+representation.
+
+If specified, ``separators`` should be an ``(item_separator, key_separator)``
+tuple.  The default is ``(&#x27;, &#x27;, &#x27;: &#x27;)`` if *indent* is ``None`` and
+``(&#x27;,&#x27;, &#x27;: &#x27;)`` otherwise.  To get the most compact JSON representation,
+you should specify ``(&#x27;,&#x27;, &#x27;:&#x27;)`` to eliminate whitespace.
+
+``default(obj)`` is a function that should return a serializable version
+of obj or raise TypeError. The default simply raises TypeError.
+
+If *sort_keys* is true (default: ``False``), then the output of
+dictionaries will be sorted by key.
+
+To use a custom ``JSONEncoder`` subclass (e.g. one that overrides the
+``.default()`` method to serialize additional types), specify it with
+the ``cls`` kwarg; otherwise ``JSONEncoder`` is used.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>dumps(obj, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, default=None, sort_keys=False, **kw)</code></h4>
+<blockquote>Serialize <code></code>obj<code></code> to a JSON formatted <code></code>str<code></code>.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Serialize ``obj`` to a JSON formatted ``str``.
+
+If ``skipkeys`` is true then ``dict`` keys that are not basic types
+(``str``, ``int``, ``float``, ``bool``, ``None``) will be skipped
+instead of raising a ``TypeError``.
+
+If ``ensure_ascii`` is false, then the return value can contain non-ASCII
+characters if they appear in strings contained in ``obj``. Otherwise, all
+such characters are escaped in JSON strings.
+
+If ``check_circular`` is false, then the circular reference check
+for container types will be skipped and a circular reference will
+result in an ``RecursionError`` (or worse).
+
+If ``allow_nan`` is false, then it will be a ``ValueError`` to
+serialize out of range ``float`` values (``nan``, ``inf``, ``-inf``) in
+strict compliance of the JSON specification, instead of using the
+JavaScript equivalents (``NaN``, ``Infinity``, ``-Infinity``).
+
+If ``indent`` is a non-negative integer, then JSON array elements and
+object members will be pretty-printed with that indent level. An indent
+level of 0 will only insert newlines. ``None`` is the most compact
+representation.
+
+If specified, ``separators`` should be an ``(item_separator, key_separator)``
+tuple.  The default is ``(&#x27;, &#x27;, &#x27;: &#x27;)`` if *indent* is ``None`` and
+``(&#x27;,&#x27;, &#x27;: &#x27;)`` otherwise.  To get the most compact JSON representation,
+you should specify ``(&#x27;,&#x27;, &#x27;:&#x27;)`` to eliminate whitespace.
+
+``default(obj)`` is a function that should return a serializable version
+of obj or raise TypeError. The default simply raises TypeError.
+
+If *sort_keys* is true (default: ``False``), then the output of
+dictionaries will be sorted by key.
+
+To use a custom ``JSONEncoder`` subclass (e.g. one that overrides the
+``.default()`` method to serialize additional types), specify it with
+the ``cls`` kwarg; otherwise ``JSONEncoder`` is used.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>load(fp, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)</code></h4>
+<blockquote>Deserialize <code></code>fp<code></code> (a <code></code>.read()<code></code>-supporting file-like object containing</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Deserialize ``fp`` (a ``.read()``-supporting file-like object containing
+a JSON document) to a Python object.
+
+``object_hook`` is an optional function that will be called with the
+result of any object literal decode (a ``dict``). The return value of
+``object_hook`` will be used instead of the ``dict``. This feature
+can be used to implement custom decoders (e.g. JSON-RPC class hinting).
+
+``object_pairs_hook`` is an optional function that will be called with the
+result of any object literal decoded with an ordered list of pairs.  The
+return value of ``object_pairs_hook`` will be used instead of the ``dict``.
+This feature can be used to implement custom decoders.  If ``object_hook``
+is also defined, the ``object_pairs_hook`` takes priority.
+
+To use a custom ``JSONDecoder`` subclass, specify it with the ``cls``
+kwarg; otherwise ``JSONDecoder`` is used.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>loads(s, *, cls=None, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, object_pairs_hook=None, **kw)</code></h4>
+<blockquote>Deserialize <code></code>s<code></code> (a <code></code>str<code></code>, <code></code>bytes<code></code> or <code></code>bytearray<code></code> instance</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Deserialize ``s`` (a ``str``, ``bytes`` or ``bytearray`` instance
+containing a JSON document) to a Python object.
+
+``object_hook`` is an optional function that will be called with the
+result of any object literal decode (a ``dict``). The return value of
+``object_hook`` will be used instead of the ``dict``. This feature
+can be used to implement custom decoders (e.g. JSON-RPC class hinting).
+
+``object_pairs_hook`` is an optional function that will be called with the
+result of any object literal decoded with an ordered list of pairs.  The
+return value of ``object_pairs_hook`` will be used instead of the ``dict``.
+This feature can be used to implement custom decoders.  If ``object_hook``
+is also defined, the ``object_pairs_hook`` takes priority.
+
+``parse_float``, if specified, will be called with the string
+of every JSON float to be decoded. By default this is equivalent to
+float(num_str). This can be used to use another datatype or parser
+for JSON floats (e.g. decimal.Decimal).
+
+``parse_int``, if specified, will be called with the string
+of every JSON int to be decoded. By default this is equivalent to
+int(num_str). This can be used to use another datatype or parser
+for JSON integers (e.g. float).
+
+``parse_constant``, if specified, will be called with one of the
+following strings: -Infinity, Infinity, NaN.
+This can be used to raise an exception if invalid JSON numbers
+are encountered.
+
+To use a custom ``JSONDecoder`` subclass, specify it with the ``cls``
+kwarg; otherwise ``JSONDecoder`` is used.</code></pre>
+<br>
+</details><br>
+<br>
+<h3>📦 Classes</h3>
+<h4><code>class JSONDecoder(*, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, strict=True, object_pairs_hook=None)</code></h4>
+Simple JSON &lt;https://json.org&gt; decoder<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, *, object_hook=None, parse_float=None, parse_int=None, parse_constant=None, strict=True, object_pairs_hook=None)</code></td><td><code></code>object_hook<code></code>, if specified, will be called with the result</td></tr><tr><td><b>decode</b></td><td><code>(self, s, _w=&lt;built-in method match of re.Pattern object at 0x71caaedfadc0&gt;)</code></td><td>Return the Python representation of <code></code>s<code></code> (a <code></code>str<code></code> instance</td></tr><tr><td><b>raw_decode</b></td><td><code>(self, s, idx=0)</code></td><td>Decode a JSON document from <code></code>s<code></code> (a <code></code>str<code></code> beginning with</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class JSONDecodeError(msg, doc, pos)</code></h4>
+Subclass of ValueError with the following additional properties:<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, msg, doc, pos)</code></td><td>Initialize self.  See help(type(self)) for accurate signature.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class JSONEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)</code></h4>
+Extensible JSON &lt;https://json.org&gt; encoder for Python data structures.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, *, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)</code></td><td>Constructor for JSONEncoder, with sensible defaults.</td></tr><tr><td><b>default</b></td><td><code>(self, o)</code></td><td>Implement this method in a subclass such that it returns</td></tr><tr><td><b>encode</b></td><td><code>(self, o)</code></td><td>Return a JSON string representation of a Python data structure.</td></tr><tr><td><b>iterencode</b></td><td><code>(self, o, _one_shot=False)</code></td><td>Encode the given object and yield each string</td></tr></tbody></table>
+<br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    

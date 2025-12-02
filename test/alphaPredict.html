@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: alphaPredict</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>alphaPredict</code></h1>
+<b>File Path:</b> <code>/home/nicai_zht/.local/share/mamba/envs/idr_llm/lib/python3.13/site-packages/alphaPredict/__init__.py</code><br>
+<br>
+<h2>Module Docstring</h2>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>short description of alphaPredict.
+
+Predict confidence scores of alphaFold2</code></pre>
+<br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+- ℹ️ <b>No Direct Entry Point</b>: This module seems to be a library intended for import, not direct execution.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>alphaPredict.predict</b>(<b>sequence</b>)</td><td>Function to return confidence scores from</td></tr><tr><td><code>ƒ</code></td><td><b>alphaPredict.graph</b>(<b>sequence</b>, title, confidence_threshold, shaded_regions, shaded_region_color, confidence_line_color, threshold_line_color, DPI, output_file)</td><td>No description.</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import alphaPredict
+
+# --- Top 20 Ranked Functions ---
+# 1. predict
+result_1 = alphaPredict.predict(sequence=...)
+
+# 2. graph
+result_2 = alphaPredict.graph(sequence=...)</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>_frozen_importlib_external</b></td><td>4</td></tr><tr><td><b>_frozen_importlib</b></td><td>4</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>_frozen_importlib_external</code></td><td>0.2067</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib</code></td><td>0.2067</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>alpha</code></td><td>0.1085</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>4</td><td><code>alpha_exceptions</code></td><td>0.1030</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>5</td><td><code>backend.parrot_alpha</code></td><td>0.1030</td><td>Internal</td><td>External Lib</td></tr><tr><td>6</td><td><code>backend.alpha_graph</code></td><td>0.1030</td><td>Internal</td><td>External Lib</td></tr><tr><td>7</td><td><code>alphaPredict</code></td><td>0.0846</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>8</td><td><code>_version</code></td><td>0.0846</td><td>Internal</td><td>Utility / Core</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_6[&quot;alphaPredict&quot;] -.-&gt; id_1[&quot;_frozen_importlib_external&quot;]
+    class id_6 core;
+    class id_1 external;
+    id_6[&quot;alphaPredict&quot;] -.-&gt; id_4[&quot;_frozen_importlib&quot;]
+    class id_6 core;
+    class id_4 external;
+    id_6[&quot;alphaPredict&quot;] --&gt; id_7[&quot;alpha&quot;]
+    class id_6 core;
+    class id_7 core;
+    id_7[&quot;alpha&quot;] --&gt; id_10[&quot;alpha_exceptions&quot;]
+    class id_7 core;
+    class id_10 core;
+    id_7[&quot;alpha&quot;] -.-&gt; id_1[&quot;_frozen_importlib_external&quot;]
+    class id_7 core;
+    class id_1 external;
+    id_7[&quot;alpha&quot;] -.-&gt; id_4[&quot;_frozen_importlib&quot;]
+    class id_7 core;
+    class id_4 external;
+    id_7[&quot;alpha&quot;] --&gt; id_5[&quot;parrot_alpha&quot;]
+    class id_7 core;
+    class id_5 core;
+    id_7[&quot;alpha&quot;] --&gt; id_9[&quot;alpha_graph&quot;]
+    class id_7 core;
+    class id_9 core;
+    id_2[&quot;_version&quot;] -.-&gt; id_1[&quot;_frozen_importlib_external&quot;]
+    class id_2 core;
+    class id_1 external;
+    id_2[&quot;_version&quot;] -.-&gt; id_4[&quot;_frozen_importlib&quot;]
+    class id_2 core;
+    class id_4 external;
+    id_10[&quot;alpha_exceptions&quot;] -.-&gt; id_1[&quot;_frozen_importlib_external&quot;]
+    class id_10 core;
+    class id_1 external;
+    id_10[&quot;alpha_exceptions&quot;] -.-&gt; id_4[&quot;_frozen_importlib&quot;]
+    class id_10 core;
+    class id_4 external;
+    id_8[&quot;AlphaError&quot;] ==&gt; id_0[&quot;Exception&quot;]
+    class id_8 core;
+    class id_0 external;
+    id_8[&quot;AlphaError&quot;] ==&gt; id_0[&quot;Exception&quot;]
+    class id_8 core;
+    class id_0 external;
+    id_3[&quot;DomainError&quot;] ==&gt; id_0[&quot;Exception&quot;]
+    class id_3 core;
+    class id_0 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_3[&quot;predict&quot;] --&gt;|sequence| f_0[&quot;_alpha_predict&quot;]
+    class f_3 func;
+    class f_0 func;
+    f_2[&quot;graph&quot;] --&gt;|sequence&lt;br&gt;title&lt;br&gt;confidence_threshold&lt;br&gt;shaded_regions&lt;br&gt;shaded_region_color&lt;br&gt;confidence_line_color&lt;br&gt;threshold_line_color&lt;br&gt;DPI&lt;br&gt;output_file| f_1[&quot;_graph&quot;]
+    class f_2 func;
+    class f_1 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>predict</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_alpha_predict, predict</code><br>
+<br>
+<h4>To extract <code>graph</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_graph, graph</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>graph(sequence, title=&#x27;Predicted Confidence Score&#x27;, confidence_threshold=50, shaded_regions=None, shaded_region_color=&#x27;red&#x27;, confidence_line_color=&#x27;blue&#x27;, threshold_line_color=&#x27;black&#x27;, DPI=150, output_file=None)</code></h4>
+<blockquote>No documentation available.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>No documentation available.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict(sequence)</code></h4>
+<blockquote>Function to return confidence scores from</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to return confidence scores from
+Alpha fold 2 of a single input sequence. Returns the
+predicted values as a float.
+
+Parameters
+------------
+
+sequence : str 
+    Input amino acid sequence (as string) to be predicted.
+
+Returns
+--------
+
+Float
+    Returns a float of the confidence score value (predicted)</code></pre>
+<br>
+</details><br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    

@@ -1,0 +1,13 @@
+## Project Introduction  
+When engaging with Python libraries or codebases, avoid static, passive reading—don’t treat the code like a history textbook or a literary text, where you merely scan lines without critical thought. Instead, adopt a **developer’s mindset**: shift your focus to how functions and modules depend on one another, as these dependencies are the backbone of the code’s computational design.  
+
+Approach the code like a detective investigating a case: dissect its logic with meticulous attention—trace the flow of data, unpack the design choices behind each module, and uncover the "why" behind every function call. For a structured, data-driven analysis, draw inspiration from Google’s PageRank algorithm: map out module dependencies and call relationships systematically. This method lets you identify core libraries the project relies on most, highlight critical code paths, and demystify the project’s architectural hierarchy.  
+
+Moreover, lean into Python’s fundamental language features—especially its **object-oriented programming (OOP) paradigm** and the "everything is an object" principle. This isn’t just a syntax detail; it’s the *first principle* of Python’s design. Leveraging this, you can more easily extract and abstract core logic: whether it’s recognizing how classes encapsulate behavior, how objects interact via methods, or how inheritance shapes code reuse, OOP gives you a framework to rapidly grasp the project’s structure. This approach doesn’t just help you "understand" the code—it equips you to contribute to development, extend functionality, and debug efficiently.  
+
+Our tool turns this analytical process into action: it transforms complex Python libraries into clear, interactive diagrams instantly, bridging the gap between passive reading and active, insightful code exploration.  
+
+
+## Who This Is For
+
+This repository is tailored for practitioners in AI for Science (AI4S) and other interdisciplinary fields—professionals who leverage computational tools to advance their domains but may not have the formal "program design mindset" of computer science majors. For seasoned developers, the idea that "code is the result of deliberate design" is foundational. Our goal is to help interdisciplinary researchers and engineers internalize this critical perspective: to move beyond using code as a "black box" and instead see it as a purposefully constructed system. By demystifying code design through interactive visualization, we empower non-CS specialists to engage with Python libraries more deeply—whether for research, tool building, or collaborative development.

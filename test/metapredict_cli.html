@@ -1,0 +1,2326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: metapredict</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>metapredict</code></h1>
+<blockquote><b>Note:</b> Analyzed via CLI command <code>metapredict-predict-disorder</code>.</blockquote>
+<b>File Path:</b> <code>/home/nicai_zht/.local/share/mamba/envs/idr_llm/lib/python3.13/site-packages/metapredict/__init__.py</code><br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+<br>
+<h3>💻 Installed CLI Commands</h3>
+This library installs the following system commands (accessible from terminal):<br>
+<table><thead><tr><th>Command</th><th>Entry Point (Function)</th></tr></thead><tbody><tr><td><code>metapredict-uniprot</code></td><td><code>metapredict.scripts.metapredict_uniprot:main</code></td></tr><tr><td><code>metapredict-predict-pLDDT</code></td><td><code>metapredict.scripts.metapredict_predict_pLDDT:main</code></td></tr><tr><td><code>metapredict-caid</code></td><td><code>metapredict.scripts.metapredict_caid:main</code></td></tr><tr><td><code>metapredict-name</code></td><td><code>metapredict.scripts.metapredict_name:main</code></td></tr><tr><td><code>metapredict-predict-idrs</code></td><td><code>metapredict.scripts.metapredict_predict_idrs:main</code></td></tr><tr><td><code>metapredict-quick-graph</code></td><td><code>metapredict.scripts.metapredict_quick_graph:main</code></td></tr><tr><td><code>metapredict-graph-pLDDT</code></td><td><code>metapredict.scripts.metapredict_graph_pLDDT:main</code></td></tr><tr><td><code>metapredict-predict-disorder</code></td><td><code>metapredict.scripts.metapredict_predict_disorder:main</code></td></tr><tr><td><code>metapredict-graph-disorder</code></td><td><code>metapredict.scripts.metapredict_graph_disorder:main</code></td></tr><tr><td><code>metapredict-quick-predict</code></td><td><code>metapredict.scripts.metapredict_quick_predict:main</code></td></tr></tbody></table>
+<br>
+- ✅ <b>Target Match</b>: You are analyzing the package backing the command <code>metapredict-predict-disorder</code>.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder_batch</b>(<b>input_sequences</b>, version, device, normalized, round_values, return_numpy, return_domains, disorder_threshold, minimum_IDR_size, minimum_folded_domain, gap_closure, override_folded_domain_minsize, show_progress_bar, disable_batch)</td><td>Batch mode predictor which takes advantage of PyTorch</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder_domains_from_external_scores</b>(<b>disorder</b>, sequence, disorder_threshold, minimum_IDR_size, minimum_folded_domain, gap_closure, override_folded_domain_minsize, return_numpy)</td><td>This function takes in disorder scores generated from another predictor</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder_domains_uniprot</b>(<b>uniprot_id</b>, disorder_threshold, minimum_IDR_size, minimum_folded_domain, gap_closure, normalized, return_numpy, version)</td><td>This function takes an amino acid sequence, a disorder score, and</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_pLDDT</b>(<b>inputs</b>, pLDDT_version, return_decimals, device, normalized, round_values, return_numpy, print_performance, show_progress_bar, force_disable_batch, disable_pack_n_pad, silence_warnings, return_as_disorder_score)</td><td>Function to return predicted pLDDT scores. pLDDT scores are the scores</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_all</b>(<b>sequence</b>)</td><td>Function to return all three disorder predictions (V1, V2, V3 for</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder</b>(<b>inputs</b>, version, device, normalized, round_values, return_numpy, return_domains, disorder_threshold, minimum_IDR_size, minimum_folded_domain, gap_closure, override_folded_domain_minsize, print_performance, show_progress_bar, force_disable_batch, disable_pack_n_pad, silence_warnings, legacy)</td><td>The main function in metapredict. Updated to handle much more advanced</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder_domains</b>(<b>sequence</b>, disorder_threshold, minimum_IDR_size, minimum_folded_domain, gap_closure, normalized, return_numpy, version, return_list)</td><td>This function takes an amino acid sequence and one or more</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder_fasta</b>(<b>filepath</b>, output_file, normalized, invalid_sequence_action, version, device, show_progress_bar)</td><td>Function to read in a .fasta file from a specified filepath.</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder_uniprot</b>(<b>uniprot_id</b>, normalized, version)</td><td>Function to return disorder of a single input sequence. Uses a</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_pLDDT_fasta</b>(<b>filepath</b>, output_file, invalid_sequence_action, pLDDT_version, device, show_progress_bar)</td><td>Function to read in a .fasta file from a specified filepath.</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_pLDDT_uniprot</b>(<b>uniprot_id</b>, pLDDT_version)</td><td>Function to return pLDDT score of a single input sequence. Uses a</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.print_metapredict_legacy_network_version</b>(return_network_info)</td><td>Function that returns a string with the current trained network version</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.print_metapredict_network_version</b>(return_network_info)</td><td>Function that returns a string with the current trained network version</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict_disorder_caid</b>(<b>input_fasta</b>, <b>output_path</b>, version)</td><td>executing script for generating a caid-compliant output file for disorder</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.graph_disorder_uniprot</b>(<b>uniprot_id</b>, title, pLDDT_scores, disorder_threshold, shaded_regions, shaded_region_color, DPI, output_file, version, pLDDT_version)</td><td>Function to plot the disorder of an input sequece. Displays immediately.</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.graph_pLDDT_uniprot</b>(<b>uniprot_id</b>, title, shaded_regions, shaded_region_color, DPI, output_file, pLDDT_version)</td><td>Function to plot the disorder of an input sequece. Displays immediately.</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.percent_disorder</b>(<b>sequence</b>, disorder_threshold, mode, version)</td><td>Function that returns the percent disorder for any given protein.</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.predict</b>(<b>inputs</b>, version, use_device, normalized, round_values, return_numpy, return_domains, disorder_threshold, minimum_IDR_size, minimum_folded_domain, gap_closure, override_folded_domain_minsize, use_slow, print_performance, show_progress_bar, force_disable_batch, disable_pack_n_pad, silence_warnings, default_to_device)</td><td>Batch mode predictor which takes advantage of PyTorch</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.print_performance</b>(seq_len, num_seqs, variable_length, version, disable_batch, verbose, device)</td><td>Function that lets you test metapredicts performance on your local hardware.</td></tr><tr><td><code>ƒ</code></td><td><b>metapredict.print_performance_backend</b>(seq_len, num_seqs, variable_length, version, disable_batch, verbose, device, disable_pack_n_pad)</td><td>Function that lets you test metapredicts performance on your local hardware.</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import metapredict
+
+# --- Top 20 Ranked Functions ---
+# 1. predict_disorder_batch
+result_1 = metapredict.predict_disorder_batch(input_sequences=...)
+
+# 2. predict_disorder_domains_from_external_scores
+result_2 = metapredict.predict_disorder_domains_from_external_scores(disorder=...)
+
+# 3. predict_disorder_domains_uniprot
+result_3 = metapredict.predict_disorder_domains_uniprot(uniprot_id=...)
+
+# 4. predict_pLDDT
+result_4 = metapredict.predict_pLDDT(inputs=...)
+
+# 5. predict_all
+result_5 = metapredict.predict_all(sequence=...)
+
+# 6. predict_disorder
+result_6 = metapredict.predict_disorder(inputs=...)
+
+# 7. predict_disorder_domains
+result_7 = metapredict.predict_disorder_domains(sequence=...)
+
+# 8. predict_disorder_fasta
+result_8 = metapredict.predict_disorder_fasta(filepath=...)
+
+# 9. predict_disorder_uniprot
+result_9 = metapredict.predict_disorder_uniprot(uniprot_id=...)
+
+# 10. predict_pLDDT_fasta
+result_10 = metapredict.predict_pLDDT_fasta(filepath=...)
+
+# 11. predict_pLDDT_uniprot
+result_11 = metapredict.predict_pLDDT_uniprot(uniprot_id=...)
+
+# 12. print_metapredict_legacy_network_version
+result_12 = metapredict.print_metapredict_legacy_network_version()
+
+# 13. print_metapredict_network_version
+result_13 = metapredict.print_metapredict_network_version()
+
+# 14. predict_disorder_caid
+result_14 = metapredict.predict_disorder_caid(input_fasta=..., output_path=...)
+
+# 15. graph_disorder_uniprot
+result_15 = metapredict.graph_disorder_uniprot(uniprot_id=...)
+
+# 16. graph_pLDDT_uniprot
+result_16 = metapredict.graph_pLDDT_uniprot(uniprot_id=...)
+
+# 17. percent_disorder
+result_17 = metapredict.percent_disorder(sequence=...)
+
+# 18. predict
+result_18 = metapredict.predict(inputs=...)
+
+# 19. print_performance
+result_19 = metapredict.print_performance()
+
+# 20. print_performance_backend
+result_20 = metapredict.print_performance_backend()</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>_frozen_importlib_external</b></td><td>16</td></tr><tr><td><b>_frozen_importlib</b></td><td>16</td></tr><tr><td><b>getSequence</b></td><td>3</td></tr><tr><td><b>importlib</b></td><td>2</td></tr><tr><td><b>tqdm</b></td><td>1</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>_frozen_importlib_external</code></td><td>0.1846</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib</code></td><td>0.1846</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>metapredict_exceptions</code></td><td>0.0405</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>4</td><td><code>getSequence</code></td><td>0.0405</td><td>External</td><td>External Lib</td></tr><tr><td>5</td><td><code>backend.predictor</code></td><td>0.0339</td><td>Internal</td><td>External Lib</td></tr><tr><td>6</td><td><code>importlib</code></td><td>0.0306</td><td>External</td><td>External Lib</td></tr><tr><td>7</td><td><code>meta</code></td><td>0.0306</td><td>Internal</td><td>Model / AI</td></tr><tr><td>8</td><td><code>backend.data_structures</code></td><td>0.0294</td><td>Internal</td><td>External Lib</td></tr><tr><td>9</td><td><code>backend.meta_graph</code></td><td>0.0294</td><td>Internal</td><td>External Lib</td></tr><tr><td>10</td><td><code>tqdm</code></td><td>0.0294</td><td>External</td><td>External Lib</td></tr><tr><td>11</td><td><code>metapredict</code></td><td>0.0262</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>12</td><td><code>_version</code></td><td>0.0262</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>13</td><td><code>parameters</code></td><td>0.0262</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>14</td><td><code>scripts</code></td><td>0.0262</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>15</td><td><code>scripts.metapredict_caid</code></td><td>0.0262</td><td>Internal</td><td>Interface / CLI</td></tr><tr><td>16</td><td><code>scripts.metapredict_graph_disorder</code></td><td>0.0262</td><td>Internal</td><td>Data Processing</td></tr><tr><td>17</td><td><code>scripts.metapredict_graph_pLDDT</code></td><td>0.0262</td><td>Internal</td><td>Data Processing</td></tr><tr><td>18</td><td><code>scripts.metapredict_name</code></td><td>0.0262</td><td>Internal</td><td>Interface / CLI</td></tr><tr><td>19</td><td><code>scripts.metapredict_predict_disorder</code></td><td>0.0262</td><td>Internal</td><td>Data Processing</td></tr><tr><td>20</td><td><code>scripts.metapredict_predict_idrs</code></td><td>0.0262</td><td>Internal</td><td>Interface / CLI</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_24[&quot;metapredict&quot;] -.-&gt; id_9[&quot;importlib&quot;]
+    class id_24 core;
+    class id_9 external;
+    id_24[&quot;metapredict&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_24 core;
+    class id_10 external;
+    id_24[&quot;metapredict&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_24 core;
+    class id_22 external;
+    id_24[&quot;metapredict&quot;] --&gt; id_13[&quot;meta&quot;]
+    class id_24 core;
+    class id_13 core;
+    id_24[&quot;metapredict&quot;] --&gt; id_3[&quot;predictor&quot;]
+    class id_24 core;
+    class id_3 core;
+    id_13[&quot;meta&quot;] --&gt; id_17[&quot;metapredict_exceptions&quot;]
+    class id_13 core;
+    class id_17 core;
+    id_13[&quot;meta&quot;] --&gt; id_11[&quot;data_structures&quot;]
+    class id_13 core;
+    class id_11 core;
+    id_13[&quot;meta&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_13 core;
+    class id_10 external;
+    id_13[&quot;meta&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_13 core;
+    class id_22 external;
+    id_13[&quot;meta&quot;] -.-&gt; id_18[&quot;getSequence&quot;]
+    class id_13 core;
+    class id_18 external;
+    id_13[&quot;meta&quot;] --&gt; id_14[&quot;meta_graph&quot;]
+    class id_13 core;
+    class id_14 core;
+    id_13[&quot;meta&quot;] --&gt; id_3[&quot;predictor&quot;]
+    class id_13 core;
+    class id_3 core;
+    id_13[&quot;meta&quot;] -.-&gt; id_20[&quot;tqdm&quot;]
+    class id_13 core;
+    class id_20 external;
+    id_23[&quot;_version&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_23 core;
+    class id_10 external;
+    id_23[&quot;_version&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_23 core;
+    class id_22 external;
+    id_17[&quot;metapredict_exceptions&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_17 core;
+    class id_10 external;
+    id_17[&quot;metapredict_exceptions&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_17 core;
+    class id_22 external;
+    id_2[&quot;parameters&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_2 core;
+    class id_10 external;
+    id_2[&quot;parameters&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_2 core;
+    class id_22 external;
+    id_0[&quot;scripts&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_0 core;
+    class id_10 external;
+    id_0[&quot;scripts&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_0 core;
+    class id_22 external;
+    id_25[&quot;metapredict_caid&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_25 core;
+    class id_10 external;
+    id_25[&quot;metapredict_caid&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_25 core;
+    class id_22 external;
+    id_16[&quot;metapredict_graph_disorder&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_16 core;
+    class id_10 external;
+    id_16[&quot;metapredict_graph_disorder&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_16 core;
+    class id_22 external;
+    id_15[&quot;metapredict_graph_pLDDT&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_15 core;
+    class id_10 external;
+    id_15[&quot;metapredict_graph_pLDDT&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_15 core;
+    class id_22 external;
+    id_7[&quot;metapredict_name&quot;] --&gt; id_17[&quot;metapredict_exceptions&quot;]
+    class id_7 core;
+    class id_17 core;
+    id_7[&quot;metapredict_name&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_7 core;
+    class id_10 external;
+    id_7[&quot;metapredict_name&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_7 core;
+    class id_22 external;
+    id_7[&quot;metapredict_name&quot;] -.-&gt; id_18[&quot;getSequence&quot;]
+    class id_7 core;
+    class id_18 external;
+    id_8[&quot;metapredict_predict_disorder&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_8 core;
+    class id_10 external;
+    id_8[&quot;metapredict_predict_disorder&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_8 core;
+    class id_22 external;
+    id_4[&quot;metapredict_predict_idrs&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_4 core;
+    class id_10 external;
+    id_4[&quot;metapredict_predict_idrs&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_4 core;
+    class id_22 external;
+    id_1[&quot;metapredict_predict_pLDDT&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_1 core;
+    class id_10 external;
+    id_1[&quot;metapredict_predict_pLDDT&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_1 core;
+    class id_22 external;
+    id_21[&quot;metapredict_quick_graph&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_21 core;
+    class id_10 external;
+    id_21[&quot;metapredict_quick_graph&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_21 core;
+    class id_22 external;
+    id_12[&quot;metapredict_quick_predict&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_12 core;
+    class id_10 external;
+    id_12[&quot;metapredict_quick_predict&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_12 core;
+    class id_22 external;
+    id_26[&quot;metapredict_uniprot&quot;] --&gt; id_17[&quot;metapredict_exceptions&quot;]
+    class id_26 core;
+    class id_17 core;
+    id_26[&quot;metapredict_uniprot&quot;] -.-&gt; id_10[&quot;_frozen_importlib_external&quot;]
+    class id_26 core;
+    class id_10 external;
+    id_26[&quot;metapredict_uniprot&quot;] -.-&gt; id_22[&quot;_frozen_importlib&quot;]
+    class id_26 core;
+    class id_22 external;
+    id_26[&quot;metapredict_uniprot&quot;] -.-&gt; id_18[&quot;getSequence&quot;]
+    class id_26 core;
+    class id_18 external;
+    id_19[&quot;MetapredictError&quot;] ==&gt; id_6[&quot;Exception&quot;]
+    class id_19 core;
+    class id_6 external;
+    id_5[&quot;DomainError&quot;] ==&gt; id_6[&quot;Exception&quot;]
+    class id_5 core;
+    class id_6 external;
+    id_19[&quot;MetapredictError&quot;] ==&gt; id_6[&quot;Exception&quot;]
+    class id_19 core;
+    class id_6 external;
+    id_19[&quot;MetapredictError&quot;] ==&gt; id_6[&quot;Exception&quot;]
+    class id_19 core;
+    class id_6 external;
+    id_19[&quot;MetapredictError&quot;] ==&gt; id_6[&quot;Exception&quot;]
+    class id_19 core;
+    class id_6 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_25[&quot;print_performance&quot;] --&gt;|seqs| f_13[&quot;predict&quot;]
+    class f_25 func;
+    class f_13 func;
+    f_26[&quot;print_performance_backend&quot;] --&gt;|seqs| f_13[&quot;predict&quot;]
+    class f_26 func;
+    class f_13 func;
+    f_15[&quot;predict_disorder&quot;] --&gt;|inputs| f_2[&quot;_predict&quot;]
+    class f_15 func;
+    class f_2 func;
+    f_18[&quot;predict_disorder_domains&quot;] --&gt;|sequence| f_2[&quot;_predict&quot;]
+    class f_18 func;
+    class f_2 func;
+    f_14[&quot;predict_all&quot;] --&gt;|sequence| f_2[&quot;_predict&quot;]
+    class f_14 func;
+    class f_2 func;
+    f_14[&quot;predict_all&quot;] --&gt;|sequence| f_3[&quot;_predict_pLDDT&quot;]
+    class f_14 func;
+    class f_3 func;
+    f_16[&quot;predict_disorder_batch&quot;] --&gt;|input_sequences| f_2[&quot;_predict&quot;]
+    class f_16 func;
+    class f_2 func;
+    f_5[&quot;graph_disorder&quot;] --&gt;|sequence| f_1[&quot;_graph&quot;]
+    class f_5 func;
+    class f_1 func;
+    f_22[&quot;predict_pLDDT&quot;] --&gt;|inputs| f_3[&quot;_predict_pLDDT&quot;]
+    class f_22 func;
+    class f_3 func;
+    f_8[&quot;graph_pLDDT&quot;] --&gt;|sequence| f_1[&quot;_graph&quot;]
+    class f_8 func;
+    class f_1 func;
+    f_12[&quot;percent_disorder&quot;] --&gt;|sequence| f_2[&quot;_predict&quot;]
+    class f_12 func;
+    class f_2 func;
+    f_12[&quot;percent_disorder&quot;] --&gt;|sequence&lt;br&gt;disorder_threshold| f_18[&quot;predict_disorder_domains&quot;]
+    class f_12 func;
+    class f_18 func;
+    f_20[&quot;predict_disorder_fasta&quot;] --&gt;|protfasta_seqs| f_2[&quot;_predict&quot;]
+    class f_20 func;
+    class f_2 func;
+    f_23[&quot;predict_pLDDT_fasta&quot;] --&gt;|protfasta_seqs| f_3[&quot;_predict_pLDDT&quot;]
+    class f_23 func;
+    class f_3 func;
+    f_6[&quot;graph_disorder_fasta&quot;] --&gt;|local_sequence| f_5[&quot;graph_disorder&quot;]
+    class f_6 func;
+    class f_5 func;
+    f_9[&quot;graph_pLDDT_fasta&quot;] --&gt;|local_sequence| f_8[&quot;graph_pLDDT&quot;]
+    class f_9 func;
+    class f_8 func;
+    f_21[&quot;predict_disorder_uniprot&quot;] --&gt;|uniprot_id| f_0[&quot;_getseq&quot;]
+    class f_21 func;
+    class f_0 func;
+    f_21[&quot;predict_disorder_uniprot&quot;] --&gt;|sequence| f_2[&quot;_predict&quot;]
+    class f_21 func;
+    class f_2 func;
+    f_24[&quot;predict_pLDDT_uniprot&quot;] --&gt;|uniprot_id| f_0[&quot;_getseq&quot;]
+    class f_24 func;
+    class f_0 func;
+    f_24[&quot;predict_pLDDT_uniprot&quot;] --&gt;|sequence| f_3[&quot;_predict_pLDDT&quot;]
+    class f_24 func;
+    class f_3 func;
+    f_7[&quot;graph_disorder_uniprot&quot;] --&gt;|uniprot_id| f_0[&quot;_getseq&quot;]
+    class f_7 func;
+    class f_0 func;
+    f_7[&quot;graph_disorder_uniprot&quot;] --&gt;|sequence| f_1[&quot;_graph&quot;]
+    class f_7 func;
+    class f_1 func;
+    f_10[&quot;graph_pLDDT_uniprot&quot;] --&gt;|uniprot_id| f_0[&quot;_getseq&quot;]
+    class f_10 func;
+    class f_0 func;
+    f_10[&quot;graph_pLDDT_uniprot&quot;] --&gt;|sequence| f_1[&quot;_graph&quot;]
+    class f_10 func;
+    class f_1 func;
+    f_19[&quot;predict_disorder_domains_uniprot&quot;] --&gt;|uniprot_id| f_0[&quot;_getseq&quot;]
+    class f_19 func;
+    class f_0 func;
+    f_19[&quot;predict_disorder_domains_uniprot&quot;] --&gt;|sequence| f_2[&quot;_predict&quot;]
+    class f_19 func;
+    class f_2 func;
+    f_17[&quot;predict_disorder_caid&quot;] --&gt;|entry_id_and_seqs| f_2[&quot;_predict&quot;]
+    class f_17 func;
+    class f_2 func;
+    f_11[&quot;main&quot;] --&gt; f_17[&quot;predict_disorder_caid&quot;]
+    class f_11 main;
+    class f_17 func;
+    f_11[&quot;main&quot;] --&gt; f_6[&quot;graph_disorder_fasta&quot;]
+    class f_11 main;
+    class f_6 func;
+    f_11[&quot;main&quot;] --&gt; f_9[&quot;graph_pLDDT_fasta&quot;]
+    class f_11 main;
+    class f_9 func;
+    f_11[&quot;main&quot;] --&gt;|final_name| f_4[&quot;getseq&quot;]
+    class f_11 main;
+    class f_4 func;
+    f_11[&quot;main&quot;] --&gt;|sequence| f_5[&quot;graph_disorder&quot;]
+    class f_11 main;
+    class f_5 func;
+    f_11[&quot;main&quot;] --&gt; f_20[&quot;predict_disorder_fasta&quot;]
+    class f_11 main;
+    class f_20 func;
+    f_11[&quot;main&quot;] --&gt;|sequences| f_15[&quot;predict_disorder&quot;]
+    class f_11 main;
+    class f_15 func;
+    f_11[&quot;main&quot;] --&gt; f_27[&quot;write&quot;]
+    class f_11 main;
+    class f_27 func;
+    f_11[&quot;main&quot;] --&gt; f_23[&quot;predict_pLDDT_fasta&quot;]
+    class f_11 main;
+    class f_23 func;
+    f_11[&quot;main&quot;] --&gt; f_5[&quot;graph_disorder&quot;]
+    class f_11 main;
+    class f_5 func;
+    f_11[&quot;main&quot;] --&gt; f_15[&quot;predict_disorder&quot;]
+    class f_11 main;
+    class f_15 func;
+    f_11[&quot;main&quot;] --&gt; f_4[&quot;getseq&quot;]
+    class f_11 main;
+    class f_4 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>main</code>:</h4>
+<blockquote>You need these <b>14</b> components:</blockquote>
+<code>_graph, _predict, _predict_pLDDT, getseq, graph_disorder, graph_disorder_fasta, graph_pLDDT, graph_pLDDT_fasta, main, predict_disorder, predict_disorder_caid, predict_disorder_fasta, predict_pLDDT_fasta, write</code><br>
+<br>
+<h4>To extract <code>predict_all</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_predict, _predict_pLDDT, predict_all</code><br>
+<br>
+<h4>To extract <code>percent_disorder</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_predict, percent_disorder, predict_disorder_domains</code><br>
+<br>
+<h4>To extract <code>predict_disorder_uniprot</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_getseq, _predict, predict_disorder_uniprot</code><br>
+<br>
+<h4>To extract <code>predict_pLDDT_uniprot</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_getseq, _predict_pLDDT, predict_pLDDT_uniprot</code><br>
+<br>
+<h4>To extract <code>graph_disorder_uniprot</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_getseq, _graph, graph_disorder_uniprot</code><br>
+<br>
+<h4>To extract <code>graph_pLDDT_uniprot</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_getseq, _graph, graph_pLDDT_uniprot</code><br>
+<br>
+<h4>To extract <code>predict_disorder_domains_uniprot</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_getseq, _predict, predict_disorder_domains_uniprot</code><br>
+<br>
+<h4>To extract <code>print_performance</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>predict, print_performance</code><br>
+<br>
+<h4>To extract <code>print_performance_backend</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>predict, print_performance_backend</code><br>
+<br>
+<h4>To extract <code>predict_disorder</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_predict, predict_disorder</code><br>
+<br>
+<h4>To extract <code>predict_disorder_domains</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_predict, predict_disorder_domains</code><br>
+<br>
+<h4>To extract <code>predict_disorder_batch</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_predict, predict_disorder_batch</code><br>
+<br>
+<h4>To extract <code>graph_disorder</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_graph, graph_disorder</code><br>
+<br>
+<h4>To extract <code>predict_pLDDT</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_predict_pLDDT, predict_pLDDT</code><br>
+<br>
+<h4>To extract <code>graph_pLDDT</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_graph, graph_pLDDT</code><br>
+<br>
+<h4>To extract <code>predict_disorder_fasta</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_predict, predict_disorder_fasta</code><br>
+<br>
+<h4>To extract <code>predict_pLDDT_fasta</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_predict_pLDDT, predict_pLDDT_fasta</code><br>
+<br>
+<h4>To extract <code>graph_disorder_fasta</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_graph, graph_disorder, graph_disorder_fasta</code><br>
+<br>
+<h4>To extract <code>graph_pLDDT_fasta</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>_graph, graph_pLDDT, graph_pLDDT_fasta</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>graph_disorder(sequence, version=&#x27;V3&#x27;, pLDDT_version=&#x27;V2&#x27;, title=&#x27;Predicted protein disorder&#x27;, disorder_threshold=None, pLDDT_scores=False, shaded_regions=None, shaded_region_color=&#x27;red&#x27;, DPI=150, output_file=None)</code></h4>
+<blockquote>Function to plot the disorder of an input sequece. Displays immediately.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to plot the disorder of an input sequece. Displays immediately.
+
+Parameters
+-------------
+
+sequence : str 
+    Input amino acid sequence (as string) to be predicted.
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+pLDDT_version : string
+    The network to use for pLDDT prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2.
+
+title : str
+    Sets the title of the generated figure. Default = &quot;Predicted protein 
+    disorder&quot;
+
+disorder_threshold : float
+    Set to None by default such that if the user chooses to set
+    legacy=True, the threshhold line will be at 0.3 and if legacy
+    is set to false (default) then the threshold line will be at 0.5.
+
+    Sets a threshold which draws a horizontal black line as a visual 
+    guide along the length of the figure. Must be a value between 0 
+    and 1. Default = 0.3 for legacy and 0.5 for new version of metapredict.
+        
+pLDDT_scores : Bool
+    Sets whether to include the predicted pLDDT scores in the figure
+
+shaded_regions : list of lists
+    A list of lists, where sub-elements are of length 2 and contain 
+    start and end values for regions to be shaded. Assumes that sanity 
+    checking on positions has already been done. Default is None, but 
+    if there were specific regions you wanted to highlight this might, 
+    for example, look like shaded_regions=[[1,10],[40,50]], which would 
+    shade between 1 and 10 and then between 40 and 50. This can be useful
+    to either highlight specific IDRs or specific folded domains
+
+shaded_region_color : str or list of sts
+    String that defines the color of the shaded region. The shaded region 
+    is always set with an alpha of 0.3 but the color can be any valid 
+    matplotlib color name or a hex color string (i.e. &quot;#ff0000&quot; is red).
+    Alternatively a list where number of elements matches number in 
+    shaded_regions, assigning a color-per-shaded regions.
+
+DPI : int
+    Dots-per-inch. Defines the resolution of the generated figure. 
+    Passed to the dpi argument in ``matplotlib.pyplot.savefig()``.
+    
+output_file : str
+    If provided, the output_file variable defines the location and type 
+    of the file to be saved. This should be a file location and filename 
+    with a valid matplotlib extension (such as .png, or .pdf) and, if 
+    provided, this value is passed directly to the 
+    ``matplotlib.pyplot.savefig()`` function as the ``fname`` parameter. 
+    Default = None.
+
+
+Returns
+--------
+
+None
+    No return object, but, the graph is saved to disk or displayed 
+    locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>graph_disorder_fasta(filepath, pLDDT_scores=False, disorder_threshold=None, DPI=150, output_dir=None, output_filetype=&#x27;png&#x27;, invalid_sequence_action=&#x27;convert&#x27;, indexed_filenames=False, version=&#x27;V3&#x27;, pLDDT_version=&#x27;V2&#x27;)</code></h4>
+<blockquote>Function to make graphs of predicted disorder from the sequences</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to make graphs of predicted disorder from the sequences
+in a specified .fasta file. By default will save the generated
+graphs to the location output_path specified in filepath.
+
+**WARNING**: It is unadvisable to not include an output directory if you are reading in a .fasta 
+file with many sequences! This is because each graph must be closed individually before the next 
+will appear. Therefore, you will spend a bunch of time closing each graph.
+
+**NB**: You cannot specify the output file name here! By default, the file name will
+be the first 14 characters of the FASTA header followed by the filetype as specified 
+by filetype. If you wish for the files to include a unique leading number (i.e. X_rest_of_name
+where X starts at 1 and increments) then set indexed_filenames to True. This can be useful if you
+have sequences where the 1st 14 characters may be identical, which would otherwise overwrite an 
+output file.
+
+Parameters
+-----------
+
+filepath : str 
+    The path to where the .fasta file is located. The filepath should end in the file name. 
+    For example (on MacOS):filepath=&quot;/Users/thisUser/Desktop/folder_of_seqs/interesting_proteins.fasta&quot;
+
+pLDDT_scores : Bool
+    Sets whether to include the predicted pLDDT scores from
+    AlphaFold2
+
+disorder_threshold : float
+    Sets a threshold which draws a horizontal black line as a visual guide along
+    the length of the figure. Must be a value between 0 and 1.
+
+DPI : int
+    Dots-per-inch. Defines the resolution of the generated figure. Passed to the
+    dpi argument in ``matplotlib.pyplot.savefig()``.
+
+output_dir : str
+    If provided, the output_dir variable defines the directory where file should besaved
+    to be saved. This should be a writeable filepath. Default is None. Output files are 
+    saved with filename as first 14 chars of fasta header (minus bad characters) plus the
+    appropriate file extension, as defined by filetype.
+
+output_filetype : str
+    String that defines the output filetype to be used. Must be one of pdf, png, jpg.
+
+invalid_sequence_action : str
+    Tells the function how to deal with sequences that lack standard amino acids. Default is 
+    convert, which as the name implies converts via standard rules. See 
+    https://protfasta.readthedocs.io/en/latest/read_fasta.html for more information.
+
+indexed_filenames : bool
+    Bool which, if set to true, means filenames start with an unique integer.
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+pLDDT_version : string
+    The network to use for pLDDT prediction. 
+    Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2
+
+Returns
+---------
+
+None
+    No return object, but, the graph is saved to disk or displayed locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>graph_disorder_uniprot(uniprot_id, title=&#x27;Predicted protein disorder&#x27;, pLDDT_scores=False, disorder_threshold=None, shaded_regions=None, shaded_region_color=&#x27;red&#x27;, DPI=150, output_file=None, version=&#x27;V3&#x27;, pLDDT_version=&#x27;V2&#x27;)</code></h4>
+<blockquote>Function to plot the disorder of an input sequece. Displays immediately.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to plot the disorder of an input sequece. Displays immediately.
+
+Parameters
+-------------
+
+sequence : str 
+    Input amino acid sequence (as string) to be predicted.
+
+title : str
+    Sets the title of the generated figure. Default = &quot;Predicted protein disorder&quot;
+
+pLDDT_scores : Bool
+    Sets whether to include the predicted pLDDT scores from
+    AlphaFold2
+
+disorder_threshold : float
+    Set to None by default such that it will change depending of if the user
+    sets legacy to True of if legacy remains = False. Can still be set manually.
+
+    Sets a threshold which draws a horizontal black line as a visual guide along
+    the length of the figure. Must be a value between 0 and 1.
+
+shaded_regions : list of lists
+    A list of lists, where sub-elements are of length 2 and contain start and end
+    values for regions to be shaded. Assumes that sanity checking on positions has
+    already been done. Default is None, but if there were specific regions you wanted
+    to highlight this might, for example, look like shaded_regions=[[1,10],[40,50]], 
+    which would shade between 1 and 10 and then between 40 and 50. This can be useful
+    to either highlight specific IDRs or specific folded domains
+
+shaded_region_color : str
+    String that defines the color of the shaded region. The shaded region is always
+    set with an alpha of 0.3 but the color can be any valid matplotlib color name
+    or a hex color string (i.e. &quot;#ff0000&quot; is red).
+
+DPI : int
+    Dots-per-inch. Defines the resolution of the generated figure. Passed to the
+    dpi argument in ``matplotlib.pyplot.savefig()``.
+
+output_file : str
+    If provided, the output_file variable defines the location and type of the file
+    to be saved. This should be a file location and filename with a valid matplotlib
+    extension (such as .png, or .pdf) and, if provided, this value is passed directly
+    to the ``matplotlib.pyplot.savefig()`` function as the ``fname`` parameter. 
+    Default = None.
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+pLDDT_version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2         
+
+Returns
+----------
+
+None
+    No return object, but, the graph is saved to disk or displayed locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>graph_pLDDT(sequence, title=&#x27;Predicted AF2 pLDDT Confidence Score&#x27;, disorder_scores=False, shaded_regions=None, shaded_region_color=&#x27;red&#x27;, DPI=150, output_file=None, pLDDT_version=&#x27;V2&#x27;)</code></h4>
+<blockquote>Function to plot the AF2 pLDDT scores of an input sequece. Displays immediately.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to plot the AF2 pLDDT scores of an input sequece. Displays immediately.
+
+Parameters
+-------------
+
+sequence : str 
+    Input amino acid sequence (as string) to be predicted.
+
+title : str
+    Sets the title of the generated figure. 
+    Default = &quot;Predicted AF2 pLDDT Confidence Score&quot;
+
+disorder_scores : Bool
+    Whether to include disorder scores. Can set to False if you
+    just want the AF2 confidence scores. 
+    Default = False
+
+shaded_regions : list of lists
+    A list of lists, where sub-elements are of length 2 and contain 
+    start and end values for regions to be shaded. Assumes that sanity 
+    checking on positions has already been done. Default is None, but 
+    if there were specific regions you wanted to highlight this might, 
+    for example, look like shaded_regions=[[1,10],[40,50]], which would 
+    shade between 1 and 10 and then between 40 and 50. This can be useful
+    to either highlight specific IDRs or specific folded domains.
+    Default = None
+
+shaded_region_color : str
+    String that defines the color of the shaded region. The shaded region 
+    is always set with an alpha of 0.3 but the color can be any valid 
+    matplotlib color name or a hex color string (i.e. &quot;#ff0000&quot; is red).
+
+DPI : int
+    Dots-per-inch. Defines the resolution of the generated figure. 
+    Passed to the dpi argument in ``matplotlib.pyplot.savefig()``.
+    
+output_file : str
+    If provided, the output_file variable defines the location and type 
+    of the file to be saved. This should be a file location and filename 
+    with a valid matplotlib extension (such as .png, or .pdf) and, if 
+    provided, this value is passed directly to the 
+    ``matplotlib.pyplot.savefig()`` function as the ``fname`` parameter. 
+    Default = None.
+
+pLDDT_version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2 
+
+Returns
+--------
+
+None
+    No return object, but, the graph is saved to disk or displayed locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>graph_pLDDT_fasta(filepath, DPI=150, output_dir=None, output_filetype=&#x27;png&#x27;, invalid_sequence_action=&#x27;convert&#x27;, indexed_filenames=False, pLDDT_version=&#x27;V2&#x27;)</code></h4>
+<blockquote>Function to make graphs of predicted pLDDT from the sequences</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to make graphs of predicted pLDDT from the sequences
+in a specified .fasta file. By default will save the generated
+graphs to the location output_path specified in filepath.
+
+**WARNING**: It is unadvisable to not include an output directory if you are reading in a .fasta 
+file with many sequences! This is because each graph must be closed individually before the next 
+will appear. Therefore, you will spend a bunch of time closing each graph.
+
+**NB**: You cannot specify the output file name here! By default, the file name will
+be the first 14 characters of the FASTA header followed by the filetype as specified 
+by filetype. If you wish for the files to include a unique leading number (i.e. X_rest_of_name
+where X starts at 1 and increments) then set indexed_filenames to True. This can be useful if you
+have sequences where the 1st 14 characters may be identical, which would otherwise overwrite an 
+output file.
+
+Parameters
+-----------
+
+filepath : str 
+    The path to where the .fasta file is located. The filepath should end in the file name. 
+    For example (on MacOS):filepath=&quot;/Users/thisUser/Desktop/folder_of_seqs/interesting_proteins.fasta&quot;
+
+DPI : int
+    Dots-per-inch. Defines the resolution of the generated figure. Passed to the
+    dpi argument in ``matplotlib.pyplot.savefig()``.
+
+output_dir : str
+    If provided, the output_dir variable defines the directory where file should besaved
+    to be saved. This should be a writeable filepath. Default is None. Output files are 
+    saved with filename as first 14 chars of fasta header (minus bad characters) plus the
+    appropriate file extension, as defined by filetype.
+
+output_filetype : str
+    String that defines the output filetype to be used. Must be one of pdf, png, jpg.
+
+invalid_sequence_action : str
+    Tells the function how to deal with sequences that lack standard amino acids. Default is 
+    convert, which as the name implies converts via standard rules. See 
+    https://protfasta.readthedocs.io/en/latest/read_fasta.html for more information.
+
+indexed_filenames : bool
+    Bool which, if set to true, means filenames start with an unique integer.
+
+pLDDT_version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2 
+
+Returns
+---------
+
+None
+    No return object, but, the graph is saved to disk or displayed locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>graph_pLDDT_uniprot(uniprot_id, title=&#x27;Predicted AF2 pLDDT Scores&#x27;, shaded_regions=None, shaded_region_color=&#x27;red&#x27;, DPI=150, output_file=None, pLDDT_version=&#x27;V2&#x27;)</code></h4>
+<blockquote>Function to plot the disorder of an input sequece. Displays immediately.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to plot the disorder of an input sequece. Displays immediately.
+
+Parameters
+-------------
+
+sequence : str 
+    Input amino acid sequence (as string) to be predicted.
+
+title : str
+    Sets the title of the generated figure. Default = &quot;Predicted protein disorder&quot;
+
+shaded_regions : list of lists
+    A list of lists, where sub-elements are of length 2 and contain start and end
+    values for regions to be shaded. Assumes that sanity checking on positions has
+    already been done. Default is None, but if there were specific regions you wanted
+    to highlight this might, for example, look like shaded_regions=[[1,10],[40,50]], 
+    which would shade between 1 and 10 and then between 40 and 50. This can be useful
+    to either highlight specific IDRs or specific folded domains
+
+shaded_region_color : str
+    String that defines the color of the shaded region. The shaded region is always
+    set with an alpha of 0.3 but the color can be any valid matplotlib color name
+    or a hex color string (i.e. &quot;#ff0000&quot; is red).
+
+DPI : int
+    Dots-per-inch. Defines the resolution of the generated figure. Passed to the
+    dpi argument in ``matplotlib.pyplot.savefig()``.
+
+output_file : str
+    If provided, the output_file variable defines the location and type of the file
+    to be saved. This should be a file location and filename with a valid matplotlib
+    extension (such as .png, or .pdf) and, if provided, this value is passed directly
+    to the ``matplotlib.pyplot.savefig()`` function as the ``fname`` parameter. 
+    Default = None.
+
+pLDDT_version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2    
+
+Returns
+----------
+
+None
+    No return object, but, the graph is saved to disk or displayed locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>percent_disorder(sequence, disorder_threshold=None, mode=&#x27;threshold&#x27;, version=&#x27;V3&#x27;)</code></h4>
+<blockquote>Function that returns the percent disorder for any given protein.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function that returns the percent disorder for any given protein.
+By default, uses 0.5 as a cutoff for the new version of metapredict
+and 0.3 for the legacy version of metapredict (values greater than or equal
+to 0.5 will be considered disordered). If a value for cutoff is specified,
+that value will be used.
+
+Mode lets you toggle between &#x27;threshold&#x27; and &#x27;disorder_domains&#x27;. If 
+threshold is used a simple per-residue logic operation is applied
+and the fraction of residues above the disorder_threshold is used.
+If &#x27;disorder_domains&#x27; is used then the sequence is divided into
+IDRs and folded domains using the predict_disordered_domains() 
+function. 
+
+
+Parameters
+-------------
+
+sequence : str 
+    Input amino acid sequence (as string) to be predicted.
+
+disorder_threshold : float
+    Set to None by default such that it will change depending
+    on whether legacy is set to True or False.
+
+    Sets a threshold which defines if a residue is considered disordered
+    or not. Default for new metapredict = 0.5. Default for legacy metapredict
+    is 0.3.
+
+mode : str
+    Selector which lets you choose which mode to calculate percent disorder
+    with. Default is &#x27;threshold&#x27;, meaning the percentage of disorder is 
+    calculated as what fraction of residues are above the disorder_threshold.
+    Alternatively, &#x27;disorder_domains&#x27; means we use the 
+    predict_disorder_domains() function and then calculate what fraction of
+    the protein&#x27;s residues are in the predicted IDRs.
+    
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+Returns
+-----------
+
+float
+    Returns a floating point value between 0 and 100 that defines what
+    percentage of the sequence is considered disordered.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict(inputs, version=&#x27;V3&#x27;, use_device=None, normalized=True, round_values=True, return_numpy=True, return_domains=False, disorder_threshold=None, minimum_IDR_size=12, minimum_folded_domain=50, gap_closure=10, override_folded_domain_minsize=False, use_slow=False, print_performance=False, show_progress_bar=False, force_disable_batch=False, disable_pack_n_pad=False, silence_warnings=False, default_to_device=&#x27;cuda&#x27;)</code></h4>
+<blockquote>Batch mode predictor which takes advantage of PyTorch</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Batch mode predictor which takes advantage of PyTorch
+parallelization such that whether it&#x27;s on a GPU or a 
+CPU, predictions for a set of sequences are performed
+rapidly.
+
+Parameters
+----------
+inputs : string list or dictionary
+    An individual sequence or a collection of sequences 
+    that are presented either as a list of sequences or 
+    a dictionary of key-value pairs where values are sequences.
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+use_device : int or str 
+    Identifier for the device to be used for predictions. 
+    Possible inputs: &#x27;cpu&#x27;, &#x27;mps&#x27;, &#x27;cuda&#x27;, or an int that corresponds to
+    the index of a specific cuda-enabled GPU. If &#x27;cuda&#x27; is specified and
+    cuda.is_available() returns False, instead of falling back to CPU, 
+    metapredict will raise an Exception so you know that you are not
+    using CUDA as you were expecting. 
+    Default: None
+        When set to None, we will check if there is a cuda-enabled
+        GPU. If there is, we will try to use that GPU. 
+        If you set the value to be an int, we will use cuda:int as the device
+        where int is the int you specify. The GPU numbering is 0 indexed, so 0 
+        corresponds to the first GPU and so on. Only specify this if you
+        know which GPU you want to use. 
+        * Note: MPS is only supported in Pytorch 2.1 or later. If I remember
+        right it might have been beta supported in 2.0 *.
+
+normalized : bool
+    Whether or not to normalize disorder values to between 0 and 1. 
+    Default : True
+
+round_values : bool
+    Whether to round the values to 4 decimal places. 
+    Default : True
+
+return_numpy : bool
+    Whether to return a numpy array or a list for single predictions. 
+    Default : True    
+
+return_domains : bool
+    Flag which, if set to true, means we return DisorderDomain
+    objects instead of simply the disorder scores. These
+    domain objects include the boundaries between IDRs and 
+    folded domains, the disorder scores, and the individual
+    sequences for IDRs and folded domains. This adds a small
+    amount of overhead to the prediction, but typically only
+    increase prediction time by 10-15%.
+
+disorder_threshold : float
+    Used only if return_domains = True.
+    Default is set to None because there are different threshold
+    values depending on the network (V1 = 0.42, V2=0.5). You can
+    override this value. 
+
+minimum_IDR_size : int
+    Used only if return_domains = True.
+
+    Defines the smallest possible IDR. This is a hard limit - 
+    i.e. we CANNOT get IDRs smaller than this. Default = 12.
+
+
+minimum_folded_domain : int
+    Used only if return_domains = True.
+
+    Defines where we expect the limit of small folded domains 
+    to be. This is NOT a hard limit and functions to modulate
+    the removal of large gaps (i.e. gaps less than this size 
+    are treated less strictly). Note that, in addition, 
+    gaps &lt; 35 are evaluated with a threshold of 
+    0.35*disorder_threshold and gaps &lt; 20 are evaluated with 
+    a threshold of 0.25*disorder_threshold. These two 
+    lengthscales were decided based on the fact that 
+    coiled-coiled regions (which are IDRs in isolation) 
+    often show up with reduced apparent disorder within IDRs, 
+    and but can be as short as 20-30 residues. 
+    The folded_domain_threshold is used based on the 
+    idea that it allows a &#x27;shortest reasonable&#x27; folded domain 
+    to be identified. Default=50.
+
+gap_closure : int
+    Used only if return_domains = True.
+
+    Defines the largest gap that would be &#x27;closed&#x27;. Gaps here 
+    refer to a scenario in which you have two groups of 
+    disordered residues seprated by a &#x27;gap&#x27; of un-disordered 
+    residues. In general large gap sizes will favour larger 
+    contigous IDRs. It&#x27;s worth noting that gap_closure becomes 
+    relevant only when minimum_region_size becomes very small 
+    (i.e. &lt; 5) because really gaps emerge when the smoothed 
+    disorder fit is &quot;noisy&quot;, but when smoothed gaps
+    are increasingly rare. Default=10.
+
+override_folded_domain_minsize : bool
+    By default this function includes a fail-safe check that
+    assumes folded domains really shouldn&#x27;t be less than 
+    35 or 20 residues. However, for some approaches we may 
+    wish to over-ride these thresholds to match the passed 
+    minimum_folded_domain value. If this flag is set to 
+    True this override occurs. This is generally not 
+    recommended unless you expect there to be well-defined 
+    sharp boundaries which could define small (20-30) 
+    residue folded domains. This is not provided as an option 
+    in the normal predict_disorder_domains for metapredict. 
+    Default = False. 
+
+use_slow : bool
+    Flag which, if passed, means we force a Python 
+    implementation of our domain decomposition algorithm 
+    instead of the MUCH faster Cython/C implementation. 
+    Useful for debugging. Default = False
+            
+print_performance : bool
+    Flag which means the function prints the time taken 
+    for the two stages in the prediction algorithm. Again 
+    useful for profiling and debugging. Default = False
+
+show_progress_bar : bool
+    Flag which, if set to True, means a progress bar is printed as 
+    predictions are made, while if False no progress bar is printed.
+    Default  =  True
+
+force_disable_batch : bool
+    Whether to override any use of batch predictions and predict
+    sequences individually.
+    Default = False
+
+disable_pack_n_pad : bool
+    Whether to disable the use of pack_n_pad in the prediction
+    algorithm. This is useful for debugging and profiling. Also gives
+    us a way for people to use older versions of torch. 
+    Default = False
+
+silence_warnings : bool
+    whether to silence warnings such as the one about compatibility
+    to use pack-n-pad due to torch version restrictions. 
+
+default_to_device : str
+    The default device to use if device=None.
+    If device=None and default_device != &#x27;cpu&#x27; and default_device is
+    not available, device_string will be returned as &#x27;cpu&#x27;.
+    I&#x27;m adding this in case we want to change the default architecture in the future. 
+    For example, we could make default device &#x27;gpu&#x27; where it will check for 
+    cuda or mps and use either if available and then otherwise fall back to CPU.
+
+Returns
+-------------
+DisorderDomain object str dict or list
+
+    IF RETURN DOMAINS == FALSE: this function returns either
+    a list or a dictionary.
+
+    If a list was provided as input, the function returns a list
+    of the same length as the input list, where each element is 
+    itself a sublist where element 0 = sequence and element 1 is
+    a numpy array of disorder scores. The order of the return list
+    matches the order of the input list.
+
+    If a dictionary was provided as input, the function returns
+    a dictionary, where the same input keys map to values which are
+    lists of 2 elements, where element 0 = sequence and element 1 is
+    a numpy array of disorder scores.
+
+    IF RETURN DOMAINS == TRUE: this function returns either a list
+    or a dictionary.
+
+    If a list was provided as input, the function returns a list
+    of the same length as the input list, where each element is 
+    a DisorderDomain object. The order of the return list matches 
+    the order of the input list.
+
+    If a dictionary was provided as input, the function returns
+    a dictionary, where the same input keys map to a DisorderDomain
+    object that corresponds to the input dictionary sequence.
+
+Raises
+------
+MetapredictError
+    An exception is raised if the requested network is not one of the available options.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_all(sequence)</code></h4>
+<blockquote>Function to return all three disorder predictions (V1, V2, V3 for</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to return all three disorder predictions (V1, V2, V3 for
+(metapredict), and predicted pLDDT (V1, V2). Returns as a tuple of numpy 
+arrays, with ppLDDT returned as normalized between 0 and 1.
+
+Parameters
+------------
+sequence : str 
+    Input amino acid sequence (as string) to be predicted.
+
+Returns
+--------
+ 
+tuple with five np.ndarrays:
+
+    [0] - normalized ppLDDT scores using V1 pLDDT predictor (previously from AlphaPredict)
+    [1] - normalized ppLDDT scores using V2 pLDDT predictor
+    [2] - legacy metapredict disorder (original metapredict disorder)
+    [3] - meta disorder (updated metapredict disorder) - V2
+    [4] - meta disorder (updated metapredict disorder) - V3</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder(inputs, version=&#x27;V3&#x27;, device=None, normalized=True, round_values=True, return_numpy=True, return_domains=False, disorder_threshold=None, minimum_IDR_size=12, minimum_folded_domain=50, gap_closure=10, override_folded_domain_minsize=False, print_performance=False, show_progress_bar=False, force_disable_batch=False, disable_pack_n_pad=False, silence_warnings=False, legacy=False)</code></h4>
+<blockquote>The main function in metapredict. Updated to handle much more advanced</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>The main function in metapredict. Updated to handle much more advanced
+functionality while maintaining backwards compatibility with previous
+versions of metapredict. 
+
+With V3, you can now input a single sequence, a list of sequences, or
+a dictionary where key:value pairings are a name for a sequence
+and the values are the actual sequence into this single function
+into this single function.
+
+We are keeping the &#x27;predict_disorder_batch&#x27; function available
+to avoid breaking peoples&#x27; code, but that function isn&#x27;t strictly
+necessary anymore because you can do batch predictions here. 
+
+You can also choose the specific device to carry out predictions 
+(a specific CUDA enabled GPU, MPS on Mac GPUs, or CPU).
+
+We also made it easy for users to print performance of the predictor
+on their own device to see how fast metapredict is!
+
+An important new thing is that we now have 3 versions of metapredict.
+Although setting &#x27;legacy=True&#x27; will still work to maintain backwards
+compatibilty, the recommended thing to do is set &#x27;version&#x27; equal
+to either &#x27;v1&#x27;, &#x27;v2&#x27;, or &#x27;v3&#x27;.
+
+Finally, this also adds the ability to return DisorderObjects if 
+return_domains is set to True. The DisorderObject has the following variables:
+
+DisorderObject
+
+    .sequence : str    
+        Amino acid sequence 
+
+    .disorder : list or np.ndaarray
+        Hybrid disorder score
+
+    .disordered_domain_boundaries : list
+        List of domain boundaries for IDRs using Python indexing
+
+    .folded_domain_boundaries : list
+        List of domain boundaries for folded domains using Python indexing
+
+    .disordered_domains : list
+        List of the actual sequences for IDRs
+
+    .folded_domains : list
+        List of the actual sequences for folded domains    
+
+Parameters
+------------
+
+inputs : str, list, or dict 
+    Input amino acid sequence(s) as a string, list, or dictionary.
+    If a list, needs to be just a list of amino acid sequences
+    If a dictionary, each key needs to be a sequence name and 
+    each value needs to be the corresponding sequence.
+
+version : str
+    Which version of metapredict to use. Default is DEFAULT_NETWORK which 
+    is the latest version as defined in parameters. Alternatively, &#x27;V1&#x27;, &#x27;V2&#x27;,
+    or &#x27;V3&#x27; can be specified to access a specific version of metapredict
+
+device : int or str 
+    Identifier for the device to be used for predictions. 
+    Possible inputs: &#x27;cpu&#x27;, &#x27;mps&#x27;, &#x27;cuda&#x27;, or an int that corresponds to
+    the index of a specific cuda-enabled GPU. If &#x27;cuda&#x27; is specified and
+    cuda.is_available() returns False, instead of falling back to CPU, 
+    metapredict will raise an Exception so you know that you are not
+    using CUDA as you were expecting. 
+    Default: None
+        When set to None, we will check if there is a cuda-enabled
+        GPU. If there is, we will try to use that GPU. 
+        If you set the value to be an int, we will use cuda:int as the device
+        where int is the int you specify. The GPU numbering is 0 indexed, so 0 
+        corresponds to the first GPU and so on. Only specify this if you
+        know which GPU you want to use. 
+        * Note: MPS is only supported in Pytorch 2.1 or later. If I remember
+        right it might have been beta supported in 2.0 *. MPS is still fairly
+        new, so use at your own risk. 
+
+normalized : bool
+    Whether or not to normalize disorder values to between 0 and 1. 
+    Default : True
+
+round_values : bool
+    Whether to round the values to 4 decimal places. 
+    Default : True
+
+return_numpy : bool
+    Whether to return a numpy array or a list for single predictions. 
+    Default : True 
+
+return_domains : bool
+    Flag which, if set to true, means we return DisorderDomain
+    objects instead of simply the disorder scores. These
+    domain objects include the boundaries between IDRs and 
+    folded domains, the disorder scores, and the individual
+    sequences for IDRs and folded domains. This adds a small
+    amount of overhead to the prediction, but typically only
+    increase prediction time by 10-15%.
+
+disorder_threshold : float
+    Used only if return_domains = True.
+    Default is set to None because there are different threshold
+    values depending on the network (V1 = 0.42, V2=0.5, V3=0.5). You can
+    override this value. 
+
+minimum_IDR_size : int
+    Used only if return_domains = True.
+
+    Defines the smallest possible IDR. This is a hard limit - 
+    i.e. we CANNOT get IDRs smaller than this. Default = 12.
+
+
+minimum_folded_domain : int
+    Used only if return_domains = True.
+
+    Defines where we expect the limit of small folded domains 
+    to be. This is NOT a hard limit and functions to modulate
+    the removal of large gaps (i.e. gaps less than this size 
+    are treated less strictly). Note that, in addition, 
+    gaps &lt; 35 are evaluated with a threshold of 
+    0.35*disorder_threshold and gaps &lt; 20 are evaluated with 
+    a threshold of 0.25*disorder_threshold. These two 
+    lengthscales were decided based on the fact that 
+    coiled-coiled regions (which are IDRs in isolation) 
+    often show up with reduced apparent disorder within IDRs, 
+    and but can be as short as 20-30 residues. 
+    The folded_domain_threshold is used based on the 
+    idea that it allows a &#x27;shortest reasonable&#x27; folded domain 
+    to be identified. Default=50.
+
+gap_closure : int
+    Used only if return_domains = True.
+
+    Defines the largest gap that would be &#x27;closed&#x27;. Gaps here 
+    refer to a scenario in which you have two groups of 
+    disordered residues seprated by a &#x27;gap&#x27; of un-disordered 
+    residues. In general large gap sizes will favour larger 
+    contigous IDRs. It&#x27;s worth noting that gap_closure becomes 
+    relevant only when minimum_region_size becomes very small 
+    (i.e. &lt; 5) because really gaps emerge when the smoothed 
+    disorder fit is &quot;noisy&quot;, but when smoothed gaps
+    are increasingly rare. Default=10.
+
+override_folded_domain_minsize : bool
+    By default this function includes a fail-safe check that
+    assumes folded domains really shouldn&#x27;t be less than 
+    35 or 20 residues. However, for some approaches we may 
+    wish to over-ride these thresholds to match the passed 
+    minimum_folded_domain value. If this flag is set to 
+    True this override occurs. This is generally not 
+    recommended unless you expect there to be well-defined 
+    sharp boundaries which could define small (20-30) 
+    residue folded domains. This is not provided as an option 
+    in the normal predict_disorder_domains for metapredict. 
+    Default = False. 
+
+print_performance : bool
+    Flag which means the function prints the time taken 
+    for the two stages in the prediction algorithm. Again 
+    useful for profiling and debugging. Default = False
+
+show_progress_bar : bool
+    Flag which, if set to True, means a progress bar is printed as 
+    predictions are made, while if False no progress bar is printed.
+    Default  =  True
+
+force_disable_batch : bool
+    Whether to override any use of batch predictions and predict
+    sequences individually.
+    Default = False
+
+disable_pack_n_pad : bool
+    Whether to disable the use of pack_n_pad in the prediction
+    algorithm. This is useful for debugging and profiling. Also gives
+    us a way for people to use older versions of torch. 
+    Default = False
+
+silence_warnings : bool
+    whether to silence warnings such as the one about compatibility
+    to use pack-n-pad due to torch version restrictions. 
+
+legacy : bool
+    whether to use the legacy version of metapredict. This is 
+    maintained for backwards compatibility, but the recommended
+    approach is to use the version parameter to specify which
+    version of metapredict you want to use. If you set this to
+    True, it will override any version parameter you set. 
+    Default: False
+
+Returns
+--------
+ 
+DisorderObject or list or np.ndarray
+    Depending on your input and specified desired output, can return a 
+    np.array, list, or DisorderObject. If you input a string, you will
+    get back a single np.array, list, or DisorderObject. If you input a list,
+    you will get a list of your specified return value. If you input a dict, 
+    if you do not set return_domains=True, you will get back a dictionary 
+    where the key is the same as the key for your input dict and the corresponding
+    value is a nested list where the first element in that list is the sequence for
+    that key and the value is the disorder scores. If you set return_domains=True,
+    you will get back a dictionary where the key is the same as the key for your input
+    dict and the value is a DisorderObject for that sequence.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder_batch(input_sequences, version=&#x27;V3&#x27;, device=None, normalized=True, round_values=True, return_numpy=True, return_domains=False, disorder_threshold=None, minimum_IDR_size=12, minimum_folded_domain=50, gap_closure=10, override_folded_domain_minsize=False, show_progress_bar=True, disable_batch=False)</code></h4>
+<blockquote>Batch mode predictor which takes advantage of PyTorch</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Batch mode predictor which takes advantage of PyTorch
+parallelization such that whether it&#x27;s on a GPU or a 
+CPU, predictions for a set of sequences are performed
+rapidly.
+
+This now works with all versions of metapredict.     
+
+Note also that batch mode uses 32-bit float vectors
+whereas non-batch uses 64-bit float vectors, so the
+precise values in batch vs. non-batch may differ 
+slighly, however this is a numerical precision difference,
+such that values by both methods are always within
+1e-3 of one another.
+
+Parameters
+--------------
+input_sequences : list or dictionary
+    A collection of sequences that are presented either
+    as a list of sequences or a dictionary of key-value
+    pairs where values are sequences.
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+device : int or str 
+    Identifier for the device to be used for predictions. 
+    Possible inputs: &#x27;cpu&#x27;, &#x27;mps&#x27;, &#x27;cuda&#x27;, or an int that corresponds to
+    the index of a specific cuda-enabled GPU. If &#x27;cuda&#x27; is specified and
+    cuda.is_available() returns False, instead of falling back to CPU, 
+    metapredict will raise an Exception so you know that you are not
+    using CUDA as you were expecting. 
+    Default: None
+        When set to None, we will check if there is a cuda-enabled
+        GPU. If there is, we will try to use that GPU. 
+        If you set the value to be an int, we will use cuda:int as the device
+        where int is the int you specify. The GPU numbering is 0 indexed, so 0 
+        corresponds to the first GPU and so on. Only specify this if you
+        know which GPU you want to use. 
+        * Note: MPS is only supported in Pytorch 2.1 or later. If I remember
+        right it might have been beta supported in 2.0 *.
+
+normalized : bool
+    Whether or not to normalize disorder values to between 0 and 1. 
+    Default : True
+
+round_values : bool
+    Whether to round the values to 4 decimal places. 
+    Default : True
+
+return_numpy : bool
+    Whether to return a numpy array or a list for single predictions. 
+    Default : True   
+
+return_domains : bool
+    Flag which, if set to true, means we return DisorderDomain
+    objects instead of simply the disorder scores. These
+    domain objects include the boundaries between IDRs and 
+    folded domains, the disorder scores, and the individual
+    sequences for IDRs and folded domains. This adds a small
+    amount of overhead to the prediction, but typically only
+    increase prediction time by 10-15%.
+
+disorder_threshold : float
+    Used only if return_domains = True.
+    Threshold used to deliniate between folded and disordered
+    regions. We use a value of 0.5 because predict_disorder_batch
+    does not support legacy. 
+
+minimum_IDR_size : int
+    Used only if return_domains = True.
+
+    Defines the smallest possible IDR. This is a hard limit - 
+    i.e. we CANNOT get IDRs smaller than this. Default = 12.
+
+minimum_folded_domain : int
+    Used only if return_domains = True.
+
+    Defines where we expect the limit of small folded domains 
+    to be. This is NOT a hard limit and functions to modulate
+    the removal of large gaps (i.e. gaps less than this size 
+    are treated less strictly). Note that, in addition, 
+    gaps &lt; 35 are evaluated with a threshold of 
+    0.35*disorder_threshold and gaps &lt; 20 are evaluated with 
+    a threshold of 0.25*disorder_threshold. These two 
+    lengthscales were decided based on the fact that 
+    coiled-coiled regions (which are IDRs in isolation) 
+    often show up with reduced apparent disorder within IDRs, 
+    and but can be as short as 20-30 residues. 
+    The folded_domain_threshold is used based on the 
+    idea that it allows a &#x27;shortest reasonable&#x27; folded domain 
+    to be identified. Default=50.
+
+gap_closure : int
+    Used only if return_domains = True.
+
+    Defines the largest gap that would be &#x27;closed&#x27;. Gaps here 
+    refer to a scenario in which you have two groups of 
+    disordered residues seprated by a &#x27;gap&#x27; of un-disordered 
+    residues. In general large gap sizes will favour larger 
+    contigous IDRs. It&#x27;s worth noting that gap_closure becomes 
+    relevant only when minimum_region_size becomes very small 
+    (i.e. &lt; 5) because really gaps emerge when the smoothed 
+    disorder fit is &quot;noisy&quot;, but when smoothed gaps
+    are increasingly rare. Default=10.
+
+override_folded_domain_minsize : bool
+    By default this function includes a fail-safe check that
+    assumes folded domains really shouldn&#x27;t be less than 
+    35 or 20 residues. However, for some approaches we may 
+    wish to over-ride these thresholds to match the passed 
+    minimum_folded_domain value. If this flag is set to 
+    True this override occurs. This is generally not 
+    recommended unless you expect there to be well-defined 
+    sharp boundaries which could define small (20-30) 
+    residue folded domains. This is not provided as an option 
+    in the normal predict_disorder_domains for metapredict. 
+    Default = False. 
+
+show_progress_bar : bool
+    Flag which, if set to True, means a progress bar is printed as 
+    predictions are made, while if False no progress bar is printed.
+    Default  =  True
+
+disable_batch : bool
+    Whether to override any use of batch predictions and predict
+    sequences individually.
+    Default = False    
+
+Returns
+-------------
+dict or list
+
+    IF RETURN DOMAINS == FALSE: this function returns either
+    a list or a dictionary.
+
+    If a list was provided as input, the function returns a list
+    of the same length as the input list, where each element is 
+    itself a sublist where element 0 = sequence and element 1 is
+    a numpy array of disorder scores. The order of the return list
+    matches the order of the input list.
+
+    If a dictionary was provided as input, the function returns
+    a dictionary, where the same input keys map to values which are
+    lists of 2 elements, where element 0 = sequence and element 1 is
+    a numpy array of disorder scores.
+
+    IF RETURN DOMAINS == TRUE: this function returns either a list
+    or a dictionary.
+
+    If a list was provided as input, the function returns a list
+    of the same length as the input list, where each element is 
+    a DisorderDomain object. The order of the return list matches 
+    the order of the input list.
+
+    If a dictionary was provided as input, the function returns
+    a dictionary, where the same input keys map to a DisorderDomain
+    object that corresponds to the input dictionary sequence.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder_caid(input_fasta, output_path, version=&#x27;V3&#x27;)</code></h4>
+<blockquote>executing script for generating a caid-compliant output file for disorder</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>executing script for generating a caid-compliant output file for disorder
+predictions using a .fasta file as the input.
+
+Parameters
+-----------
+input_fasta : str
+    the input file as a string that includes the file path preceeding
+    the file name if the file is not in the curdir
+
+output_path : str
+    the path where to save the output files.
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+Returns
+--------
+None
+    Does not return anything, saves a file to the destination output file</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder_domains(sequence, disorder_threshold=None, minimum_IDR_size=12, minimum_folded_domain=50, gap_closure=10, normalized=True, return_numpy=True, version=&#x27;V3&#x27;, return_list=False)</code></h4>
+<blockquote>This function takes an amino acid sequence and one or more </blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>This function takes an amino acid sequence and one or more 
+variable options and returns a data structure called a 
+`DisorderObject`. The object parameters associated with this
+object are defined below.
+
+The previous version of metapredict returned a list of values,
+which can be obtained instead of the DisorderedObject if 
+return_list is set to True.
+
+Parameters
+-------------
+
+sequence : str
+    Amino acid sequence
+
+disorder_threshold : float
+    Set to None such that it will change to 0.42 for legacy
+    and 0.5 for metapredict. Can still manually set value.
+
+minimum_IDR_size : int
+    Defines the smallest possible IDR. This is a hard limit - 
+    i.e. we CANNOT get IDRs smaller than this. Default = 12.
+
+minimum_folded_domain : int
+    Defines where we expect the limit of small folded domains 
+    to be. This is NOT a hard limit and functions to modulate
+    the removal of large gaps (i.e. gaps less than this size 
+    are treated less strictly). Note that, in addition, 
+    gaps &lt; 35 are evaluated with a threshold of 
+    0.35*disorder_threshold and gaps &lt; 20 are evaluated with 
+    a threshold of 0.25*disorder_threshold. These two 
+    lengthscales were decided based on the fact that 
+    coiled-coiled regions (which are IDRs in isolation) 
+    often show up with reduced apparent disorder within IDRs, 
+    and but can be as short as 20-30 residues. 
+    The folded_domain_threshold is used based on the 
+    idea that it allows a &#x27;shortest reasonable&#x27; folded domain 
+    to be identified. Default=50.
+
+gap_closure : int
+    Defines the largest gap that would be &#x27;closed&#x27;. Gaps here 
+    refer to a scenario in which you have two groups of 
+    disordered residues seprated by a &#x27;gap&#x27; of un-disordered 
+    residues. In general large gap sizes will favour larger 
+    contigous IDRs. It&#x27;s worth noting that gap_closure becomes 
+    relevant only when minimum_region_size becomes very small 
+    (i.e. &lt; 5) because really gaps emerge when the smoothed 
+    disorder fit is &quot;noisy&quot;, but when smoothed gaps
+    are increasingly rare. Default=10.
+
+normalized : bool
+    whether the disorder scores are normalized between zero and
+    one, default is true
+
+return_numpy : bool
+    Flag which if set to true means all numerical types are returned
+    as numpy.ndlist. Default is True
+
+version : str
+    Which version of metapredict to use. Default is DEFAULT_NETWORK which 
+    is the latest version as defined in parameters. Alternatively, &#x27;V1&#x27;, &#x27;V2&#x27;,
+    or &#x27;V3&#x27; can be specified to access a specific version of metapredict
+
+return_list : bool
+    Flag that determines i to return the old format where a 
+    tuple is returned. This is retained for backwards compatibility
+
+Returns
+---------
+DisorderObject
+    By default, the function returns a DisorderObject. A DisorderObject has 7 dot variables:
+
+    .sequence : str    
+        Amino acid sequence 
+
+    .disorder : list or np.ndaarray
+        disorder scores
+
+    .disordered_domain_boundaries : list
+        List of domain boundaries for IDRs using Python indexing
+
+    .folded_domain_boundaries : list
+        List of domain boundaries for folded domains using Python indexing
+
+    .disordered_domains : list
+        List of the actual sequences for IDRs
+
+    .folded_domains : list
+        List of the actual sequences for folded domains
+
+Returns
+---------
+list
+    However, if ``return_list`` == True. Then, the function returns a 
+    list with three elements, as outlined below.
+
+    * [0] - Smoothed disorder score used to aid in domain boundary identification. This can be useful for understanding how IDRs/folded domains were identified, and will vary depending on the settings provided
+
+    * [1] - a list of elements, where each element defines the start and end position of each IDR. If a sequence was provided the third element in each sub-element is the IDR sequence. If no sequence was provided, then each sub-element is simply len=2.
+    
+    * [2] - a list of elements, where each element defines the start and end position of each folded region. If a sequence was provided the third element in each sub-element is the folded domain sequence. If no sequence was provided, then each sub-element is simply len=2.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder_domains_from_external_scores(disorder, sequence=None, disorder_threshold=0.5, minimum_IDR_size=12, minimum_folded_domain=50, gap_closure=10, override_folded_domain_minsize=False, return_numpy=True)</code></h4>
+<blockquote>This function takes in disorder scores generated from another predictor </blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>This function takes in disorder scores generated from another predictor 
+and applies the same domain-decomposition algorithm as 
+predict_disorder_domains() does to extract out congigous IDRs. For example, 
+if one were to predict disorder using the (excellent) ODiNPred, download the 
+resulting scores, and read the scores into a list, that list could be passed
+as the $disorder argument to this function.
+
+Note that the settings used here may be inapplicable to another disorder 
+predictor, so you may need to play around with the parameters including 
+disorder_threshold, minimum_IDR_size, minimum_folded_domain and 
+gap_closure.
+
+
+Parameters
+-------------
+disorder : list
+    A list of per-residue disorder scores.
+
+sequence : str
+    The protein sequence as a string. If no sequence is passed, 
+    calling DisorderObject.sequence will return an fake sequence.
+
+disorder_threshold : float
+    Value that defines what &#x27;disordered&#x27; is based on the input predictor 
+    score. The higher the value the more stringent the cutoff.
+    Default = 0.5. 
+    
+minimum_IDR_size : int
+    Defines the smallest possible IDR. This is a hard limit - i.e. we 
+    CANNOT get IDRs smaller than this. 
+    Default = 12.
+
+minimum_folded_domain : int
+    Defines where we expect the limit of small folded domains to be. This 
+    is NOT a hard limit and functions to modulate the removal of large gaps 
+    (i.e. gaps less than this size are treated less strictly). Note that, in 
+    addition, gaps &lt; 35 are evaluated with a threshold of 
+    0.35*disorder_threshold and gaps &lt; 20 are evaluated with a threshold 
+    of 0.25*disorder_threshold. These two lengthscales were decided based on
+    the fact that coiled-coiled regions (which are IDRs in isolation) often 
+    show up with reduced apparent disorder within IDRs, and but can be as 
+    short as 20-30 residues. The folded_domain_threshold is used based on 
+    the idea that it allows a &#x27;shortest reasonable&#x27; folded domain to be 
+    identified. 
+    Default = 50.
+
+gap_closure : int
+    Defines the largest gap that would be &#x27;closed&#x27;. Gaps here refer to a 
+    scenario in which you have two groups of disordered residues seprated 
+    by a &#x27;gap&#x27; of un-disordered residues. In general large gap sizes will 
+    favour larger contigous IDRs. It&#x27;s worth noting that gap_closure 
+    becomes  relevant only when minimum_region_size becomes very small 
+    (i.e. &lt; 5)  because  really gaps emerge when the smoothed disorder 
+    fit is &quot;noisy&quot;, but when smoothed gaps are increasingly rare. 
+    Default = 10.
+    
+override_folded_domain_minsize : bool
+    By default this function includes a fail-safe check that assumes 
+    folded domains really shouldn&#x27;t be less than 35 or 20 residues. 
+    However, for some approaches we may wish to over-ride these thresholds 
+    to match the passed minimum_folded_domain value. If this flag is set to 
+    True this override occurs. This is generally not recommended unless you
+    expect there to be well-defined sharp boundaries which could define
+    small (20-30) residue folded domains. This is not provided as an option 
+    in the normal predict_disorder_domains for metapredict. Default = False. 
+
+return_numpy : bool
+    Flag which if set to true means all numerical types are returned
+    as numpy.ndlist. Default is True
+
+Returns
+---------
+DisorderObject
+    Returns a DisorderObject. DisorderObject has 7 dot variables:
+
+    .sequence : str    
+        Amino acid sequence 
+
+    .disorder : list or np.ndaarray
+        Hybrid disorder score
+
+    .disordered_domain_boundaries : list
+        List of domain boundaries for IDRs using Python indexing
+
+    .folded_domain_boundaries : list
+        List of domain boundaries for folded domains using Python indexing
+
+    .disordered_domains : list
+        List of the actual sequences for IDRs
+
+    .folded_domains : list
+        List of the actual sequences for folded domains</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder_domains_uniprot(uniprot_id, disorder_threshold=None, minimum_IDR_size=12, minimum_folded_domain=50, gap_closure=10, normalized=True, return_numpy=True, version=&#x27;V3&#x27;)</code></h4>
+<blockquote>This function takes an amino acid sequence, a disorder score, and </blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>This function takes an amino acid sequence, a disorder score, and 
+returns either a DisorderObjec 4-position tuple with the information
+listed below.
+
+Parameters
+-------------
+
+uniprot_ID : String
+    The uniprot ID of the sequence to predict
+
+sequence : str
+    Amino acid sequence
+
+disorder_threshold : float
+    Set to None by default such that the threshold value is is dependent
+    on whether legacy is set to True. The default for legacy is 0.42, the
+    default for the new metapredict is 0.5.
+
+    Value that defines what &#x27;disordered&#x27; is based on the metapredict 
+    disorder score. 
+
+minimum_IDR_size : int
+    Defines the smallest possible IDR. This is a hard limit - i.e. we 
+    CANNOT get IDRs smaller than this. Default = 12.
+
+minimum_folded_domain : int
+    Defines where we expect the limit of small folded domains to be. 
+    This is NOT a hard limit and functions to modulate the removal of 
+    large gaps (i.e. gaps less than this size are treated less strictly). 
+    Note that, in addition, gaps &lt; 35 are evaluated with a threshold of 
+    0.35*disorder_threshold and gaps &lt; 20 are evaluated with a threshold         
+    of 0.25*disorder_threshold. These two lengthscales were decided based 
+    on the fact that coiled-coiled regions (which are IDRs in isolation) 
+    often show up with reduced apparent disorder within IDRs, and but can 
+    be as short as 20-30 residues. The folded_domain_threshold is used 
+    based on the idea that it allows a &#x27;shortest reasonable&#x27; folded domain 
+    to be identified. Default=50.
+
+gap_closure : int
+    Defines the largest gap that would be &#x27;closed&#x27;. Gaps here refer to a 
+    scenario in which you have two groups of disordered residues seprated 
+    by a &#x27;gap&#x27; of un-disordered residues. In general large gap sizes will 
+    favour larger contigous IDRs. It&#x27;s worth noting that gap_closure becomes 
+    relevant only when minimum_region_size becomes very small (i.e. &lt; 5) 
+    because really gaps emerge when the smoothed disorder fit is &quot;noisy&quot;, but 
+    when smoothed gaps are increasingly rare. Default=10.
+
+return_numpy : bool
+    Flag which if set to true means all numerical types are returned
+    as numpy.ndlist. Default is True
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+Returns
+---------
+DisorderObject
+    Returns a DisorderObject. DisorderObject has 7 dot variables:
+
+    .sequence : str    
+        Amino acid sequence 
+
+    .disorder : list or np.ndaarray
+        Hybrid disorder score
+
+    .disordered_domain_boundaries : list
+        List of domain boundaries for IDRs using Python indexing
+
+    .folded_domain_boundaries : list
+        List of domain boundaries for folded domains using Python indexing
+
+    .disordered_domains : list
+        List of the actual sequences for IDRs
+
+    .folded_domains : list
+        List of the actual sequences for folded domains</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder_fasta(filepath, output_file=None, normalized=True, invalid_sequence_action=&#x27;convert&#x27;, version=&#x27;V3&#x27;, device=None, show_progress_bar=True)</code></h4>
+<blockquote>Function to read in a .fasta file from a specified filepath.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to read in a .fasta file from a specified filepath.
+Returns a dictionary of disorder values where the key is the 
+fasta header and the values are the predicted disorder values.
+
+Parameters
+-------------
+
+filepath : str 
+    The path to where the .fasta file is located. The filepath should
+    end in the file name, and can be an absolute or relative path
+
+output_file : str
+    By default, a dictionary of predicted values is returned 
+    immediately. However, you can specify an output filename and path 
+    and a .csv file will be saved. This should include any file extensions.
+    Default = None.
+
+normalized : bool
+    Flag which defines in the predictor should control and normalize such 
+    that all values fall between 0 and 1. The underlying learning model can, 
+    in fact output some negative values and some values greater than 1. 
+    Normalization controls for this. Default = True
+
+invalid_sequence_action : str
+    Tells the function how to deal with sequences that lack standard amino 
+    acids. Default is convert, which as the name implies converts via standard 
+    rules. See https://protfasta.readthedocs.io/en/latest/read_fasta.html 
+    for more information.
+
+ version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+device : string
+    the device to use for prediction. Default is None, which means
+    the function will try to use a GPU if one is available. 
+    Options include &#x27;cpu&#x27;, &#x27;cuda&#x27;, &#x27;mps&#x27;, or an int that corresponds
+    to the index of a specific cuda-enabled GPU. To specify by index, 
+    use &#x27;cuda:int&#x27; where int is the index of the GPU you want to use.
+    For example, &#x27;cuda:0&#x27; would use the first GPU. If &#x27;cuda&#x27; is specified
+    and cuda.is_available() returns False, instead of falling back to
+    CPU, metapredict will raise an Exception so you know that you are
+    not using CUDA as you were expecting.
+
+show_progress_bar : bool
+    Flag which, if set to True, means a progress bar is printed as 
+    predictions are made, while if False no progress bar is printed.
+
+Returns
+--------
+
+dict or None
+    If output_file is set to None (as default) then this fiction returns 
+    a dictionary of sequence ID to disorder np.ndarrays(dtype=np.float32). 
+
+    If output_file is set to a filename then a .csv file will instead 
+    be written and no return data will be provided.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder_uniprot(uniprot_id, normalized=True, version=&#x27;V3&#x27;)</code></h4>
+<blockquote>Function to return disorder of a single input sequence. Uses a </blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to return disorder of a single input sequence. Uses a 
+Uniprot ID to get the sequence.
+
+Parameters
+------------
+
+uniprot_ID : str
+     The uniprot ID of the sequence to predict
+
+no_ID : str
+     The uniprot ID of the sequence to predict
+
+version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK,
+    which is defined at the top of /parameters.
+    Options currently include V1, V2, or V3. 
+
+Returns
+----------
+
+None
+    No return object, but, the graph is saved to disk or displayed locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_pLDDT(inputs, pLDDT_version=&#x27;V2&#x27;, return_decimals=False, device=None, normalized=True, round_values=True, return_numpy=True, print_performance=False, show_progress_bar=False, force_disable_batch=False, disable_pack_n_pad=False, silence_warnings=False, return_as_disorder_score=False)</code></h4>
+<blockquote>Function to return predicted pLDDT scores. pLDDT scores are the scores</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to return predicted pLDDT scores. pLDDT scores are the scores
+reported by AlphaFold2 (AF2) that provide a measure of the confidence 
+with which AF2 has on the local structure prediction. This now has massively 
+improved functionality and supporst the same batch mode as the disorder.
+
+Parameters
+----------
+inputs : string list or dictionary
+    An individual sequence or a collection of sequences 
+    that are presented either as a list of sequences or 
+    a dictionary of key-value pairs where values are sequences.
+
+pLDDT_version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2. V1 is the version used
+    to make legacy metapredict and is from &#x27;alphaPredict&#x27;. V2 
+    is a new network made much more recently. 
+
+return_decimals : bool
+    If False, values be between 0 and 100. If True, the values 
+    will be between 0 and 1. 
+    Default is False. 
+
+device : int or str 
+    Identifier for the device to be used for predictions. 
+    Possible inputs: &#x27;cpu&#x27;, &#x27;mps&#x27;, &#x27;cuda&#x27;, or an int that corresponds to
+    the index of a specific cuda-enabled GPU. If &#x27;cuda&#x27; is specified and
+    cuda.is_available() returns False, instead of falling back to CPU, 
+    metapredict will raise an Exception so you know that you are not
+    using CUDA as you were expecting. 
+    Default: None
+        When set to None, we will check if there is a cuda-enabled
+        GPU. If there is, we will try to use that GPU. 
+        If you set the value to be an int, we will use cuda:int as the device
+        where int is the int you specify. The GPU numbering is 0 indexed, so 0 
+        corresponds to the first GPU and so on. Only specify this if you
+        know which GPU you want to use. 
+        * Note: MPS is only supported in Pytorch 2.1 or later. If I remember
+        right it might have been beta supported in 2.0 *.
+
+normalized : bool
+    Whether or not to normalize disorder values to between 0 and 1. 
+    Default : True
+
+round_values : bool
+    Whether to round the values to 4 decimal places. 
+    Default : True
+
+return_numpy : bool
+    Whether to return a numpy array or a list for single predictions. 
+    Default : True    
+            
+print_performance : bool
+    Flag which means the function prints the time taken 
+    for the two stages in the prediction algorithm. Again 
+    useful for profiling and debugging. Default = False
+
+show_progress_bar : bool
+    Flag which, if set to True, means a progress bar is printed as 
+    predictions are made, while if False no progress bar is printed.
+    Default  =  True
+
+force_disable_batch : bool
+    Whether to override any use of batch predictions and predict
+    sequences individually.
+    Default = False
+
+disable_pack_n_pad : bool
+    Whether to disable the use of pack_n_pad in the prediction
+    algorithm. This is useful for debugging and profiling. Also gives
+    us a way for people to use older versions of torch. 
+    Default = False
+
+silence_warnings : bool
+    whether to silence warnings such as the one about compatibility
+    to use pack-n-pad due to torch version restrictions. 
+
+return_as_disorder_score : bool
+    Whether to return as a disorder score.
+    This basically inverts the score as a decimal and normalizes so that
+    it looks like a disorder score (higher value=disordereed and lower
+    value = not disordered). This is similar to the approach that we used
+    to generate the scores that were combined with legacy metapredict to make
+    V2 and V3. 
+
+Returns
+--------
+
+list or np.ndarray
+    Returns a list (or np.ndarray) of floats that corresponds to the 
+    per-residue pLDDT score. Return type depends on the flag 
+    return_numpy</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_pLDDT_fasta(filepath, output_file=None, invalid_sequence_action=&#x27;convert&#x27;, pLDDT_version=&#x27;V2&#x27;, device=None, show_progress_bar=True)</code></h4>
+<blockquote>Function to read in a .fasta file from a specified filepath.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to read in a .fasta file from a specified filepath.
+Returns a dictionary of pLDDT values where the key is the 
+fasta header and the values are the predicted pLDDT values.
+
+Parameters
+-------------
+
+filepath : str 
+    The path to where the .fasta file is located. The filepath should
+    end in the file name, and can be an absolute or relative path
+
+
+output_file : str
+    By default, a dictionary of predicted values is returned 
+    immediately. However, you can specify an output filename and path 
+    and a .csv file will be saved. This should include any file extensions.
+    Default = None.
+
+invalid_sequence_action : str
+    Tells the function how to deal with sequences that lack standard amino 
+    acids. Default is convert, which as the name implies converts via standard 
+    rules. See https://protfasta.readthedocs.io/en/latest/read_fasta.html 
+    for more information.
+
+pLDDT_version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2 
+
+device : string
+    the device to use for prediction. Default is None, which means
+    the function will try to use a GPU if one is available. 
+    Options include &#x27;cpu&#x27;, &#x27;cuda&#x27;, &#x27;mps&#x27;, or an int that corresponds
+    to the index of a specific cuda-enabled GPU. To specify by index, 
+    use &#x27;cuda:int&#x27; where int is the index of the GPU you want to use.
+    For example, &#x27;cuda:0&#x27; would use the first GPU. If &#x27;cuda&#x27; is specified
+    and cuda.is_available() returns False, instead of falling back to
+    CPU, metapredict will raise an Exception so you know that you are
+    not using CUDA as you were expecting.
+
+show_progress_bar : bool
+    Flag which, if set to True, means a progress bar is printed as 
+    predictions are made, while if False no progress bar is printed.
+
+Returns
+--------
+
+dict or None
+    If output_file is set to None (as default) then this fiction returns a 
+    dictionary of sequence ID to pLDDT vector. If output_file is set to a 
+    filename then a .csv file will instead be written and no return data 
+    will be provided.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_pLDDT_uniprot(uniprot_id, pLDDT_version=&#x27;V2&#x27;)</code></h4>
+<blockquote>Function to return pLDDT score of a single input sequence. Uses a </blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function to return pLDDT score of a single input sequence. Uses a 
+Uniprot ID to get the sequence.
+
+Parameters
+------------
+
+uniprot_ID : str
+     The uniprot ID of the sequence to predict
+
+pLDDT_version : string
+    The network to use for prediction. Default is DEFAULT_NETWORK_PLDDT,
+    which is defined at the top of /parameters.
+    Options currently include V1 or V2 
+
+Returns
+----------
+
+None
+    No return object, but, the graph is saved to disk or displayed locally.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>print_metapredict_legacy_network_version(return_network_info=False)</code></h4>
+<blockquote>Function that returns a string with the current trained network version</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function that returns a string with the current trained network version
+used in disorder prediction. This is useful to know if updated versions
+of the network are provided, which will always accompany a version bump
+so prior versions of the code will always be available.
+
+Parameters
+----------
+return_network_info : bool
+    Flag which, if set to True, returns the network information as well as the version.
+
+Returns
+---------
+str 
+    Returns a string in the format v&lt;version information&gt;</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>print_metapredict_network_version(return_network_info=False)</code></h4>
+<blockquote>Function that returns a string with the current trained network version</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function that returns a string with the current trained network version
+used in disorder prediction. This is useful to know if updated versions
+of the network are provided, which will always accompany a version bump
+so prior versions of the code will always be available.
+
+Parameters
+----------
+print_network_info : bool
+    Flag which, if set to True, returns the network information as well as the version.
+
+
+Returns
+---------
+str 
+    Returns a string in the format v&lt;version information&gt;</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>print_performance(seq_len=500, num_seqs=2000, variable_length=False, version=&#x27;V3&#x27;, disable_batch=False, verbose=True, device=None)</code></h4>
+<blockquote>Function that lets you test metapredicts performance on your local hardware.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function that lets you test metapredicts performance on your local hardware.
+
+Parameters
+--------------
+seq_len : int 
+    Length of each random sequence to be tested. Default = 500.
+
+num_seqs : int
+    Number of sequences to compute over. Default = 2000.
+    Default changed from 512 to 2000 because 512 was too variable.
+    Also purposefully not choosing something divisible by batch size. 
+
+variable_length : bool
+    Flag which, if provided, means sequences vary between 20 and seq_len length.
+
+version : str
+    The version of metapredict to use. Can specify &#x27;legacy&#x27;, &#x27;v1&#x27; (which are the
+    same thing), &#x27;v2&#x27;, or &#x27;v3&#x27;. Default is DEFAULT_NETWORK, which is the network
+    set as default in /backend/network_parameters.
+
+disable_batch : bool
+    Flag which, if set to true, disables batch predictions.
+
+verbose : bool
+    Flag which, if true, means the function prints a summary when finished. If 
+    false simply returns an integer
+
+device : str
+    Flag which, if provided, sets the device to use. If not provided, defaults to
+    the a cuda GPU if available and a CPU if not.
+
+
+Returns
+---------------
+int
+    Returns the nearest number of sequences-per-second metapredict is currently
+    predicting. For ref, on a spring 2020 MBP this value was ~10,000 sequences per
+    second.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>print_performance_backend(seq_len=500, num_seqs=2000, variable_length=False, version=&#x27;V3&#x27;, disable_batch=False, verbose=True, device=None, disable_pack_n_pad=False)</code></h4>
+<blockquote>Function that lets you test metapredicts performance on your local hardware.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Function that lets you test metapredicts performance on your local hardware.
+prints using the predict function in the backend so we get more control
+over the functionality. 
+
+Parameters
+--------------
+seq_len : int 
+    Length of each random sequence to be tested. Default = 500.
+
+num_seqs : int
+    Number of sequences to compute over. Default = 2000.
+    Default changed from 512 to 2000 because 512 was too variable.
+    Also purposefully not choosing something divisible by batch size. 
+
+variable_length : bool
+    Flag which, if provided, means sequences vary between 20 and seq_len length.
+
+version : str
+    The version of metapredict to use. Can specify &#x27;legacy&#x27;, &#x27;v1&#x27; (which are the
+    same thing), &#x27;v2&#x27;, or &#x27;v3&#x27;. Default is DEFAULT_NETWORK, which is the network
+    set as default in /backend/network_parameters.
+
+disable_batch : bool
+    Flag which, if set to true, disables batch predictions.
+
+verbose : bool
+    Flag which, if true, means the function prints a summary when finished. If 
+    false simply returns an integer
+
+device : str
+    Flag which, if provided, sets the device to use. If not provided, defaults to
+    the a cuda GPU if available and a CPU if not.
+
+disable_pack_n_pad : bool
+    Whether to disable pack-n-pad functionality. This forces us to use the 
+    size collect approach. 
+
+Returns
+---------------
+int
+    Returns the nearest number of sequences-per-second metapredict is currently
+    predicting. For ref, on a spring 2020 MBP this value was ~10,000 sequences per
+    second.</code></pre>
+<br>
+</details><br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    

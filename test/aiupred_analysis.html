@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: aiupred_lib</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>aiupred_lib</code></h1>
+<b>File Path:</b> <code>/home/nicai_zht/software/AIUPred-2.1.2/aiupred_lib.py</code><br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+- ℹ️ <b>No Direct Entry Point</b>: This module seems to be a library intended for import, not direct execution.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>aiupred_lib.low_memory_predict_binding</b>(<b>sequence</b>, <b>embedding_model</b>, <b>decoder_model</b>, <b>device</b>, smoothing, chunk_len)</td><td>No description.</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.low_memory_predict_disorder</b>(<b>sequence</b>, <b>embedding_model</b>, <b>decoder_model</b>, <b>device</b>, smoothing, chunk_len)</td><td>No description.</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.calculate_energy</b>(<b>sequence</b>, <b>energy_model</b>, <b>device</b>)</td><td>Calculates residue energy from a sequence using a transformer network</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.main</b>(<b>multifasta_file</b>, force_cpu, gpu_num, binding)</td><td>Main function to be called from aiupred.py</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.aiupred_binding</b>(<b>sequence</b>, force_cpu, gpu_num)</td><td>Library function to carry out single sequence analysis</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.aiupred_disorder</b>(<b>sequence</b>, force_cpu, gpu_num)</td><td>Library function to carry out single sequence analysis</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.multifasta_reader</b>(<b>file_handler</b>)</td><td>(multi) FASTA reader function</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.predict_binding</b>(<b>sequence</b>, <b>embedding_model</b>, <b>decoder_model</b>, <b>device</b>, smoothing, energy_only, binding)</td><td>No description.</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.predict_disorder</b>(<b>sequence</b>, <b>energy_model</b>, <b>regression_model</b>, <b>device</b>, smoothing)</td><td>Predict disorder propensity from a sequence using a transformer and a regression model</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.BindingDecoderModel</b>()</td><td>Base class for all neural network modules.</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.BindingTransformerModel</b>()</td><td>Base class for all neural network modules.</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.DecoderModel</b>()</td><td>Regression model to estimate disorder propensity from and energy tensor</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.TransformerModel</b>()</td><td>Transformer model to estimate positional contact potential from an amino acid sequence</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.Tensor</b>(...)</td><td>No description.</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.TransformerEncoder</b>(<b>encoder_layer</b>, <b>num_layers</b>, norm, enable_nested_tensor, mask_check)</td><td>TransformerEncoder is a stack of N encoder layers.</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.TransformerEncoderLayer</b>(<b>d_model</b>, <b>nhead</b>, dim_feedforward, dropout, activation, layer_norm_eps, batch_first, norm_first, bias, device, dtype)</td><td>TransformerEncoderLayer is made up of self-attn and feedforward network.</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.binding_transform</b>(<b>prediction</b>, smoothing)</td><td>No description.</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.init_models</b>(<b>prediction_type</b>, force_cpu, gpu_num)</td><td>Initialize networks and device to run on</td></tr><tr><td><code>ƒ</code></td><td><b>aiupred_lib.tokenize</b>(<b>sequence</b>, <b>device</b>)</td><td>Tokenize an amino acid sequence. Non-standard amino acids are treated as X</td></tr><tr><td><code>C</code></td><td><b>aiupred_lib.PositionalEncoding</b>(<b>d_model</b>, max_len)</td><td>Positional encoding for the Transformer network</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import aiupred_lib
+
+# --- Top 20 Ranked Functions ---
+# 1. low_memory_predict_binding
+result_1 = aiupred_lib.low_memory_predict_binding(
+    sequence=...,
+    embedding_model=...,
+    decoder_model=...,
+    device=...
+)
+
+# 2. low_memory_predict_disorder
+result_2 = aiupred_lib.low_memory_predict_disorder(
+    sequence=...,
+    embedding_model=...,
+    decoder_model=...,
+    device=...
+)
+
+# 3. calculate_energy
+result_3 = aiupred_lib.calculate_energy(sequence=..., energy_model=..., device=...)
+
+# 4. main
+result_4 = aiupred_lib.main(multifasta_file=...)
+
+# 5. aiupred_binding
+result_5 = aiupred_lib.aiupred_binding(sequence=...)
+
+# 6. aiupred_disorder
+result_6 = aiupred_lib.aiupred_disorder(sequence=...)
+
+# 7. multifasta_reader
+result_7 = aiupred_lib.multifasta_reader(file_handler=...)
+
+# 8. predict_binding
+result_8 = aiupred_lib.predict_binding(
+    sequence=...,
+    embedding_model=...,
+    decoder_model=...,
+    device=...
+)
+
+# 9. predict_disorder
+result_9 = aiupred_lib.predict_disorder(
+    sequence=...,
+    energy_model=...,
+    regression_model=...,
+    device=...
+)
+
+# 10. binding_transform
+result_10 = aiupred_lib.binding_transform(prediction=...)
+
+# 11. init_models
+result_11 = aiupred_lib.init_models(prediction_type=...)
+
+# 12. tokenize
+result_12 = aiupred_lib.tokenize(sequence=..., device=...)
+
+# 13. pad
+result_13 = aiupred_lib.pad(input=..., pad=...)
+
+# 14. savgol_filter
+result_14 = aiupred_lib.savgol_filter(x=..., window_length=..., polyorder=...)
+
+# --- Top 20 Core Classes Initialization ---
+# 1. BindingDecoderModel
+bindingdecoder_model = aiupred_lib.BindingDecoderModel()
+
+# 2. BindingTransformerModel
+bindingtransformer_model = aiupred_lib.BindingTransformerModel()
+
+# 3. DecoderModel
+decoder_model = aiupred_lib.DecoderModel()
+
+# 4. TransformerModel
+transformer_model = aiupred_lib.TransformerModel()
+
+# 6. TransformerEncoder
+transformerencoder = aiupred_lib.TransformerEncoder(encoder_layer=..., num_layers=...)
+
+# 7. TransformerEncoderLayer
+transformerencoderlayer = aiupred_lib.TransformerEncoderLayer(d_model=..., nhead=...)
+
+# 8. PositionalEncoding
+positionalencoding = aiupred_lib.PositionalEncoding(d_model=...)</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>torch</b></td><td>4</td></tr><tr><td><b>_frozen_importlib_external</b></td><td>1</td></tr><tr><td><b>_frozen_importlib</b></td><td>1</td></tr><tr><td><b>scipy</b></td><td>1</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>torch</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib_external</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>_frozen_importlib</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>4</td><td><code>scipy</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>5</td><td><code>aiupred_lib</code></td><td>0.1709</td><td>Internal</td><td>Model / AI</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_8[&quot;aiupred_lib&quot;] -.-&gt; id_4[&quot;torch&quot;]
+    class id_8 core;
+    class id_4 external;
+    id_8[&quot;aiupred_lib&quot;] -.-&gt; id_0[&quot;_frozen_importlib_external&quot;]
+    class id_8 core;
+    class id_0 external;
+    id_8[&quot;aiupred_lib&quot;] -.-&gt; id_10[&quot;_frozen_importlib&quot;]
+    class id_8 core;
+    class id_10 external;
+    id_8[&quot;aiupred_lib&quot;] -.-&gt; id_7[&quot;scipy&quot;]
+    class id_8 core;
+    class id_7 external;
+    id_1[&quot;BindingDecoderModel&quot;] ==&gt; id_9[&quot;Module&quot;]
+    class id_1 core;
+    class id_9 external;
+    id_3[&quot;BindingTransformerModel&quot;] ==&gt; id_9[&quot;Module&quot;]
+    class id_3 core;
+    class id_9 external;
+    id_6[&quot;DecoderModel&quot;] ==&gt; id_9[&quot;Module&quot;]
+    class id_6 core;
+    class id_9 external;
+    id_5[&quot;PositionalEncoding&quot;] ==&gt; id_9[&quot;Module&quot;]
+    class id_5 core;
+    class id_9 external;
+    id_2[&quot;TransformerModel&quot;] ==&gt; id_9[&quot;Module&quot;]
+    class id_2 core;
+    class id_9 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_0[&quot;__init__&quot;] --&gt; f_9[&quot;float&quot;]
+    class f_0 func;
+    class f_9 func;
+    f_0[&quot;__init__&quot;] --&gt;|pe| f_21[&quot;register_buffer&quot;]
+    class f_0 func;
+    class f_21 func;
+    f_10[&quot;forward&quot;] --&gt;|src| f_7[&quot;encoder&quot;]
+    class f_10 func;
+    class f_7 func;
+    f_10[&quot;forward&quot;] --&gt;|src| f_18[&quot;pos_encoder&quot;]
+    class f_10 func;
+    class f_18 func;
+    f_10[&quot;forward&quot;] --&gt;|src| f_26[&quot;transformer_encoder&quot;]
+    class f_10 func;
+    class f_26 func;
+    f_10[&quot;forward&quot;] --&gt;|output| f_6[&quot;decoder&quot;]
+    class f_10 func;
+    class f_6 func;
+    f_20[&quot;predict_disorder&quot;] --&gt;|sequence&lt;br&gt;energy_model&lt;br&gt;device| f_4[&quot;calculate_energy&quot;]
+    class f_20 func;
+    class f_4 func;
+    f_20[&quot;predict_disorder&quot;] --&gt;|predicted_energies| f_17[&quot;pad&quot;]
+    class f_20 func;
+    class f_17 func;
+    f_20[&quot;predict_disorder&quot;] --&gt; f_5[&quot;cpu&quot;]
+    class f_20 func;
+    class f_5 func;
+    f_20[&quot;predict_disorder&quot;] --&gt;|predicted_disorder| f_22[&quot;savgol_filter&quot;]
+    class f_20 func;
+    class f_22 func;
+    f_4[&quot;calculate_energy&quot;] --&gt;|sequence&lt;br&gt;device| f_25[&quot;tokenize&quot;]
+    class f_4 func;
+    class f_25 func;
+    f_4[&quot;calculate_energy&quot;] --&gt;|tokenized_sequence| f_17[&quot;pad&quot;]
+    class f_4 func;
+    class f_17 func;
+    f_19[&quot;predict_binding&quot;] --&gt;|sequence&lt;br&gt;device| f_25[&quot;tokenize&quot;]
+    class f_19 func;
+    class f_25 func;
+    f_19[&quot;predict_binding&quot;] --&gt;|_tokens| f_17[&quot;pad&quot;]
+    class f_19 func;
+    class f_17 func;
+    f_19[&quot;predict_binding&quot;] --&gt; f_5[&quot;cpu&quot;]
+    class f_19 func;
+    class f_5 func;
+    f_19[&quot;predict_binding&quot;] --&gt;|_token_embedding| f_17[&quot;pad&quot;]
+    class f_19 func;
+    class f_17 func;
+    f_19[&quot;predict_binding&quot;] --&gt;|_prediction| f_3[&quot;binding_transform&quot;]
+    class f_19 func;
+    class f_3 func;
+    f_14[&quot;low_memory_predict_disorder&quot;] --&gt;|embedding_model&lt;br&gt;decoder_model&lt;br&gt;device| f_20[&quot;predict_disorder&quot;]
+    class f_14 func;
+    class f_20 func;
+    f_14[&quot;low_memory_predict_disorder&quot;] --&gt;|prediction| f_22[&quot;savgol_filter&quot;]
+    class f_14 func;
+    class f_22 func;
+    f_13[&quot;low_memory_predict_binding&quot;] --&gt;|embedding_model&lt;br&gt;decoder_model&lt;br&gt;device| f_19[&quot;predict_binding&quot;]
+    class f_13 func;
+    class f_19 func;
+    f_13[&quot;low_memory_predict_binding&quot;] --&gt;|prediction| f_3[&quot;binding_transform&quot;]
+    class f_13 func;
+    class f_3 func;
+    f_3[&quot;binding_transform&quot;] --&gt; f_23[&quot;split&quot;]
+    class f_3 func;
+    class f_23 func;
+    f_3[&quot;binding_transform&quot;] --&gt;|key| f_9[&quot;float&quot;]
+    class f_3 func;
+    class f_9 func;
+    f_3[&quot;binding_transform&quot;] --&gt;|value| f_9[&quot;float&quot;]
+    class f_3 func;
+    class f_9 func;
+    f_3[&quot;binding_transform&quot;] --&gt;|transformed_pred| f_22[&quot;savgol_filter&quot;]
+    class f_3 func;
+    class f_22 func;
+    f_11[&quot;init_models&quot;] --&gt; f_12[&quot;load_state_dict&quot;]
+    class f_11 func;
+    class f_12 func;
+    f_11[&quot;init_models&quot;] --&gt;|device| f_24[&quot;to&quot;]
+    class f_11 func;
+    class f_24 func;
+    f_11[&quot;init_models&quot;] --&gt; f_8[&quot;eval&quot;]
+    class f_11 func;
+    class f_8 func;
+    f_2[&quot;aiupred_disorder&quot;] --&gt;|force_cpu&lt;br&gt;gpu_num| f_11[&quot;init_models&quot;]
+    class f_2 func;
+    class f_11 func;
+    f_2[&quot;aiupred_disorder&quot;] --&gt;|sequence&lt;br&gt;embedding_model&lt;br&gt;reg_model&lt;br&gt;device| f_20[&quot;predict_disorder&quot;]
+    class f_2 func;
+    class f_20 func;
+    f_1[&quot;aiupred_binding&quot;] --&gt;|force_cpu&lt;br&gt;gpu_num| f_11[&quot;init_models&quot;]
+    class f_1 func;
+    class f_11 func;
+    f_1[&quot;aiupred_binding&quot;] --&gt;|sequence&lt;br&gt;embedding_model&lt;br&gt;reg_model&lt;br&gt;device| f_19[&quot;predict_binding&quot;]
+    class f_1 func;
+    class f_19 func;
+    f_15[&quot;main&quot;] --&gt;|force_cpu&lt;br&gt;gpu_num| f_11[&quot;init_models&quot;]
+    class f_15 main;
+    class f_11 func;
+    f_15[&quot;main&quot;] --&gt;|multifasta_file| f_16[&quot;multifasta_reader&quot;]
+    class f_15 main;
+    class f_16 func;
+    f_15[&quot;main&quot;] --&gt;|sequence&lt;br&gt;embedding_model&lt;br&gt;reg_model&lt;br&gt;device| f_20[&quot;predict_disorder&quot;]
+    class f_15 main;
+    class f_20 func;
+    f_15[&quot;main&quot;] --&gt;|sequence&lt;br&gt;binding_embedding&lt;br&gt;binding_regression&lt;br&gt;device| f_19[&quot;predict_binding&quot;]
+    class f_15 main;
+    class f_19 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>forward</code>:</h4>
+<blockquote>You need these <b>5</b> components:</blockquote>
+<code>decoder, encoder, forward, pos_encoder, transformer_encoder</code><br>
+<br>
+<h4>To extract <code>predict_disorder</code>:</h4>
+<blockquote>You need these <b>6</b> components:</blockquote>
+<code>calculate_energy, cpu, pad, predict_disorder, savgol_filter, tokenize</code><br>
+<br>
+<h4>To extract <code>predict_binding</code>:</h4>
+<blockquote>You need these <b>8</b> components:</blockquote>
+<code>binding_transform, cpu, float, pad, predict_binding, savgol_filter, split, tokenize</code><br>
+<br>
+<h4>To extract <code>main</code>:</h4>
+<blockquote>You need these <b>16</b> components:</blockquote>
+<code>binding_transform, calculate_energy, cpu, eval, float, init_models, load_state_dict, main, multifasta_reader, pad, predict_binding, predict_disorder, savgol_filter, split, to, tokenize</code><br>
+<br>
+<h4>To extract <code>__init__</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>__init__, float, register_buffer</code><br>
+<br>
+<h4>To extract <code>binding_transform</code>:</h4>
+<blockquote>You need these <b>4</b> components:</blockquote>
+<code>binding_transform, float, savgol_filter, split</code><br>
+<br>
+<h4>To extract <code>init_models</code>:</h4>
+<blockquote>You need these <b>4</b> components:</blockquote>
+<code>eval, init_models, load_state_dict, to</code><br>
+<br>
+<h4>To extract <code>calculate_energy</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>calculate_energy, pad, tokenize</code><br>
+<br>
+<h4>To extract <code>low_memory_predict_disorder</code>:</h4>
+<blockquote>You need these <b>7</b> components:</blockquote>
+<code>calculate_energy, cpu, low_memory_predict_disorder, pad, predict_disorder, savgol_filter, tokenize</code><br>
+<br>
+<h4>To extract <code>low_memory_predict_binding</code>:</h4>
+<blockquote>You need these <b>9</b> components:</blockquote>
+<code>binding_transform, cpu, float, low_memory_predict_binding, pad, predict_binding, savgol_filter, split, tokenize</code><br>
+<br>
+<h4>To extract <code>aiupred_disorder</code>:</h4>
+<blockquote>You need these <b>11</b> components:</blockquote>
+<code>aiupred_disorder, calculate_energy, cpu, eval, init_models, load_state_dict, pad, predict_disorder, savgol_filter, to, tokenize</code><br>
+<br>
+<h4>To extract <code>aiupred_binding</code>:</h4>
+<blockquote>You need these <b>13</b> components:</blockquote>
+<code>aiupred_binding, binding_transform, cpu, eval, float, init_models, load_state_dict, pad, predict_binding, savgol_filter, split, to, tokenize</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>aiupred_binding(sequence, force_cpu=False, gpu_num=0)</code></h4>
+<blockquote>Library function to carry out single sequence analysis</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Library function to carry out single sequence analysis
+:param sequence: Amino acid sequence in a string</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>aiupred_disorder(sequence, force_cpu=False, gpu_num=0)</code></h4>
+<blockquote>Library function to carry out single sequence analysis</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Library function to carry out single sequence analysis
+:param sequence: Amino acid sequence in a string</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>binding_transform(prediction, smoothing=True)</code></h4>
+<blockquote>No documentation available.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>No documentation available.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>calculate_energy(sequence, energy_model, device)</code></h4>
+<blockquote>Calculates residue energy from a sequence using a transformer network</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Calculates residue energy from a sequence using a transformer network
+:param sequence: Amino acid sequence in string
+:param energy_model: Transformer model
+:param device: Device to run on. CUDA{x} or CPU
+:return: Tensor of energy values</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>init_models(prediction_type, force_cpu=False, gpu_num=0)</code></h4>
+<blockquote>Initialize networks and device to run on</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Initialize networks and device to run on
+:param force_cpu: Force the method to run on CPU only mode
+:param gpu_num: Index of the GPU to use, default=0
+:return: Tuple of (embedding_model, regression_model, device)</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>low_memory_predict_binding(sequence, embedding_model, decoder_model, device, smoothing=None, chunk_len=1000)</code></h4>
+<blockquote>No documentation available.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>No documentation available.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>low_memory_predict_disorder(sequence, embedding_model, decoder_model, device, smoothing=None, chunk_len=1000)</code></h4>
+<blockquote>No documentation available.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>No documentation available.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>main(multifasta_file, force_cpu=False, gpu_num=0, binding=False)</code></h4>
+<blockquote>Main function to be called from aiupred.py</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Main function to be called from aiupred.py
+:param multifasta_file: Location of (multi) FASTA formatted sequences
+:param force_cpu: Force the method to run on CPU only mode
+:param gpu_num: Index of the GPU to use, default=0
+:return: Dictionary with parsed sequences and predicted results</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>multifasta_reader(file_handler)</code></h4>
+<blockquote>(multi) FASTA reader function</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>(multi) FASTA reader function
+:return: Dictionary with header -&gt; sequence mapping from the file</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_binding(sequence, embedding_model, decoder_model, device, smoothing=None, energy_only=False, binding=False)</code></h4>
+<blockquote>No documentation available.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>No documentation available.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>predict_disorder(sequence, energy_model, regression_model, device, smoothing=None)</code></h4>
+<blockquote>Predict disorder propensity from a sequence using a transformer and a regression model</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Predict disorder propensity from a sequence using a transformer and a regression model
+:param sequence: Amino acid sequence in string
+:param energy_model: Transformer model
+:param regression_model: regression model
+:param device: Device to run on. CUDA{x} or CPU
+:param smoothing: Use the SavGol filter to smooth the output
+:return:</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>tokenize(sequence, device)</code></h4>
+<blockquote>Tokenize an amino acid sequence. Non-standard amino acids are treated as X</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Tokenize an amino acid sequence. Non-standard amino acids are treated as X
+:param sequence: Amino acid sequence in string
+:param device: Device to run on. CUDA{x} or CPU
+:return: Tokenized tensors</code></pre>
+<br>
+</details><br>
+<br>
+<br>
+<b>Logic Flow:</b><br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+flowchart TD
+    classDef input fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,rx:5,ry:5;
+    classDef process fill:#fff,stroke:#bdbdbd,stroke-width:1px;
+    classDef core_process fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,rx:5,ry:5;
+    classDef decision fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px,rx:5,ry:5,stroke-dasharray: 5 5;
+    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,rx:5,ry:5;
+    Input([&quot;&lt;b&gt;Input Data&lt;/b&gt;&lt;br/&gt;• sequence&lt;br/&gt;• device&quot;]):::input
+    Return([&quot;Return\ntorch.tensor([AA_CODE.index(aa) if aa in AA_CODE else 20 for aa in sequence], device=device)&quot;]):::output
+    Input --&gt;|&quot;device&quot;| Return
+    Input --&gt;|&quot;sequence&quot;| Return
+</div>
+<br>
+<br>
+<h3>📦 Classes</h3>
+<h4><code>class BindingDecoderModel()</code></h4>
+Base class for all neural network modules.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self)</code></td><td>Initialize internal Module state, shared by both nn.Module and ScriptModule.</td></tr><tr><td><b>add_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Add a child module to the current module.</td></tr><tr><td><b>apply</b></td><td><code>(self, fn: Callable[[ForwardRef(&#x27;Module&#x27;)], NoneType]) -&gt; Self</code></td><td>Apply <code></code>fn<code></code> recursively to every submodule (as returned by <code></code>.children()<code></code>) as well as self.</td></tr><tr><td><b>bfloat16</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>bfloat16<code></code> datatype.</td></tr><tr><td><b>buffers</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.Tensor]</code></td><td>Return an iterator over module buffers.</td></tr><tr><td><b>children</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over immediate children modules.</td></tr><tr><td><b>compile</b></td><td><code>(self, *args, **kwargs)</code></td><td>Compile this Module&#x27;s forward using :func:<code>torch.compile</code>.</td></tr><tr><td><b>cpu</b></td><td><code>(self) -&gt; Self</code></td><td>Move all model parameters and buffers to the CPU.</td></tr><tr><td><b>cuda</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the GPU.</td></tr><tr><td><b>double</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>double<code></code> datatype.</td></tr><tr><td><b>eval</b></td><td><code>(self) -&gt; Self</code></td><td>Set the module in evaluation mode.</td></tr><tr><td><b>extra_repr</b></td><td><code>(self) -&gt; str</code></td><td>Return the extra representation of the module.</td></tr><tr><td><b>float</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>float<code></code> datatype.</td></tr><tr><td><b>forward</b></td><td><code>(self, x: torch.Tensor) -&gt; torch.Tensor</code></td><td>Define the computation performed at every call.</td></tr><tr><td><b>get_buffer</b></td><td><code>(self, target: str) -&gt; &#x27;Tensor&#x27;</code></td><td>Return the buffer given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_extra_state</b></td><td><code>(self) -&gt; Any</code></td><td>Return any extra state to include in the module&#x27;s state_dict.</td></tr><tr><td><b>get_parameter</b></td><td><code>(self, target: str) -&gt; &#x27;Parameter&#x27;</code></td><td>Return the parameter given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_submodule</b></td><td><code>(self, target: str) -&gt; &#x27;Module&#x27;</code></td><td>Return the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>half</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>half<code></code> datatype.</td></tr><tr><td><b>ipu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the IPU.</td></tr><tr><td><b>load_state_dict</b></td><td><code>(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</code></td><td>Copy parameters and buffers from :attr:<code>state_dict</code> into this module and its descendants.</td></tr><tr><td><b>modules</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over all modules in the network.</td></tr><tr><td><b>mtia</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the MTIA.</td></tr><tr><td><b>named_buffers</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.Tensor]]</code></td><td>Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</td></tr><tr><td><b>named_children</b></td><td><code>(self) -&gt; collections.abc.Iterator[tuple[str, &#x27;Module&#x27;]]</code></td><td>Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_modules</b></td><td><code>(self, memo: Optional[set[&#x27;Module&#x27;]] = None, prefix: str = &#x27;&#x27;, remove_duplicate: bool = True)</code></td><td>Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_parameters</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</code></td><td>Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.</td></tr><tr><td><b>parameters</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.nn.parameter.Parameter]</code></td><td>Return an iterator over module parameters.</td></tr><tr><td><b>register_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_buffer</b></td><td><code>(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -&gt; None</code></td><td>Add a buffer to the module.</td></tr><tr><td><b>register_forward_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward hook on the module.</td></tr><tr><td><b>register_forward_pre_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward pre-hook on the module.</td></tr><tr><td><b>register_full_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_full_backward_pre_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward pre-hook on the module.</td></tr><tr><td><b>register_load_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook to be run after module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_load_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook to be run before module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Alias for :func:<code>add_module</code>.</td></tr><tr><td><b>register_parameter</b></td><td><code>(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -&gt; None</code></td><td>Add a parameter to the module.</td></tr><tr><td><b>register_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>register_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>requires_grad_</b></td><td><code>(self, requires_grad: bool = True) -&gt; Self</code></td><td>Change if autograd should record operations on parameters in this module.</td></tr><tr><td><b>set_extra_state</b></td><td><code>(self, state: Any) -&gt; None</code></td><td>Set extra state contained in the loaded <code>state_dict</code>.</td></tr><tr><td><b>set_submodule</b></td><td><code>(self, target: str, module: &#x27;Module&#x27;, strict: bool = False) -&gt; None</code></td><td>Set the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>share_memory</b></td><td><code>(self) -&gt; Self</code></td><td>See :meth:<code>torch.Tensor.share_memory_</code>.</td></tr><tr><td><b>state_dict</b></td><td><code>(self, *args, destination=None, prefix=&#x27;&#x27;, keep_vars=False)</code></td><td>Return a dictionary containing references to the whole state of the module.</td></tr><tr><td><b>to</b></td><td><code>(self, *args, **kwargs)</code></td><td>Move and/or cast the parameters and buffers.</td></tr><tr><td><b>to_empty</b></td><td><code>(self, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -&gt; Self</code></td><td>Move the parameters and buffers to the specified device without copying storage.</td></tr><tr><td><b>train</b></td><td><code>(self, mode: bool = True) -&gt; Self</code></td><td>Set the module in training mode.</td></tr><tr><td><b>type</b></td><td><code>(self, dst_type: Union[torch.dtype, str]) -&gt; Self</code></td><td>Casts all parameters and buffers to :attr:<code>dst_type</code>.</td></tr><tr><td><b>xpu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the XPU.</td></tr><tr><td><b>zero_grad</b></td><td><code>(self, set_to_none: bool = True) -&gt; None</code></td><td>Reset gradients of all model parameters.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class BindingTransformerModel()</code></h4>
+Base class for all neural network modules.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self)</code></td><td>Initialize internal Module state, shared by both nn.Module and ScriptModule.</td></tr><tr><td><b>add_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Add a child module to the current module.</td></tr><tr><td><b>apply</b></td><td><code>(self, fn: Callable[[ForwardRef(&#x27;Module&#x27;)], NoneType]) -&gt; Self</code></td><td>Apply <code></code>fn<code></code> recursively to every submodule (as returned by <code></code>.children()<code></code>) as well as self.</td></tr><tr><td><b>bfloat16</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>bfloat16<code></code> datatype.</td></tr><tr><td><b>buffers</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.Tensor]</code></td><td>Return an iterator over module buffers.</td></tr><tr><td><b>children</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over immediate children modules.</td></tr><tr><td><b>compile</b></td><td><code>(self, *args, **kwargs)</code></td><td>Compile this Module&#x27;s forward using :func:<code>torch.compile</code>.</td></tr><tr><td><b>cpu</b></td><td><code>(self) -&gt; Self</code></td><td>Move all model parameters and buffers to the CPU.</td></tr><tr><td><b>cuda</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the GPU.</td></tr><tr><td><b>double</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>double<code></code> datatype.</td></tr><tr><td><b>eval</b></td><td><code>(self) -&gt; Self</code></td><td>Set the module in evaluation mode.</td></tr><tr><td><b>extra_repr</b></td><td><code>(self) -&gt; str</code></td><td>Return the extra representation of the module.</td></tr><tr><td><b>float</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>float<code></code> datatype.</td></tr><tr><td><b>forward</b></td><td><code>(self, src: torch.Tensor, embed_only=False) -&gt; torch.Tensor</code></td><td>Define the computation performed at every call.</td></tr><tr><td><b>get_buffer</b></td><td><code>(self, target: str) -&gt; &#x27;Tensor&#x27;</code></td><td>Return the buffer given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_extra_state</b></td><td><code>(self) -&gt; Any</code></td><td>Return any extra state to include in the module&#x27;s state_dict.</td></tr><tr><td><b>get_parameter</b></td><td><code>(self, target: str) -&gt; &#x27;Parameter&#x27;</code></td><td>Return the parameter given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_submodule</b></td><td><code>(self, target: str) -&gt; &#x27;Module&#x27;</code></td><td>Return the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>half</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>half<code></code> datatype.</td></tr><tr><td><b>ipu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the IPU.</td></tr><tr><td><b>load_state_dict</b></td><td><code>(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</code></td><td>Copy parameters and buffers from :attr:<code>state_dict</code> into this module and its descendants.</td></tr><tr><td><b>modules</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over all modules in the network.</td></tr><tr><td><b>mtia</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the MTIA.</td></tr><tr><td><b>named_buffers</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.Tensor]]</code></td><td>Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</td></tr><tr><td><b>named_children</b></td><td><code>(self) -&gt; collections.abc.Iterator[tuple[str, &#x27;Module&#x27;]]</code></td><td>Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_modules</b></td><td><code>(self, memo: Optional[set[&#x27;Module&#x27;]] = None, prefix: str = &#x27;&#x27;, remove_duplicate: bool = True)</code></td><td>Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_parameters</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</code></td><td>Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.</td></tr><tr><td><b>parameters</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.nn.parameter.Parameter]</code></td><td>Return an iterator over module parameters.</td></tr><tr><td><b>register_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_buffer</b></td><td><code>(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -&gt; None</code></td><td>Add a buffer to the module.</td></tr><tr><td><b>register_forward_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward hook on the module.</td></tr><tr><td><b>register_forward_pre_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward pre-hook on the module.</td></tr><tr><td><b>register_full_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_full_backward_pre_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward pre-hook on the module.</td></tr><tr><td><b>register_load_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook to be run after module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_load_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook to be run before module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Alias for :func:<code>add_module</code>.</td></tr><tr><td><b>register_parameter</b></td><td><code>(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -&gt; None</code></td><td>Add a parameter to the module.</td></tr><tr><td><b>register_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>register_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>requires_grad_</b></td><td><code>(self, requires_grad: bool = True) -&gt; Self</code></td><td>Change if autograd should record operations on parameters in this module.</td></tr><tr><td><b>set_extra_state</b></td><td><code>(self, state: Any) -&gt; None</code></td><td>Set extra state contained in the loaded <code>state_dict</code>.</td></tr><tr><td><b>set_submodule</b></td><td><code>(self, target: str, module: &#x27;Module&#x27;, strict: bool = False) -&gt; None</code></td><td>Set the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>share_memory</b></td><td><code>(self) -&gt; Self</code></td><td>See :meth:<code>torch.Tensor.share_memory_</code>.</td></tr><tr><td><b>state_dict</b></td><td><code>(self, *args, destination=None, prefix=&#x27;&#x27;, keep_vars=False)</code></td><td>Return a dictionary containing references to the whole state of the module.</td></tr><tr><td><b>to</b></td><td><code>(self, *args, **kwargs)</code></td><td>Move and/or cast the parameters and buffers.</td></tr><tr><td><b>to_empty</b></td><td><code>(self, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -&gt; Self</code></td><td>Move the parameters and buffers to the specified device without copying storage.</td></tr><tr><td><b>train</b></td><td><code>(self, mode: bool = True) -&gt; Self</code></td><td>Set the module in training mode.</td></tr><tr><td><b>type</b></td><td><code>(self, dst_type: Union[torch.dtype, str]) -&gt; Self</code></td><td>Casts all parameters and buffers to :attr:<code>dst_type</code>.</td></tr><tr><td><b>xpu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the XPU.</td></tr><tr><td><b>zero_grad</b></td><td><code>(self, set_to_none: bool = True) -&gt; None</code></td><td>Reset gradients of all model parameters.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class DecoderModel()</code></h4>
+Regression model to estimate disorder propensity from and energy tensor<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self)</code></td><td>Initialize internal Module state, shared by both nn.Module and ScriptModule.</td></tr><tr><td><b>add_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Add a child module to the current module.</td></tr><tr><td><b>apply</b></td><td><code>(self, fn: Callable[[ForwardRef(&#x27;Module&#x27;)], NoneType]) -&gt; Self</code></td><td>Apply <code></code>fn<code></code> recursively to every submodule (as returned by <code></code>.children()<code></code>) as well as self.</td></tr><tr><td><b>bfloat16</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>bfloat16<code></code> datatype.</td></tr><tr><td><b>buffers</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.Tensor]</code></td><td>Return an iterator over module buffers.</td></tr><tr><td><b>children</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over immediate children modules.</td></tr><tr><td><b>compile</b></td><td><code>(self, *args, **kwargs)</code></td><td>Compile this Module&#x27;s forward using :func:<code>torch.compile</code>.</td></tr><tr><td><b>cpu</b></td><td><code>(self) -&gt; Self</code></td><td>Move all model parameters and buffers to the CPU.</td></tr><tr><td><b>cuda</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the GPU.</td></tr><tr><td><b>double</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>double<code></code> datatype.</td></tr><tr><td><b>eval</b></td><td><code>(self) -&gt; Self</code></td><td>Set the module in evaluation mode.</td></tr><tr><td><b>extra_repr</b></td><td><code>(self) -&gt; str</code></td><td>Return the extra representation of the module.</td></tr><tr><td><b>float</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>float<code></code> datatype.</td></tr><tr><td><b>forward</b></td><td><code>(self, x: torch.Tensor) -&gt; torch.Tensor</code></td><td>Define the computation performed at every call.</td></tr><tr><td><b>get_buffer</b></td><td><code>(self, target: str) -&gt; &#x27;Tensor&#x27;</code></td><td>Return the buffer given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_extra_state</b></td><td><code>(self) -&gt; Any</code></td><td>Return any extra state to include in the module&#x27;s state_dict.</td></tr><tr><td><b>get_parameter</b></td><td><code>(self, target: str) -&gt; &#x27;Parameter&#x27;</code></td><td>Return the parameter given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_submodule</b></td><td><code>(self, target: str) -&gt; &#x27;Module&#x27;</code></td><td>Return the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>half</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>half<code></code> datatype.</td></tr><tr><td><b>ipu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the IPU.</td></tr><tr><td><b>load_state_dict</b></td><td><code>(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</code></td><td>Copy parameters and buffers from :attr:<code>state_dict</code> into this module and its descendants.</td></tr><tr><td><b>modules</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over all modules in the network.</td></tr><tr><td><b>mtia</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the MTIA.</td></tr><tr><td><b>named_buffers</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.Tensor]]</code></td><td>Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</td></tr><tr><td><b>named_children</b></td><td><code>(self) -&gt; collections.abc.Iterator[tuple[str, &#x27;Module&#x27;]]</code></td><td>Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_modules</b></td><td><code>(self, memo: Optional[set[&#x27;Module&#x27;]] = None, prefix: str = &#x27;&#x27;, remove_duplicate: bool = True)</code></td><td>Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_parameters</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</code></td><td>Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.</td></tr><tr><td><b>parameters</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.nn.parameter.Parameter]</code></td><td>Return an iterator over module parameters.</td></tr><tr><td><b>register_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_buffer</b></td><td><code>(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -&gt; None</code></td><td>Add a buffer to the module.</td></tr><tr><td><b>register_forward_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward hook on the module.</td></tr><tr><td><b>register_forward_pre_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward pre-hook on the module.</td></tr><tr><td><b>register_full_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_full_backward_pre_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward pre-hook on the module.</td></tr><tr><td><b>register_load_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook to be run after module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_load_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook to be run before module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Alias for :func:<code>add_module</code>.</td></tr><tr><td><b>register_parameter</b></td><td><code>(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -&gt; None</code></td><td>Add a parameter to the module.</td></tr><tr><td><b>register_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>register_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>requires_grad_</b></td><td><code>(self, requires_grad: bool = True) -&gt; Self</code></td><td>Change if autograd should record operations on parameters in this module.</td></tr><tr><td><b>set_extra_state</b></td><td><code>(self, state: Any) -&gt; None</code></td><td>Set extra state contained in the loaded <code>state_dict</code>.</td></tr><tr><td><b>set_submodule</b></td><td><code>(self, target: str, module: &#x27;Module&#x27;, strict: bool = False) -&gt; None</code></td><td>Set the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>share_memory</b></td><td><code>(self) -&gt; Self</code></td><td>See :meth:<code>torch.Tensor.share_memory_</code>.</td></tr><tr><td><b>state_dict</b></td><td><code>(self, *args, destination=None, prefix=&#x27;&#x27;, keep_vars=False)</code></td><td>Return a dictionary containing references to the whole state of the module.</td></tr><tr><td><b>to</b></td><td><code>(self, *args, **kwargs)</code></td><td>Move and/or cast the parameters and buffers.</td></tr><tr><td><b>to_empty</b></td><td><code>(self, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -&gt; Self</code></td><td>Move the parameters and buffers to the specified device without copying storage.</td></tr><tr><td><b>train</b></td><td><code>(self, mode: bool = True) -&gt; Self</code></td><td>Set the module in training mode.</td></tr><tr><td><b>type</b></td><td><code>(self, dst_type: Union[torch.dtype, str]) -&gt; Self</code></td><td>Casts all parameters and buffers to :attr:<code>dst_type</code>.</td></tr><tr><td><b>xpu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the XPU.</td></tr><tr><td><b>zero_grad</b></td><td><code>(self, set_to_none: bool = True) -&gt; None</code></td><td>Reset gradients of all model parameters.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class PositionalEncoding(d_model, max_len=5000)</code></h4>
+Positional encoding for the Transformer network<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, d_model, max_len=5000)</code></td><td>Initialize internal Module state, shared by both nn.Module and ScriptModule.</td></tr><tr><td><b>add_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Add a child module to the current module.</td></tr><tr><td><b>apply</b></td><td><code>(self, fn: Callable[[ForwardRef(&#x27;Module&#x27;)], NoneType]) -&gt; Self</code></td><td>Apply <code></code>fn<code></code> recursively to every submodule (as returned by <code></code>.children()<code></code>) as well as self.</td></tr><tr><td><b>bfloat16</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>bfloat16<code></code> datatype.</td></tr><tr><td><b>buffers</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.Tensor]</code></td><td>Return an iterator over module buffers.</td></tr><tr><td><b>children</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over immediate children modules.</td></tr><tr><td><b>compile</b></td><td><code>(self, *args, **kwargs)</code></td><td>Compile this Module&#x27;s forward using :func:<code>torch.compile</code>.</td></tr><tr><td><b>cpu</b></td><td><code>(self) -&gt; Self</code></td><td>Move all model parameters and buffers to the CPU.</td></tr><tr><td><b>cuda</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the GPU.</td></tr><tr><td><b>double</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>double<code></code> datatype.</td></tr><tr><td><b>eval</b></td><td><code>(self) -&gt; Self</code></td><td>Set the module in evaluation mode.</td></tr><tr><td><b>extra_repr</b></td><td><code>(self) -&gt; str</code></td><td>Return the extra representation of the module.</td></tr><tr><td><b>float</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>float<code></code> datatype.</td></tr><tr><td><b>forward</b></td><td><code>(self, x)</code></td><td>Define the computation performed at every call.</td></tr><tr><td><b>get_buffer</b></td><td><code>(self, target: str) -&gt; &#x27;Tensor&#x27;</code></td><td>Return the buffer given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_extra_state</b></td><td><code>(self) -&gt; Any</code></td><td>Return any extra state to include in the module&#x27;s state_dict.</td></tr><tr><td><b>get_parameter</b></td><td><code>(self, target: str) -&gt; &#x27;Parameter&#x27;</code></td><td>Return the parameter given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_submodule</b></td><td><code>(self, target: str) -&gt; &#x27;Module&#x27;</code></td><td>Return the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>half</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>half<code></code> datatype.</td></tr><tr><td><b>ipu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the IPU.</td></tr><tr><td><b>load_state_dict</b></td><td><code>(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</code></td><td>Copy parameters and buffers from :attr:<code>state_dict</code> into this module and its descendants.</td></tr><tr><td><b>modules</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over all modules in the network.</td></tr><tr><td><b>mtia</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the MTIA.</td></tr><tr><td><b>named_buffers</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.Tensor]]</code></td><td>Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</td></tr><tr><td><b>named_children</b></td><td><code>(self) -&gt; collections.abc.Iterator[tuple[str, &#x27;Module&#x27;]]</code></td><td>Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_modules</b></td><td><code>(self, memo: Optional[set[&#x27;Module&#x27;]] = None, prefix: str = &#x27;&#x27;, remove_duplicate: bool = True)</code></td><td>Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_parameters</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</code></td><td>Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.</td></tr><tr><td><b>parameters</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.nn.parameter.Parameter]</code></td><td>Return an iterator over module parameters.</td></tr><tr><td><b>register_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_buffer</b></td><td><code>(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -&gt; None</code></td><td>Add a buffer to the module.</td></tr><tr><td><b>register_forward_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward hook on the module.</td></tr><tr><td><b>register_forward_pre_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward pre-hook on the module.</td></tr><tr><td><b>register_full_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_full_backward_pre_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward pre-hook on the module.</td></tr><tr><td><b>register_load_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook to be run after module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_load_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook to be run before module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Alias for :func:<code>add_module</code>.</td></tr><tr><td><b>register_parameter</b></td><td><code>(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -&gt; None</code></td><td>Add a parameter to the module.</td></tr><tr><td><b>register_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>register_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>requires_grad_</b></td><td><code>(self, requires_grad: bool = True) -&gt; Self</code></td><td>Change if autograd should record operations on parameters in this module.</td></tr><tr><td><b>set_extra_state</b></td><td><code>(self, state: Any) -&gt; None</code></td><td>Set extra state contained in the loaded <code>state_dict</code>.</td></tr><tr><td><b>set_submodule</b></td><td><code>(self, target: str, module: &#x27;Module&#x27;, strict: bool = False) -&gt; None</code></td><td>Set the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>share_memory</b></td><td><code>(self) -&gt; Self</code></td><td>See :meth:<code>torch.Tensor.share_memory_</code>.</td></tr><tr><td><b>state_dict</b></td><td><code>(self, *args, destination=None, prefix=&#x27;&#x27;, keep_vars=False)</code></td><td>Return a dictionary containing references to the whole state of the module.</td></tr><tr><td><b>to</b></td><td><code>(self, *args, **kwargs)</code></td><td>Move and/or cast the parameters and buffers.</td></tr><tr><td><b>to_empty</b></td><td><code>(self, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -&gt; Self</code></td><td>Move the parameters and buffers to the specified device without copying storage.</td></tr><tr><td><b>train</b></td><td><code>(self, mode: bool = True) -&gt; Self</code></td><td>Set the module in training mode.</td></tr><tr><td><b>type</b></td><td><code>(self, dst_type: Union[torch.dtype, str]) -&gt; Self</code></td><td>Casts all parameters and buffers to :attr:<code>dst_type</code>.</td></tr><tr><td><b>xpu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the XPU.</td></tr><tr><td><b>zero_grad</b></td><td><code>(self, set_to_none: bool = True) -&gt; None</code></td><td>Reset gradients of all model parameters.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class TransformerModel()</code></h4>
+Transformer model to estimate positional contact potential from an amino acid sequence<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self)</code></td><td>Initialize internal Module state, shared by both nn.Module and ScriptModule.</td></tr><tr><td><b>add_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Add a child module to the current module.</td></tr><tr><td><b>apply</b></td><td><code>(self, fn: Callable[[ForwardRef(&#x27;Module&#x27;)], NoneType]) -&gt; Self</code></td><td>Apply <code></code>fn<code></code> recursively to every submodule (as returned by <code></code>.children()<code></code>) as well as self.</td></tr><tr><td><b>bfloat16</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>bfloat16<code></code> datatype.</td></tr><tr><td><b>buffers</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.Tensor]</code></td><td>Return an iterator over module buffers.</td></tr><tr><td><b>children</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over immediate children modules.</td></tr><tr><td><b>compile</b></td><td><code>(self, *args, **kwargs)</code></td><td>Compile this Module&#x27;s forward using :func:<code>torch.compile</code>.</td></tr><tr><td><b>cpu</b></td><td><code>(self) -&gt; Self</code></td><td>Move all model parameters and buffers to the CPU.</td></tr><tr><td><b>cuda</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the GPU.</td></tr><tr><td><b>double</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>double<code></code> datatype.</td></tr><tr><td><b>eval</b></td><td><code>(self) -&gt; Self</code></td><td>Set the module in evaluation mode.</td></tr><tr><td><b>extra_repr</b></td><td><code>(self) -&gt; str</code></td><td>Return the extra representation of the module.</td></tr><tr><td><b>float</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>float<code></code> datatype.</td></tr><tr><td><b>forward</b></td><td><code>(self, src: torch.Tensor, embed_only=False) -&gt; torch.Tensor</code></td><td>Define the computation performed at every call.</td></tr><tr><td><b>get_buffer</b></td><td><code>(self, target: str) -&gt; &#x27;Tensor&#x27;</code></td><td>Return the buffer given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_extra_state</b></td><td><code>(self) -&gt; Any</code></td><td>Return any extra state to include in the module&#x27;s state_dict.</td></tr><tr><td><b>get_parameter</b></td><td><code>(self, target: str) -&gt; &#x27;Parameter&#x27;</code></td><td>Return the parameter given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>get_submodule</b></td><td><code>(self, target: str) -&gt; &#x27;Module&#x27;</code></td><td>Return the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>half</b></td><td><code>(self) -&gt; Self</code></td><td>Casts all floating point parameters and buffers to <code></code>half<code></code> datatype.</td></tr><tr><td><b>ipu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the IPU.</td></tr><tr><td><b>load_state_dict</b></td><td><code>(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</code></td><td>Copy parameters and buffers from :attr:<code>state_dict</code> into this module and its descendants.</td></tr><tr><td><b>modules</b></td><td><code>(self) -&gt; collections.abc.Iterator[&#x27;Module&#x27;]</code></td><td>Return an iterator over all modules in the network.</td></tr><tr><td><b>mtia</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the MTIA.</td></tr><tr><td><b>named_buffers</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.Tensor]]</code></td><td>Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.</td></tr><tr><td><b>named_children</b></td><td><code>(self) -&gt; collections.abc.Iterator[tuple[str, &#x27;Module&#x27;]]</code></td><td>Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_modules</b></td><td><code>(self, memo: Optional[set[&#x27;Module&#x27;]] = None, prefix: str = &#x27;&#x27;, remove_duplicate: bool = True)</code></td><td>Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.</td></tr><tr><td><b>named_parameters</b></td><td><code>(self, prefix: str = &#x27;&#x27;, recurse: bool = True, remove_duplicate: bool = True) -&gt; collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</code></td><td>Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.</td></tr><tr><td><b>parameters</b></td><td><code>(self, recurse: bool = True) -&gt; collections.abc.Iterator[torch.nn.parameter.Parameter]</code></td><td>Return an iterator over module parameters.</td></tr><tr><td><b>register_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_buffer</b></td><td><code>(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -&gt; None</code></td><td>Add a buffer to the module.</td></tr><tr><td><b>register_forward_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward hook on the module.</td></tr><tr><td><b>register_forward_pre_hook</b></td><td><code>(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a forward pre-hook on the module.</td></tr><tr><td><b>register_full_backward_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward hook on the module.</td></tr><tr><td><b>register_full_backward_pre_hook</b></td><td><code>(self, hook: Callable[[ForwardRef(&#x27;Module&#x27;), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -&gt; torch.utils.hooks.RemovableHandle</code></td><td>Register a backward pre-hook on the module.</td></tr><tr><td><b>register_load_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook to be run after module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_load_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook to be run before module&#x27;s :meth:<code>~nn.Module.load_state_dict</code> is called.</td></tr><tr><td><b>register_module</b></td><td><code>(self, name: str, module: Optional[ForwardRef(&#x27;Module&#x27;)]) -&gt; None</code></td><td>Alias for :func:<code>add_module</code>.</td></tr><tr><td><b>register_parameter</b></td><td><code>(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -&gt; None</code></td><td>Add a parameter to the module.</td></tr><tr><td><b>register_state_dict_post_hook</b></td><td><code>(self, hook)</code></td><td>Register a post-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>register_state_dict_pre_hook</b></td><td><code>(self, hook)</code></td><td>Register a pre-hook for the :meth:<code>~torch.nn.Module.state_dict</code> method.</td></tr><tr><td><b>requires_grad_</b></td><td><code>(self, requires_grad: bool = True) -&gt; Self</code></td><td>Change if autograd should record operations on parameters in this module.</td></tr><tr><td><b>set_extra_state</b></td><td><code>(self, state: Any) -&gt; None</code></td><td>Set extra state contained in the loaded <code>state_dict</code>.</td></tr><tr><td><b>set_submodule</b></td><td><code>(self, target: str, module: &#x27;Module&#x27;, strict: bool = False) -&gt; None</code></td><td>Set the submodule given by <code></code>target<code></code> if it exists, otherwise throw an error.</td></tr><tr><td><b>share_memory</b></td><td><code>(self) -&gt; Self</code></td><td>See :meth:<code>torch.Tensor.share_memory_</code>.</td></tr><tr><td><b>state_dict</b></td><td><code>(self, *args, destination=None, prefix=&#x27;&#x27;, keep_vars=False)</code></td><td>Return a dictionary containing references to the whole state of the module.</td></tr><tr><td><b>to</b></td><td><code>(self, *args, **kwargs)</code></td><td>Move and/or cast the parameters and buffers.</td></tr><tr><td><b>to_empty</b></td><td><code>(self, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -&gt; Self</code></td><td>Move the parameters and buffers to the specified device without copying storage.</td></tr><tr><td><b>train</b></td><td><code>(self, mode: bool = True) -&gt; Self</code></td><td>Set the module in training mode.</td></tr><tr><td><b>type</b></td><td><code>(self, dst_type: Union[torch.dtype, str]) -&gt; Self</code></td><td>Casts all parameters and buffers to :attr:<code>dst_type</code>.</td></tr><tr><td><b>xpu</b></td><td><code>(self, device: Union[torch.device, int, NoneType] = None) -&gt; Self</code></td><td>Move all model parameters and buffers to the XPU.</td></tr><tr><td><b>zero_grad</b></td><td><code>(self, set_to_none: bool = True) -&gt; None</code></td><td>Reset gradients of all model parameters.</td></tr></tbody></table>
+<br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    

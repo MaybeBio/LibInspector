@@ -1,0 +1,4043 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: Bio.PDB</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>Bio.PDB</code></h1>
+<b>File Path:</b> <code>/home/nicai_zht/.local/share/mamba/envs/idr_llm/lib/python3.13/site-packages/Bio/PDB/__init__.py</code><br>
+<br>
+<h2>Module Docstring</h2>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Classes that deal with macromolecular crystal structures.
+
+Includes: PDB and mmCIF parsers, a Structure class, a module to keep a local
+copy of the PDB up-to-date, selective IO of PDB files, etc.
+
+Original Author: Thomas Hamelryck.
+Contributions by:
+- Peter Cock
+- Joe Greener
+- Rob Miller
+- Lenna X. Peterson
+- Joao Rodrigues
+- Kristian Rother
+- Eric Talevich
+- and many others.</code></pre>
+<br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+- ℹ️ <b>No Direct Entry Point</b>: This module seems to be a library intended for import, not direct execution.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>Bio.PDB.m2rotaxis</b>(<b>m</b>)</td><td>Return angles, axis pair that corresponds to rotation matrix m.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.PDB.make_dssp_dict</b>(<b>filename</b>)</td><td>DSSP dictionary mapping identifiers to properties.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.PDB.parse_pdb_header</b>(<b>infile</b>)</td><td>Return the header lines of a pdb file as a dictionary.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.FastMMCIFParser</b>(structure_builder, auth_chains, auth_residues, QUIET)</td><td>Parse an MMCIF file and return a Structure object.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.MMCIFParser</b>(structure_builder, auth_chains, auth_residues, QUIET)</td><td>Parse a mmCIF file and return a Structure object.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.PDBMLParser</b>()</td><td>A parser for PDBML (PDB XML) files. See https://pdbml.wwpdb.org/.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.PDBParser</b>(PERMISSIVE, get_header, structure_builder, QUIET, is_pqr)</td><td>Parse a PDB file and return a Structure object.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.PDB.extract</b>(<b>structure</b>, <b>chain_id</b>, <b>start</b>, <b>end</b>, <b>filename</b>)</td><td>Write out selected portion to filename.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.PDB.is_nucleic</b>(<b>residue</b>, standard)</td><td>Return True if residue object/string is a nucleic acid.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.PDB.rotaxis2m</b>(<b>theta</b>, <b>vector</b>)</td><td>Calculate left multiplying rotation matrix.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.PDB.rotmat</b>(<b>p</b>, <b>q</b>)</td><td>Return a (left multiplying) matrix that rotates p onto q.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.PDB.vector_to_axis</b>(<b>line</b>, <b>point</b>)</td><td>Vector to axis method.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.CEAligner</b>(window_size, max_gap)</td><td>Protein Structure Alignment by Combinatorial Extension.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.DSSP</b>(<b>model</b>, <b>in_file</b>, dssp, acc_array, file_type)</td><td>Run DSSP and parse secondary structure and accessibility.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.ExposureCN</b>(<b>model</b>, radius, offset)</td><td>Residue exposure as number of CA atoms around its CA atom.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.FragmentMapper</b>(<b>model</b>, lsize, flength, fdir)</td><td>Map polypeptides in a model to lists of representative fragments.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.HSExposureCA</b>(<b>model</b>, radius, offset)</td><td>Class to calculate HSE based on the approximate CA-CB vectors.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.MMCIFIO</b>()</td><td>Write a Structure object or a mmCIF dictionary as a mmCIF file.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.NeighborSearch</b>(<b>atom_list</b>, bucket_size)</td><td>Class for neighbor searching.</td></tr><tr><td><code>C</code></td><td><b>Bio.PDB.PDBIO</b>(use_model_flag, is_pqr)</td><td>Write a Structure object (or a subset of a Structure object) as a PDB or PQR file.</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import Bio.PDB
+
+# --- Top 20 Ranked Functions ---
+# 1. m2rotaxis
+result_1 = Bio.PDB.m2rotaxis(m=...)
+
+# 2. make_dssp_dict
+result_2 = Bio.PDB.make_dssp_dict(filename=...)
+
+# 3. parse_pdb_header
+result_3 = Bio.PDB.parse_pdb_header(infile=...)
+
+# 4. extract
+result_4 = Bio.PDB.extract(
+    structure=...,
+    chain_id=...,
+    start=...,
+    end=...,
+    filename=...
+)
+
+# 5. is_nucleic
+result_5 = Bio.PDB.is_nucleic(residue=...)
+
+# 6. rotaxis2m
+result_6 = Bio.PDB.rotaxis2m(theta=..., vector=...)
+
+# 7. rotmat
+result_7 = Bio.PDB.rotmat(p=..., q=...)
+
+# 8. vector_to_axis
+result_8 = Bio.PDB.vector_to_axis(line=..., point=...)
+
+# 9. calc_angle
+result_9 = Bio.PDB.calc_angle(v1=..., v2=..., v3=...)
+
+# 10. get_surface
+result_10 = Bio.PDB.get_surface(model=...)
+
+# 11. refmat
+result_11 = Bio.PDB.refmat(p=..., q=...)
+
+# 12. rotaxis
+result_12 = Bio.PDB.rotaxis(theta=..., vector=...)
+
+# 13. calc_dihedral
+result_13 = Bio.PDB.calc_dihedral(
+    v1=...,
+    v2=...,
+    v3=...,
+    v4=...
+)
+
+# 14. is_aa
+result_14 = Bio.PDB.is_aa(residue=...)
+
+# --- Top 20 Core Classes Initialization ---
+# 1. FastMMCIFParser
+fastmmcifparser = Bio.PDB.FastMMCIFParser()
+
+# 2. MMCIFParser
+mmcifparser = Bio.PDB.MMCIFParser()
+
+# 3. PDBMLParser
+pdbmlparser = Bio.PDB.PDBMLParser()
+
+# 4. PDBParser
+pdbparser = Bio.PDB.PDBParser()
+
+# 5. CEAligner
+cealigner = Bio.PDB.CEAligner()
+
+# 6. DSSP
+dssp = Bio.PDB.DSSP(model=..., in_file=...)
+
+# 7. ExposureCN
+exposurecn = Bio.PDB.ExposureCN(model=...)
+
+# 8. FragmentMapper
+fragmentmapper = Bio.PDB.FragmentMapper(model=...)
+
+# 9. HSExposureCA
+hsexposureca = Bio.PDB.HSExposureCA(model=...)
+
+# 10. MMCIFIO
+mmcifio = Bio.PDB.MMCIFIO()
+
+# 11. NeighborSearch
+neighborsearch = Bio.PDB.NeighborSearch(atom_list=...)
+
+# 12. PDBIO
+pdbio = Bio.PDB.PDBIO()
+
+# 13. PDBList
+pdblist = Bio.PDB.PDBList()
+
+# 14. ShrakeRupley
+shrakerupley = Bio.PDB.ShrakeRupley()
+
+# 15. StructureAlignment
+structurealignment = Bio.PDB.StructureAlignment(fasta_align=..., m1=..., m2=...)
+
+# 16. Vector
+vector = Bio.PDB.Vector(x=...)
+
+# 17. CaPPBuilder
+cappbuilder = Bio.PDB.CaPPBuilder()
+
+# 18. HSExposureCB
+hsexposurecb = Bio.PDB.HSExposureCB(model=...)
+
+# 19. PPBuilder
+ppbuilder = Bio.PDB.PPBuilder()
+
+# 20. ResidueDepth
+residuedepth = Bio.PDB.ResidueDepth(model=...)</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>_frozen_importlib_external</b></td><td>43</td></tr><tr><td><b>_frozen_importlib</b></td><td>43</td></tr><tr><td><b>Bio</b></td><td>14</td></tr><tr><td><b>collections</b></td><td>8</td></tr><tr><td><b>urllib</b></td><td>5</td></tr><tr><td><b>_io</b></td><td>3</td></tr><tr><td><b>re</b></td><td>2</td></tr><tr><td><b>copy</b></td><td>1</td></tr><tr><td><b>concurrent</b></td><td>1</td></tr><tr><td><b>xml</b></td><td>1</td></tr><tr><td><b>datetime</b></td><td>1</td></tr><tr><td><b>itertools</b></td><td>1</td></tr><tr><td><b>numpy</b></td><td>1</td></tr><tr><td><b>numbers</b></td><td>1</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>_frozen_importlib_external</code></td><td>0.1311</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib</code></td><td>0.1311</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>Bio</code></td><td>0.0481</td><td>External</td><td>External Lib</td></tr><tr><td>4</td><td><code>PDBExceptions</code></td><td>0.0460</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>5</td><td><code>Entity</code></td><td>0.0262</td><td>Internal</td><td>Data Processing</td></tr><tr><td>6</td><td><code>collections</code></td><td>0.0243</td><td>External</td><td>External Lib</td></tr><tr><td>7</td><td><code>vectors</code></td><td>0.0204</td><td>Internal</td><td>Data Processing</td></tr><tr><td>8</td><td><code>Polypeptide</code></td><td>0.0198</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>9</td><td><code>StructureBuilder</code></td><td>0.0193</td><td>Internal</td><td>Data Processing</td></tr><tr><td>10</td><td><code>internal_coords</code></td><td>0.0171</td><td>Internal</td><td>Data Processing</td></tr><tr><td>11</td><td><code>Atom</code></td><td>0.0160</td><td>Internal</td><td>Data Processing</td></tr><tr><td>12</td><td><code>Structure</code></td><td>0.0157</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>13</td><td><code>PDBIO</code></td><td>0.0156</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>14</td><td><code>AbstractPropertyMap</code></td><td>0.0154</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>15</td><td><code>Residue</code></td><td>0.0150</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>16</td><td><code>copy</code></td><td>0.0130</td><td>External</td><td>External Lib</td></tr><tr><td>17</td><td><code>urllib</code></td><td>0.0127</td><td>External</td><td>External Lib</td></tr><tr><td>18</td><td><code>parse_pdb_header</code></td><td>0.0122</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>19</td><td><code>PDBParser</code></td><td>0.0121</td><td>Internal</td><td>Data Processing</td></tr><tr><td>20</td><td><code>re</code></td><td>0.0120</td><td>External</td><td>External Lib</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_33[&quot;PDB&quot;] --&gt; id_32[&quot;cealign&quot;]
+    class id_33 core;
+    class id_32 core;
+    id_33[&quot;PDB&quot;] --&gt; id_5[&quot;Polypeptide&quot;]
+    class id_33 core;
+    class id_5 core;
+    id_33[&quot;PDB&quot;] --&gt; id_12[&quot;DSSP&quot;]
+    class id_33 core;
+    class id_12 core;
+    id_33[&quot;PDB&quot;] --&gt; id_52[&quot;HSExposure&quot;]
+    class id_33 core;
+    class id_52 core;
+    id_33[&quot;PDB&quot;] --&gt; id_41[&quot;MMCIFParser&quot;]
+    class id_33 core;
+    class id_41 core;
+    id_33[&quot;PDB&quot;] --&gt; id_18[&quot;FragmentMapper&quot;]
+    class id_33 core;
+    class id_18 core;
+    id_33[&quot;PDB&quot;] --&gt; id_11[&quot;mmcifio&quot;]
+    class id_33 core;
+    class id_11 core;
+    id_33[&quot;PDB&quot;] --&gt; id_45[&quot;NeighborSearch&quot;]
+    class id_33 core;
+    class id_45 core;
+    id_33[&quot;PDB&quot;] --&gt; id_48[&quot;PDBIO&quot;]
+    class id_33 core;
+    class id_48 core;
+    id_33[&quot;PDB&quot;] --&gt; id_34[&quot;PDBList&quot;]
+    class id_33 core;
+    class id_34 core;
+    id_33[&quot;PDB&quot;] --&gt; id_3[&quot;PDBMLParser&quot;]
+    class id_33 core;
+    class id_3 core;
+    id_33[&quot;PDB&quot;] --&gt; id_36[&quot;PDBParser&quot;]
+    class id_33 core;
+    class id_36 core;
+    id_33[&quot;PDB&quot;] --&gt; id_27[&quot;ResidueDepth&quot;]
+    class id_33 core;
+    class id_27 core;
+    id_33[&quot;PDB&quot;] --&gt; id_30[&quot;SASA&quot;]
+    class id_33 core;
+    class id_30 core;
+    id_33[&quot;PDB&quot;] --&gt; id_53[&quot;StructureAlignment&quot;]
+    class id_33 core;
+    class id_53 core;
+    id_33[&quot;PDB&quot;] --&gt; id_42[&quot;Superimposer&quot;]
+    class id_33 core;
+    class id_42 core;
+    id_33[&quot;PDB&quot;] --&gt; id_55[&quot;vectors&quot;]
+    class id_33 core;
+    class id_55 core;
+    id_33[&quot;PDB&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_33 core;
+    class id_46 external;
+    id_33[&quot;PDB&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_33 core;
+    class id_13 external;
+    id_33[&quot;PDB&quot;] --&gt; id_15[&quot;Dice&quot;]
+    class id_33 core;
+    class id_15 core;
+    id_33[&quot;PDB&quot;] --&gt; id_40[&quot;parse_pdb_header&quot;]
+    class id_33 core;
+    class id_40 core;
+    id_32[&quot;cealign&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_32 core;
+    class id_19 core;
+    id_32[&quot;cealign&quot;] --&gt; id_22[&quot;qcprot&quot;]
+    class id_32 core;
+    class id_22 core;
+    id_32[&quot;cealign&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_32 core;
+    class id_46 external;
+    id_32[&quot;cealign&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_32 core;
+    class id_13 external;
+    id_32[&quot;cealign&quot;] --&gt; id_0[&quot;ccealign&quot;]
+    class id_32 core;
+    class id_0 core;
+    id_5[&quot;Polypeptide&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_5 core;
+    class id_19 core;
+    id_5[&quot;Polypeptide&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_5 core;
+    class id_6 external;
+    id_5[&quot;Polypeptide&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_5 core;
+    class id_46 external;
+    id_5[&quot;Polypeptide&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_5 core;
+    class id_13 external;
+    id_5[&quot;Polypeptide&quot;] --&gt; id_55[&quot;vectors&quot;]
+    class id_5 core;
+    class id_55 core;
+    id_12[&quot;DSSP&quot;] --&gt; id_31[&quot;AbstractPropertyMap&quot;]
+    class id_12 core;
+    class id_31 core;
+    id_12[&quot;DSSP&quot;] --&gt; id_43[&quot;MMCIF2Dict&quot;]
+    class id_12 core;
+    class id_43 core;
+    id_12[&quot;DSSP&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_12 core;
+    class id_19 core;
+    id_12[&quot;DSSP&quot;] --&gt; id_36[&quot;PDBParser&quot;]
+    class id_12 core;
+    class id_36 core;
+    id_12[&quot;DSSP&quot;] -.-&gt; id_54[&quot;_io&quot;]
+    class id_12 core;
+    class id_54 external;
+    id_12[&quot;DSSP&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_12 core;
+    class id_46 external;
+    id_12[&quot;DSSP&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_12 core;
+    class id_13 external;
+    id_12[&quot;DSSP&quot;] -.-&gt; id_2[&quot;re&quot;]
+    class id_12 core;
+    class id_2 external;
+    id_52[&quot;HSExposure&quot;] --&gt; id_31[&quot;AbstractPropertyMap&quot;]
+    class id_52 core;
+    class id_31 core;
+    id_52[&quot;HSExposure&quot;] --&gt; id_5[&quot;Polypeptide&quot;]
+    class id_52 core;
+    class id_5 core;
+    id_52[&quot;HSExposure&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_52 core;
+    class id_46 external;
+    id_52[&quot;HSExposure&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_52 core;
+    class id_13 external;
+    id_52[&quot;HSExposure&quot;] --&gt; id_55[&quot;vectors&quot;]
+    class id_52 core;
+    class id_55 core;
+    id_41[&quot;MMCIFParser&quot;] --&gt; id_43[&quot;MMCIF2Dict&quot;]
+    class id_41 core;
+    class id_43 core;
+    id_41[&quot;MMCIFParser&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_41 core;
+    class id_19 core;
+    id_41[&quot;MMCIFParser&quot;] --&gt; id_35[&quot;StructureBuilder&quot;]
+    class id_41 core;
+    class id_35 core;
+    id_41[&quot;MMCIFParser&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_41 core;
+    class id_46 external;
+    id_41[&quot;MMCIFParser&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_41 core;
+    class id_13 external;
+    id_41[&quot;MMCIFParser&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_41 core;
+    class id_6 external;
+    id_18[&quot;FragmentMapper&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_18 core;
+    class id_19 core;
+    id_18[&quot;FragmentMapper&quot;] --&gt; id_5[&quot;Polypeptide&quot;]
+    class id_18 core;
+    class id_5 core;
+    id_18[&quot;FragmentMapper&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_18 core;
+    class id_6 external;
+    id_18[&quot;FragmentMapper&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_18 core;
+    class id_46 external;
+    id_18[&quot;FragmentMapper&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_18 core;
+    class id_13 external;
+    id_11[&quot;mmcifio&quot;] --&gt; id_48[&quot;PDBIO&quot;]
+    class id_11 core;
+    class id_48 core;
+    id_11[&quot;mmcifio&quot;] --&gt; id_35[&quot;StructureBuilder&quot;]
+    class id_11 core;
+    class id_35 core;
+    id_11[&quot;mmcifio&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_11 core;
+    class id_46 external;
+    id_11[&quot;mmcifio&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_11 core;
+    class id_13 external;
+    id_11[&quot;mmcifio&quot;] -.-&gt; id_38[&quot;collections&quot;]
+    class id_11 core;
+    class id_38 external;
+    id_45[&quot;NeighborSearch&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_45 core;
+    class id_19 core;
+    id_45[&quot;NeighborSearch&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_45 core;
+    class id_46 external;
+    id_45[&quot;NeighborSearch&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_45 core;
+    class id_13 external;
+    id_45[&quot;NeighborSearch&quot;] --&gt; id_9[&quot;Selection&quot;]
+    class id_45 core;
+    class id_9 core;
+    id_48[&quot;PDBIO&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_48 core;
+    class id_6 external;
+    id_48[&quot;PDBIO&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_48 core;
+    class id_19 core;
+    id_48[&quot;PDBIO&quot;] --&gt; id_35[&quot;StructureBuilder&quot;]
+    class id_48 core;
+    class id_35 core;
+    id_48[&quot;PDBIO&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_48 core;
+    class id_46 external;
+    id_48[&quot;PDBIO&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_48 core;
+    class id_13 external;
+    id_34[&quot;PDBList&quot;] -.-&gt; id_23[&quot;urllib&quot;]
+    class id_34 core;
+    class id_23 external;
+    id_34[&quot;PDBList&quot;] -.-&gt; id_4[&quot;concurrent&quot;]
+    class id_34 core;
+    class id_4 external;
+    id_34[&quot;PDBList&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_34 core;
+    class id_46 external;
+    id_34[&quot;PDBList&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_34 core;
+    class id_13 external;
+    id_3[&quot;PDBMLParser&quot;] -.-&gt; id_26[&quot;xml&quot;]
+    class id_3 core;
+    class id_26 external;
+    id_3[&quot;PDBMLParser&quot;] --&gt; id_20[&quot;Structure&quot;]
+    class id_3 core;
+    class id_20 core;
+    id_3[&quot;PDBMLParser&quot;] --&gt; id_35[&quot;StructureBuilder&quot;]
+    class id_3 core;
+    class id_35 core;
+    id_3[&quot;PDBMLParser&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_3 core;
+    class id_46 external;
+    id_3[&quot;PDBMLParser&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_3 core;
+    class id_13 external;
+    id_36[&quot;PDBParser&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_36 core;
+    class id_19 core;
+    id_36[&quot;PDBParser&quot;] --&gt; id_35[&quot;StructureBuilder&quot;]
+    class id_36 core;
+    class id_35 core;
+    id_36[&quot;PDBParser&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_36 core;
+    class id_46 external;
+    id_36[&quot;PDBParser&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_36 core;
+    class id_13 external;
+    id_36[&quot;PDBParser&quot;] --&gt; id_40[&quot;parse_pdb_header&quot;]
+    class id_36 core;
+    class id_40 core;
+    id_36[&quot;PDBParser&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_36 core;
+    class id_6 external;
+    id_27[&quot;ResidueDepth&quot;] --&gt; id_31[&quot;AbstractPropertyMap&quot;]
+    class id_27 core;
+    class id_31 core;
+    id_27[&quot;ResidueDepth&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_27 core;
+    class id_6 external;
+    id_27[&quot;ResidueDepth&quot;] --&gt; id_36[&quot;PDBParser&quot;]
+    class id_27 core;
+    class id_36 core;
+    id_27[&quot;ResidueDepth&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_27 core;
+    class id_46 external;
+    id_27[&quot;ResidueDepth&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_27 core;
+    class id_13 external;
+    id_27[&quot;ResidueDepth&quot;] --&gt; id_5[&quot;Polypeptide&quot;]
+    class id_27 core;
+    class id_5 core;
+    id_30[&quot;SASA&quot;] -.-&gt; id_38[&quot;collections&quot;]
+    class id_30 core;
+    class id_38 external;
+    id_30[&quot;SASA&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_30 core;
+    class id_46 external;
+    id_30[&quot;SASA&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_30 core;
+    class id_13 external;
+    id_53[&quot;StructureAlignment&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_53 core;
+    class id_46 external;
+    id_53[&quot;StructureAlignment&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_53 core;
+    class id_13 external;
+    id_53[&quot;StructureAlignment&quot;] --&gt; id_5[&quot;Polypeptide&quot;]
+    class id_53 core;
+    class id_5 core;
+    id_42[&quot;Superimposer&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_42 core;
+    class id_19 core;
+    id_42[&quot;Superimposer&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_42 core;
+    class id_6 external;
+    id_42[&quot;Superimposer&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_42 core;
+    class id_46 external;
+    id_42[&quot;Superimposer&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_42 core;
+    class id_13 external;
+    id_55[&quot;vectors&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_55 core;
+    class id_46 external;
+    id_55[&quot;vectors&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_55 core;
+    class id_13 external;
+    id_15[&quot;Dice&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_15 core;
+    class id_6 external;
+    id_15[&quot;Dice&quot;] --&gt; id_48[&quot;PDBIO&quot;]
+    class id_15 core;
+    class id_48 core;
+    id_15[&quot;Dice&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_15 core;
+    class id_46 external;
+    id_15[&quot;Dice&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_15 core;
+    class id_13 external;
+    id_15[&quot;Dice&quot;] -.-&gt; id_2[&quot;re&quot;]
+    class id_15 core;
+    class id_2 external;
+    id_40[&quot;parse_pdb_header&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_40 core;
+    class id_46 external;
+    id_40[&quot;parse_pdb_header&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_40 core;
+    class id_13 external;
+    id_40[&quot;parse_pdb_header&quot;] -.-&gt; id_38[&quot;collections&quot;]
+    class id_40 core;
+    class id_38 external;
+    id_31[&quot;AbstractPropertyMap&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_31 core;
+    class id_46 external;
+    id_31[&quot;AbstractPropertyMap&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_31 core;
+    class id_13 external;
+    id_49[&quot;Atom&quot;] --&gt; id_16[&quot;Entity&quot;]
+    class id_49 core;
+    class id_16 core;
+    id_49[&quot;Atom&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_49 core;
+    class id_19 core;
+    id_49[&quot;Atom&quot;] --&gt; id_47[&quot;Residue&quot;]
+    class id_49 core;
+    class id_47 core;
+    id_49[&quot;Atom&quot;] --&gt; id_55[&quot;vectors&quot;]
+    class id_49 core;
+    class id_55 core;
+    id_49[&quot;Atom&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_49 core;
+    class id_46 external;
+    id_49[&quot;Atom&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_49 core;
+    class id_13 external;
+    id_16[&quot;Entity&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_16 core;
+    class id_6 external;
+    id_16[&quot;Entity&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_16 core;
+    class id_19 core;
+    id_16[&quot;Entity&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_16 core;
+    class id_46 external;
+    id_16[&quot;Entity&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_16 core;
+    class id_13 external;
+    id_16[&quot;Entity&quot;] -.-&gt; id_24[&quot;copy&quot;]
+    class id_16 core;
+    class id_24 external;
+    id_16[&quot;Entity&quot;] -.-&gt; id_38[&quot;collections&quot;]
+    class id_16 core;
+    class id_38 external;
+    id_19[&quot;PDBExceptions&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_19 core;
+    class id_6 external;
+    id_19[&quot;PDBExceptions&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_19 core;
+    class id_46 external;
+    id_19[&quot;PDBExceptions&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_19 core;
+    class id_13 external;
+    id_47[&quot;Residue&quot;] --&gt; id_16[&quot;Entity&quot;]
+    class id_47 core;
+    class id_16 core;
+    id_47[&quot;Residue&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_47 core;
+    class id_19 core;
+    id_47[&quot;Residue&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_47 core;
+    class id_46 external;
+    id_47[&quot;Residue&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_47 core;
+    class id_13 external;
+    id_44[&quot;Chain&quot;] --&gt; id_16[&quot;Entity&quot;]
+    class id_44 core;
+    class id_16 core;
+    id_44[&quot;Chain&quot;] --&gt; id_28[&quot;internal_coords&quot;]
+    class id_44 core;
+    class id_28 core;
+    id_44[&quot;Chain&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_44 core;
+    class id_46 external;
+    id_44[&quot;Chain&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_44 core;
+    class id_13 external;
+    id_28[&quot;internal_coords&quot;] --&gt; id_49[&quot;Atom&quot;]
+    class id_28 core;
+    class id_49 core;
+    id_28[&quot;internal_coords&quot;] -.-&gt; id_14[&quot;numpy&quot;]
+    class id_28 core;
+    class id_14 external;
+    id_28[&quot;internal_coords&quot;] -.-&gt; id_7[&quot;numbers&quot;]
+    class id_28 core;
+    class id_7 external;
+    id_28[&quot;internal_coords&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_28 core;
+    class id_46 external;
+    id_28[&quot;internal_coords&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_28 core;
+    class id_13 external;
+    id_28[&quot;internal_coords&quot;] --&gt; id_55[&quot;vectors&quot;]
+    class id_28 core;
+    class id_55 core;
+    id_28[&quot;internal_coords&quot;] -.-&gt; id_38[&quot;collections&quot;]
+    class id_28 core;
+    class id_38 external;
+    id_43[&quot;MMCIF2Dict&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_43 core;
+    class id_46 external;
+    id_43[&quot;MMCIF2Dict&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_43 core;
+    class id_13 external;
+    id_43[&quot;MMCIF2Dict&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_43 core;
+    class id_6 external;
+    id_35[&quot;StructureBuilder&quot;] --&gt; id_49[&quot;Atom&quot;]
+    class id_35 core;
+    class id_49 core;
+    id_35[&quot;StructureBuilder&quot;] --&gt; id_44[&quot;Chain&quot;]
+    class id_35 core;
+    class id_44 core;
+    id_35[&quot;StructureBuilder&quot;] --&gt; id_47[&quot;Residue&quot;]
+    class id_35 core;
+    class id_47 core;
+    id_35[&quot;StructureBuilder&quot;] --&gt; id_21[&quot;Model&quot;]
+    class id_35 core;
+    class id_21 core;
+    id_35[&quot;StructureBuilder&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_35 core;
+    class id_19 core;
+    id_35[&quot;StructureBuilder&quot;] --&gt; id_20[&quot;Structure&quot;]
+    class id_35 core;
+    class id_20 core;
+    id_35[&quot;StructureBuilder&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_35 core;
+    class id_46 external;
+    id_35[&quot;StructureBuilder&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_35 core;
+    class id_13 external;
+    id_21[&quot;Model&quot;] --&gt; id_16[&quot;Entity&quot;]
+    class id_21 core;
+    class id_16 core;
+    id_21[&quot;Model&quot;] --&gt; id_28[&quot;internal_coords&quot;]
+    class id_21 core;
+    class id_28 core;
+    id_21[&quot;Model&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_21 core;
+    class id_46 external;
+    id_21[&quot;Model&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_21 core;
+    class id_13 external;
+    id_37[&quot;NACCESS&quot;] --&gt; id_31[&quot;AbstractPropertyMap&quot;]
+    class id_37 core;
+    class id_31 core;
+    id_37[&quot;NACCESS&quot;] --&gt; id_48[&quot;PDBIO&quot;]
+    class id_37 core;
+    class id_48 core;
+    id_37[&quot;NACCESS&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_37 core;
+    class id_46 external;
+    id_37[&quot;NACCESS&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_37 core;
+    class id_13 external;
+    id_9[&quot;Selection&quot;] --&gt; id_49[&quot;Atom&quot;]
+    class id_9 core;
+    class id_49 core;
+    id_9[&quot;Selection&quot;] --&gt; id_16[&quot;Entity&quot;]
+    class id_9 core;
+    class id_16 core;
+    id_9[&quot;Selection&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_9 core;
+    class id_19 core;
+    id_9[&quot;Selection&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_9 core;
+    class id_46 external;
+    id_9[&quot;Selection&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_9 core;
+    class id_13 external;
+    id_20[&quot;Structure&quot;] --&gt; id_16[&quot;Entity&quot;]
+    class id_20 core;
+    class id_16 core;
+    id_20[&quot;Structure&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_20 core;
+    class id_46 external;
+    id_20[&quot;Structure&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_20 core;
+    class id_13 external;
+    id_39[&quot;PICIO&quot;] --&gt; id_28[&quot;internal_coords&quot;]
+    class id_39 core;
+    class id_28 core;
+    id_39[&quot;PICIO&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_39 core;
+    class id_19 core;
+    id_39[&quot;PICIO&quot;] --&gt; id_47[&quot;Residue&quot;]
+    class id_39 core;
+    class id_47 core;
+    id_39[&quot;PICIO&quot;] -.-&gt; id_54[&quot;_io&quot;]
+    class id_39 core;
+    class id_54 external;
+    id_39[&quot;PICIO&quot;] --&gt; id_20[&quot;Structure&quot;]
+    class id_39 core;
+    class id_20 core;
+    id_39[&quot;PICIO&quot;] --&gt; id_35[&quot;StructureBuilder&quot;]
+    class id_39 core;
+    class id_35 core;
+    id_39[&quot;PICIO&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_39 core;
+    class id_46 external;
+    id_39[&quot;PICIO&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_39 core;
+    class id_13 external;
+    id_39[&quot;PICIO&quot;] --&gt; id_40[&quot;parse_pdb_header&quot;]
+    class id_39 core;
+    class id_40 core;
+    id_39[&quot;PICIO&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_39 core;
+    class id_6 external;
+    id_39[&quot;PICIO&quot;] -.-&gt; id_50[&quot;datetime&quot;]
+    class id_39 core;
+    class id_50 external;
+    id_8[&quot;PSEA&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_8 core;
+    class id_46 external;
+    id_8[&quot;PSEA&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_8 core;
+    class id_13 external;
+    id_8[&quot;PSEA&quot;] --&gt; id_5[&quot;Polypeptide&quot;]
+    class id_8 core;
+    class id_5 core;
+    id_29[&quot;SCADIO&quot;] --&gt; id_28[&quot;internal_coords&quot;]
+    class id_29 core;
+    class id_28 core;
+    id_29[&quot;SCADIO&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_29 core;
+    class id_19 core;
+    id_29[&quot;SCADIO&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_29 core;
+    class id_46 external;
+    id_29[&quot;SCADIO&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_29 core;
+    class id_13 external;
+    id_29[&quot;SCADIO&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_29 core;
+    class id_6 external;
+    id_29[&quot;SCADIO&quot;] --&gt; id_55[&quot;vectors&quot;]
+    class id_29 core;
+    class id_55 core;
+    id_51[&quot;_bcif_helper&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_51 core;
+    class id_46 external;
+    id_51[&quot;_bcif_helper&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_51 core;
+    class id_13 external;
+    id_17[&quot;alphafold_db&quot;] -.-&gt; id_38[&quot;collections&quot;]
+    class id_17 core;
+    class id_38 external;
+    id_17[&quot;alphafold_db&quot;] --&gt; id_41[&quot;MMCIFParser&quot;]
+    class id_17 core;
+    class id_41 core;
+    id_17[&quot;alphafold_db&quot;] --&gt; id_20[&quot;Structure&quot;]
+    class id_17 core;
+    class id_20 core;
+    id_17[&quot;alphafold_db&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_17 core;
+    class id_46 external;
+    id_17[&quot;alphafold_db&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_17 core;
+    class id_13 external;
+    id_17[&quot;alphafold_db&quot;] -.-&gt; id_23[&quot;urllib&quot;]
+    class id_17 core;
+    class id_23 external;
+    id_0[&quot;ccealign&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_0 core;
+    class id_46 external;
+    id_0[&quot;ccealign&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_0 core;
+    class id_13 external;
+    id_22[&quot;qcprot&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_22 core;
+    class id_19 core;
+    id_22[&quot;qcprot&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_22 core;
+    class id_46 external;
+    id_22[&quot;qcprot&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_22 core;
+    class id_13 external;
+    id_1[&quot;ic_data&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_1 core;
+    class id_46 external;
+    id_1[&quot;ic_data&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_1 core;
+    class id_13 external;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_49[&quot;Atom&quot;]
+    class id_10 core;
+    class id_49 core;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_44[&quot;Chain&quot;]
+    class id_10 core;
+    class id_44 core;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_47[&quot;Residue&quot;]
+    class id_10 core;
+    class id_47 core;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_28[&quot;internal_coords&quot;]
+    class id_10 core;
+    class id_28 core;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_21[&quot;Model&quot;]
+    class id_10 core;
+    class id_21 core;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_19[&quot;PDBExceptions&quot;]
+    class id_10 core;
+    class id_19 core;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_48[&quot;PDBIO&quot;]
+    class id_10 core;
+    class id_48 core;
+    id_10[&quot;ic_rebuild&quot;] -.-&gt; id_54[&quot;_io&quot;]
+    class id_10 core;
+    class id_54 external;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_20[&quot;Structure&quot;]
+    class id_10 core;
+    class id_20 core;
+    id_10[&quot;ic_rebuild&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_10 core;
+    class id_46 external;
+    id_10[&quot;ic_rebuild&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_10 core;
+    class id_13 external;
+    id_10[&quot;ic_rebuild&quot;] -.-&gt; id_6[&quot;Bio&quot;]
+    class id_10 core;
+    class id_6 external;
+    id_10[&quot;ic_rebuild&quot;] --&gt; id_39[&quot;PICIO&quot;]
+    class id_10 core;
+    class id_39 core;
+    id_10[&quot;ic_rebuild&quot;] -.-&gt; id_25[&quot;itertools&quot;]
+    class id_10 core;
+    class id_25 external;
+    id_56[&quot;kdtrees&quot;] -.-&gt; id_46[&quot;_frozen_importlib_external&quot;]
+    class id_56 core;
+    class id_46 external;
+    id_56[&quot;kdtrees&quot;] -.-&gt; id_13[&quot;_frozen_importlib&quot;]
+    class id_56 core;
+    class id_13 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_2[&quot;__contains__&quot;] --&gt;|id| f_96[&quot;_translate_id&quot;]
+    class f_2 func;
+    class f_96 func;
+    f_6[&quot;__getitem__&quot;] --&gt;|key| f_96[&quot;_translate_id&quot;]
+    class f_6 func;
+    class f_96 func;
+    f_9[&quot;__init__&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_9 func;
+    class f_329 func;
+    f_9[&quot;__init__&quot;] --&gt;|element| f_20[&quot;_assign_element&quot;]
+    class f_9 func;
+    class f_20 func;
+    f_9[&quot;__init__&quot;] --&gt; f_19[&quot;_assign_atom_mass&quot;]
+    class f_9 func;
+    class f_19 func;
+    f_7[&quot;__gt__&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_7 func;
+    class f_173 func;
+    f_5[&quot;__ge__&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_5 func;
+    class f_173 func;
+    f_12[&quot;__lt__&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_12 func;
+    class f_173 func;
+    f_11[&quot;__le__&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_11 func;
+    class f_173 func;
+    f_8[&quot;__hash__&quot;] --&gt; f_185[&quot;get_full_id&quot;]
+    class f_8 func;
+    class f_185 func;
+    f_20[&quot;_assign_element&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_20 func;
+    class f_318 func;
+    f_14[&quot;__repr__&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_14 func;
+    class f_188 func;
+    f_306[&quot;set_parent&quot;] --&gt; f_185[&quot;get_full_id&quot;]
+    class f_306 func;
+    class f_185 func;
+    f_143[&quot;copy&quot;] --&gt; f_148[&quot;detach_parent&quot;]
+    class f_143 func;
+    class f_148 func;
+    f_143[&quot;copy&quot;] --&gt; f_298[&quot;set_coord&quot;]
+    class f_143 func;
+    class f_298 func;
+    f_143[&quot;copy&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_143 func;
+    class f_184 func;
+    f_10[&quot;__iter__&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_10 func;
+    class f_153 func;
+    f_136[&quot;center_of_mass&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_136 func;
+    class f_153 func;
+    f_153[&quot;disordered_get_list&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_153 func;
+    class f_333 func;
+    f_150[&quot;disordered_add&quot;] --&gt; f_169[&quot;flag_disorder&quot;]
+    class f_150 func;
+    class f_169 func;
+    f_150[&quot;disordered_add&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_150 func;
+    class f_195 func;
+    f_150[&quot;disordered_add&quot;] --&gt;|residue| f_306[&quot;set_parent&quot;]
+    class f_150 func;
+    class f_306 func;
+    f_150[&quot;disordered_add&quot;] --&gt; f_177[&quot;get_altloc&quot;]
+    class f_150 func;
+    class f_177 func;
+    f_150[&quot;disordered_add&quot;] --&gt; f_194[&quot;get_occupancy&quot;]
+    class f_150 func;
+    class f_194 func;
+    f_150[&quot;disordered_add&quot;] --&gt;|altloc| f_156[&quot;disordered_select&quot;]
+    class f_150 func;
+    class f_156 func;
+    f_155[&quot;disordered_remove&quot;] --&gt; f_148[&quot;detach_parent&quot;]
+    class f_155 func;
+    class f_148 func;
+    f_155[&quot;disordered_remove&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_155 func;
+    class f_333 func;
+    f_155[&quot;disordered_remove&quot;] --&gt; f_156[&quot;disordered_select&quot;]
+    class f_155 func;
+    class f_156 func;
+    f_6[&quot;__getitem__&quot;] --&gt;|id| f_96[&quot;_translate_id&quot;]
+    class f_6 func;
+    class f_96 func;
+    f_4[&quot;__delitem__&quot;] --&gt;|id| f_96[&quot;_translate_id&quot;]
+    class f_4 func;
+    class f_96 func;
+    f_215[&quot;get_unpacked_list&quot;] --&gt; f_191[&quot;get_list&quot;]
+    class f_215 func;
+    class f_191 func;
+    f_215[&quot;get_unpacked_list&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_215 func;
+    class f_233 func;
+    f_215[&quot;get_unpacked_list&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_215 func;
+    class f_153 func;
+    f_217[&quot;has_id&quot;] --&gt;|id| f_96[&quot;_translate_id&quot;]
+    class f_217 func;
+    class f_96 func;
+    f_180[&quot;get_atoms&quot;] --&gt; f_199[&quot;get_residues&quot;]
+    class f_180 func;
+    class f_199 func;
+    f_335[&quot;version&quot;] --&gt;|int| f_243[&quot;map&quot;]
+    class f_335 func;
+    class f_243 func;
+    f_335[&quot;version&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_335 func;
+    class f_314 func;
+    f_163[&quot;dssp_dict_from_pdb_file&quot;] --&gt;|dssp_version| f_335[&quot;version&quot;]
+    class f_163 func;
+    class f_335 func;
+    f_163[&quot;dssp_dict_from_pdb_file&quot;] --&gt; f_335[&quot;version&quot;]
+    class f_163 func;
+    class f_335 func;
+    f_163[&quot;dssp_dict_from_pdb_file&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_163 func;
+    class f_318 func;
+    f_163[&quot;dssp_dict_from_pdb_file&quot;] --&gt; f_61[&quot;_make_dssp_dict&quot;]
+    class f_163 func;
+    class f_61 func;
+    f_241[&quot;make_dssp_dict&quot;] --&gt;|handle| f_61[&quot;_make_dssp_dict&quot;]
+    class f_241 func;
+    class f_61 func;
+    f_61[&quot;_make_dssp_dict&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_61 func;
+    class f_314 func;
+    f_61[&quot;_make_dssp_dict&quot;] --&gt; f_167[&quot;find&quot;]
+    class f_61 func;
+    class f_167 func;
+    f_9[&quot;__init__&quot;] --&gt;|version_string| f_285[&quot;search&quot;]
+    class f_9 func;
+    class f_285 func;
+    f_9[&quot;__init__&quot;] --&gt;|in_file&lt;br&gt;dssp&lt;br&gt;dssp_version| f_163[&quot;dssp_dict_from_pdb_file&quot;]
+    class f_9 func;
+    class f_163 func;
+    f_9[&quot;__init__&quot;] --&gt;|in_file| f_241[&quot;make_dssp_dict&quot;]
+    class f_9 func;
+    class f_241 func;
+    f_9[&quot;__init__&quot;] --&gt;|dssp_version| f_335[&quot;version&quot;]
+    class f_9 func;
+    class f_335 func;
+    f_9[&quot;__init__&quot;] --&gt; f_335[&quot;version&quot;]
+    class f_9 func;
+    class f_335 func;
+    f_9[&quot;__init__&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_9 func;
+    class f_233 func;
+    f_9[&quot;__init__&quot;] --&gt; f_152[&quot;disordered_get_id_list&quot;]
+    class f_9 func;
+    class f_152 func;
+    f_9[&quot;__init__&quot;] --&gt; f_177[&quot;get_altloc&quot;]
+    class f_9 func;
+    class f_177 func;
+    f_9[&quot;__init__&quot;] --&gt; f_191[&quot;get_list&quot;]
+    class f_9 func;
+    class f_191 func;
+    f_9[&quot;__init__&quot;] --&gt;|rk| f_156[&quot;disordered_select&quot;]
+    class f_9 func;
+    class f_156 func;
+    f_9[&quot;__init__&quot;] --&gt; f_156[&quot;disordered_select&quot;]
+    class f_9 func;
+    class f_156 func;
+    f_9[&quot;__init__&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_9 func;
+    class f_215 func;
+    f_9[&quot;__init__&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_9 func;
+    class f_200 func;
+    f_9[&quot;__init__&quot;] --&gt;|resname| f_173[&quot;get&quot;]
+    class f_9 func;
+    class f_173 func;
+    f_106[&quot;accept_model&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_106 func;
+    class f_188 func;
+    f_105[&quot;accept_chain&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_105 func;
+    class f_188 func;
+    f_107[&quot;accept_residue&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_107 func;
+    class f_188 func;
+    f_104[&quot;accept_atom&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_104 func;
+    class f_188 func;
+    f_166[&quot;extract&quot;] --&gt;|structure| f_311[&quot;set_structure&quot;]
+    class f_166 func;
+    class f_311 func;
+    f_166[&quot;extract&quot;] --&gt;|filename&lt;br&gt;sel| f_284[&quot;save&quot;]
+    class f_166 func;
+    class f_284 func;
+    f_4[&quot;__delitem__&quot;] --&gt;|id| f_147[&quot;detach_child&quot;]
+    class f_4 func;
+    class f_147 func;
+    f_82[&quot;_reset_full_id&quot;] --&gt; f_38[&quot;_generate_full_id&quot;]
+    class f_82 func;
+    class f_38 func;
+    f_38[&quot;_generate_full_id&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_38 func;
+    class f_188 func;
+    f_38[&quot;_generate_full_id&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_38 func;
+    class f_195 func;
+    f_219[&quot;id&quot;] --&gt; f_82[&quot;_reset_full_id&quot;]
+    class f_219 func;
+    class f_82 func;
+    f_306[&quot;set_parent&quot;] --&gt; f_82[&quot;_reset_full_id&quot;]
+    class f_306 func;
+    class f_82 func;
+    f_147[&quot;detach_child&quot;] --&gt; f_148[&quot;detach_parent&quot;]
+    class f_147 func;
+    class f_148 func;
+    f_108[&quot;add&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_108 func;
+    class f_188 func;
+    f_108[&quot;add&quot;] --&gt;|entity_id| f_217[&quot;has_id&quot;]
+    class f_108 func;
+    class f_217 func;
+    f_108[&quot;add&quot;] --&gt;|self| f_306[&quot;set_parent&quot;]
+    class f_108 func;
+    class f_306 func;
+    f_229[&quot;insert&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_229 func;
+    class f_188 func;
+    f_229[&quot;insert&quot;] --&gt;|entity_id| f_217[&quot;has_id&quot;]
+    class f_229 func;
+    class f_217 func;
+    f_229[&quot;insert&quot;] --&gt;|self| f_306[&quot;set_parent&quot;]
+    class f_229 func;
+    class f_306 func;
+    f_191[&quot;get_list&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_191 func;
+    class f_143 func;
+    f_185[&quot;get_full_id&quot;] --&gt; f_38[&quot;_generate_full_id&quot;]
+    class f_185 func;
+    class f_38 func;
+    f_322[&quot;transform&quot;] --&gt; f_191[&quot;get_list&quot;]
+    class f_322 func;
+    class f_191 func;
+    f_136[&quot;center_of_mass&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_136 func;
+    class f_215 func;
+    f_143[&quot;copy&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_143 func;
+    class f_108 func;
+    f_143[&quot;copy&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_143 func;
+    class f_153 func;
+    f_143[&quot;copy&quot;] --&gt; f_150[&quot;disordered_add&quot;]
+    class f_143 func;
+    class f_150 func;
+    f_317[&quot;strictly_equals&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_317 func;
+    class f_188 func;
+    f_317[&quot;strictly_equals&quot;] --&gt; f_237[&quot;keys&quot;]
+    class f_317 func;
+    class f_237 func;
+    f_148[&quot;detach_parent&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_148 func;
+    class f_153 func;
+    f_306[&quot;set_parent&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_306 func;
+    class f_153 func;
+    f_78[&quot;_read_fragments&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_78 func;
+    class f_314 func;
+    f_78[&quot;_read_fragments&quot;] --&gt;|coord| f_109[&quot;add_residue&quot;]
+    class f_78 func;
+    class f_109 func;
+    f_15[&quot;__sub__&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_15 func;
+    class f_288 func;
+    f_15[&quot;__sub__&quot;] --&gt; f_281[&quot;run&quot;]
+    class f_15 func;
+    class f_281 func;
+    f_15[&quot;__sub__&quot;] --&gt; f_201[&quot;get_rms&quot;]
+    class f_15 func;
+    class f_201 func;
+    f_62[&quot;_make_fragment_list&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_62 func;
+    class f_200 func;
+    f_62[&quot;_make_fragment_list&quot;] --&gt; f_217[&quot;has_id&quot;]
+    class f_62 func;
+    class f_217 func;
+    f_62[&quot;_make_fragment_list&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_62 func;
+    class f_233 func;
+    f_62[&quot;_make_fragment_list&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_62 func;
+    class f_184 func;
+    f_62[&quot;_make_fragment_list&quot;] --&gt;|resname&lt;br&gt;ca_coord| f_109[&quot;add_residue&quot;]
+    class f_62 func;
+    class f_109 func;
+    f_64[&quot;_map_fragment_list&quot;] --&gt; f_313[&quot;sort&quot;]
+    class f_64 func;
+    class f_313 func;
+    f_9[&quot;__init__&quot;] --&gt;|lsize&lt;br&gt;flength&lt;br&gt;fdir| f_78[&quot;_read_fragments&quot;]
+    class f_9 func;
+    class f_78 func;
+    f_9[&quot;__init__&quot;] --&gt; f_63[&quot;_map&quot;]
+    class f_9 func;
+    class f_63 func;
+    f_63[&quot;_map&quot;] --&gt;|model| f_131[&quot;build_peptides&quot;]
+    class f_63 func;
+    class f_131 func;
+    f_63[&quot;_map&quot;] --&gt;|pp| f_62[&quot;_make_fragment_list&quot;]
+    class f_63 func;
+    class f_62 func;
+    f_63[&quot;_map&quot;] --&gt;|flist| f_64[&quot;_map_fragment_list&quot;]
+    class f_63 func;
+    class f_64 func;
+    f_9[&quot;__init__&quot;] --&gt;|model| f_131[&quot;build_peptides&quot;]
+    class f_9 func;
+    class f_131 func;
+    f_9[&quot;__init__&quot;] --&gt;|r1&lt;br&gt;r2&lt;br&gt;r3| f_45[&quot;_get_cb&quot;]
+    class f_9 func;
+    class f_45 func;
+    f_9[&quot;__init__&quot;] --&gt; f_216[&quot;get_vector&quot;]
+    class f_9 func;
+    class f_216 func;
+    f_9[&quot;__init__&quot;] --&gt;|ro| f_231[&quot;is_aa&quot;]
+    class f_9 func;
+    class f_231 func;
+    f_9[&quot;__init__&quot;] --&gt; f_217[&quot;has_id&quot;]
+    class f_9 func;
+    class f_217 func;
+    f_9[&quot;__init__&quot;] --&gt; f_249[&quot;norm&quot;]
+    class f_9 func;
+    class f_249 func;
+    f_9[&quot;__init__&quot;] --&gt;|pcb| f_115[&quot;angle&quot;]
+    class f_9 func;
+    class f_115 func;
+    f_9[&quot;__init__&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_9 func;
+    class f_188 func;
+    f_9[&quot;__init__&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_9 func;
+    class f_195 func;
+    f_46[&quot;_get_gly_cb_vector&quot;] --&gt; f_216[&quot;get_vector&quot;]
+    class f_46 func;
+    class f_216 func;
+    f_46[&quot;_get_gly_cb_vector&quot;] --&gt;|c_v| f_277[&quot;rotaxis&quot;]
+    class f_46 func;
+    class f_277 func;
+    f_46[&quot;_get_gly_cb_vector&quot;] --&gt;|rot| f_238[&quot;left_multiply&quot;]
+    class f_46 func;
+    class f_238 func;
+    f_45[&quot;_get_cb&quot;] --&gt; f_216[&quot;get_vector&quot;]
+    class f_45 func;
+    class f_216 func;
+    f_45[&quot;_get_cb&quot;] --&gt; f_250[&quot;normalize&quot;]
+    class f_45 func;
+    class f_250 func;
+    f_45[&quot;_get_cb&quot;] --&gt; f_217[&quot;has_id&quot;]
+    class f_45 func;
+    class f_217 func;
+    f_45[&quot;_get_cb&quot;] --&gt;|b| f_115[&quot;angle&quot;]
+    class f_45 func;
+    class f_115 func;
+    f_45[&quot;_get_cb&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_45 func;
+    class f_200 func;
+    f_45[&quot;_get_cb&quot;] --&gt;|r2| f_46[&quot;_get_gly_cb_vector&quot;]
+    class f_45 func;
+    class f_46 func;
+    f_253[&quot;pcb_vectors_pymol&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_253 func;
+    class f_336 func;
+    f_253[&quot;pcb_vectors_pymol&quot;] --&gt; f_179[&quot;get_array&quot;]
+    class f_253 func;
+    class f_179 func;
+    f_9[&quot;__init__&quot;] --&gt;|r1| f_231[&quot;is_aa&quot;]
+    class f_9 func;
+    class f_231 func;
+    f_9[&quot;__init__&quot;] --&gt;|r2| f_231[&quot;is_aa&quot;]
+    class f_9 func;
+    class f_231 func;
+    f_9[&quot;__init__&quot;] --&gt;|filename| f_121[&quot;as_handle&quot;]
+    class f_9 func;
+    class f_121 func;
+    f_9[&quot;__init__&quot;] --&gt;|handle| f_95[&quot;_tokenize&quot;]
+    class f_9 func;
+    class f_95 func;
+    f_9[&quot;__init__&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_9 func;
+    class f_316 func;
+    f_9[&quot;__init__&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_9 func;
+    class f_239 func;
+    f_95[&quot;_tokenize&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_95 func;
+    class f_316 func;
+    f_95[&quot;_tokenize&quot;] --&gt; f_280[&quot;rstrip&quot;]
+    class f_95 func;
+    class f_280 func;
+    f_95[&quot;_tokenize&quot;] --&gt;|token_buffer| f_236[&quot;join&quot;]
+    class f_95 func;
+    class f_236 func;
+    f_95[&quot;_tokenize&quot;] --&gt; f_93[&quot;_splitline&quot;]
+    class f_95 func;
+    class f_93 func;
+    f_95[&quot;_tokenize&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_95 func;
+    class f_318 func;
+    f_210[&quot;get_structure&quot;] --&gt;|structure_id| f_24[&quot;_build_structure&quot;]
+    class f_210 func;
+    class f_24 func;
+    f_210[&quot;get_structure&quot;] --&gt; f_301[&quot;set_header&quot;]
+    class f_210 func;
+    class f_301 func;
+    f_210[&quot;get_structure&quot;] --&gt; f_47[&quot;_get_header&quot;]
+    class f_210 func;
+    class f_47 func;
+    f_97[&quot;_update_header_entry&quot;] --&gt;|key| f_173[&quot;get&quot;]
+    class f_97 func;
+    class f_173 func;
+    f_47[&quot;_get_header&quot;] --&gt; f_97[&quot;_update_header_entry&quot;]
+    class f_47 func;
+    class f_97 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|structure_id| f_228[&quot;init_structure&quot;]
+    class f_24 func;
+    class f_228 func;
+    f_24[&quot;_build_structure&quot;] --&gt; f_227[&quot;init_seg&quot;]
+    class f_24 func;
+    class f_227 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|i| f_304[&quot;set_line_counter&quot;]
+    class f_24 func;
+    class f_304 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|current_model_id&lt;br&gt;current_serial_id| f_225[&quot;init_model&quot;]
+    class f_24 func;
+    class f_225 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|current_model_id| f_225[&quot;init_model&quot;]
+    class f_24 func;
+    class f_225 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|current_chain_id| f_223[&quot;init_chain&quot;]
+    class f_24 func;
+    class f_223 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|resname&lt;br&gt;hetatm_flag&lt;br&gt;int_resseq&lt;br&gt;icode| f_226[&quot;init_residue&quot;]
+    class f_24 func;
+    class f_226 func;
+    f_24[&quot;_build_structure&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_24 func;
+    class f_329 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|name&lt;br&gt;coord&lt;br&gt;tempfactor&lt;br&gt;occupancy&lt;br&gt;altloc&lt;br&gt;name| f_221[&quot;init_atom&quot;]
+    class f_24 func;
+    class f_221 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|anisou_array| f_295[&quot;set_anisou&quot;]
+    class f_24 func;
+    class f_295 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|spacegroup&lt;br&gt;cell| f_312[&quot;set_symmetry&quot;]
+    class f_24 func;
+    class f_312 func;
+    f_210[&quot;get_structure&quot;] --&gt;|filename| f_121[&quot;as_handle&quot;]
+    class f_210 func;
+    class f_121 func;
+    f_210[&quot;get_structure&quot;] --&gt;|structure_id&lt;br&gt;handle| f_24[&quot;_build_structure&quot;]
+    class f_210 func;
+    class f_24 func;
+    f_24[&quot;_build_structure&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_24 func;
+    class f_316 func;
+    f_24[&quot;_build_structure&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_24 func;
+    class f_318 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|_records| f_243[&quot;map&quot;]
+    class f_24 func;
+    class f_243 func;
+    f_24[&quot;_build_structure&quot;] --&gt;|_anisors| f_243[&quot;map&quot;]
+    class f_24 func;
+    class f_243 func;
+    f_24[&quot;_build_structure&quot;] --&gt; f_326[&quot;update&quot;]
+    class f_24 func;
+    class f_326 func;
+    f_199[&quot;get_residues&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_199 func;
+    class f_183 func;
+    f_125[&quot;atom_to_internal_coordinates&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_125 func;
+    class f_183 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_230 func;
+    class f_183 func;
+    f_282[&quot;run_naccess&quot;] --&gt;|handle| f_139[&quot;close&quot;]
+    class f_282 func;
+    class f_139 func;
+    f_282[&quot;run_naccess&quot;] --&gt;|pdb_file&lt;br&gt;tmp_pdb_file| f_143[&quot;copy&quot;]
+    class f_282 func;
+    class f_143 func;
+    f_282[&quot;run_naccess&quot;] --&gt; f_311[&quot;set_structure&quot;]
+    class f_282 func;
+    class f_311 func;
+    f_282[&quot;run_naccess&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_282 func;
+    class f_195 func;
+    f_282[&quot;run_naccess&quot;] --&gt;|tmp_pdb_file| f_284[&quot;save&quot;]
+    class f_282 func;
+    class f_284 func;
+    f_282[&quot;run_naccess&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_282 func;
+    class f_318 func;
+    f_282[&quot;run_naccess&quot;] --&gt; f_270[&quot;readlines&quot;]
+    class f_282 func;
+    class f_270 func;
+    f_261[&quot;process_rsa_data&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_261 func;
+    class f_316 func;
+    f_260[&quot;process_asa_data&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_260 func;
+    class f_318 func;
+    f_9[&quot;__init__&quot;] --&gt;|model&lt;br&gt;pdb_file| f_282[&quot;run_naccess&quot;]
+    class f_9 func;
+    class f_282 func;
+    f_9[&quot;__init__&quot;] --&gt;|res_data| f_261[&quot;process_rsa_data&quot;]
+    class f_9 func;
+    class f_261 func;
+    f_9[&quot;__init__&quot;] --&gt;|atm_data| f_260[&quot;process_asa_data&quot;]
+    class f_9 func;
+    class f_260 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_210[&quot;get_structure&quot;]
+    class f_1 main;
+    class f_210 func;
+    f_9[&quot;__init__&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_9 func;
+    class f_184 func;
+    f_54[&quot;_get_unique_parent_pairs&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_54 func;
+    class f_195 func;
+    f_54[&quot;_get_unique_parent_pairs&quot;] --&gt;|parent_pair_list| f_325[&quot;uniqueify&quot;]
+    class f_54 func;
+    class f_325 func;
+    f_285[&quot;search&quot;] --&gt;|atom_list&lt;br&gt;level| f_324[&quot;unfold_entities&quot;]
+    class f_285 func;
+    class f_324 func;
+    f_286[&quot;search_all&quot;] --&gt;|next_level_pair_list| f_54[&quot;_get_unique_parent_pairs&quot;]
+    class f_286 func;
+    class f_54 func;
+    f_311[&quot;set_structure&quot;] --&gt; f_228[&quot;init_structure&quot;]
+    class f_311 func;
+    class f_228 func;
+    f_311[&quot;set_structure&quot;] --&gt; f_227[&quot;init_seg&quot;]
+    class f_311 func;
+    class f_227 func;
+    f_311[&quot;set_structure&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_311 func;
+    class f_108 func;
+    f_311[&quot;set_structure&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_311 func;
+    class f_143 func;
+    f_311[&quot;set_structure&quot;] --&gt; f_225[&quot;init_model&quot;]
+    class f_311 func;
+    class f_225 func;
+    f_311[&quot;set_structure&quot;] --&gt;|chain_id| f_223[&quot;init_chain&quot;]
+    class f_311 func;
+    class f_223 func;
+    f_311[&quot;set_structure&quot;] --&gt; f_226[&quot;init_residue&quot;]
+    class f_311 func;
+    class f_226 func;
+    f_41[&quot;_get_atom_line&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_41 func;
+    class f_329 func;
+    f_41[&quot;_get_atom_line&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_41 func;
+    class f_318 func;
+    f_85[&quot;_revert_write&quot;] --&gt; f_139[&quot;close&quot;]
+    class f_85 func;
+    class f_139 func;
+    f_85[&quot;_revert_write&quot;] --&gt;|truncate_to| f_287[&quot;seek&quot;]
+    class f_85 func;
+    class f_287 func;
+    f_85[&quot;_revert_write&quot;] --&gt; f_323[&quot;truncate&quot;]
+    class f_85 func;
+    class f_323 func;
+    f_284[&quot;save&quot;] --&gt; f_321[&quot;tell&quot;]
+    class f_284 func;
+    class f_321 func;
+    f_284[&quot;save&quot;] --&gt; f_191[&quot;get_list&quot;]
+    class f_284 func;
+    class f_191 func;
+    f_284[&quot;save&quot;] --&gt;|model| f_106[&quot;accept_model&quot;]
+    class f_284 func;
+    class f_106 func;
+    f_284[&quot;save&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_284 func;
+    class f_336 func;
+    f_284[&quot;save&quot;] --&gt;|chain| f_105[&quot;accept_chain&quot;]
+    class f_284 func;
+    class f_105 func;
+    f_284[&quot;save&quot;] --&gt;|fhandle| f_85[&quot;_revert_write&quot;]
+    class f_284 func;
+    class f_85 func;
+    f_284[&quot;save&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_284 func;
+    class f_215 func;
+    f_284[&quot;save&quot;] --&gt;|residue| f_107[&quot;accept_residue&quot;]
+    class f_284 func;
+    class f_107 func;
+    f_284[&quot;save&quot;] --&gt;|atom| f_104[&quot;accept_atom&quot;]
+    class f_284 func;
+    class f_104 func;
+    f_284[&quot;save&quot;] --&gt;|s| f_336[&quot;write&quot;]
+    class f_284 func;
+    class f_336 func;
+    f_284[&quot;save&quot;] --&gt; f_139[&quot;close&quot;]
+    class f_284 func;
+    class f_139 func;
+    f_9[&quot;__init__&quot;] --&gt; f_236[&quot;join&quot;]
+    class f_9 func;
+    class f_236 func;
+    f_77[&quot;_print_default_format_warning&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_77 func;
+    class f_336 func;
+    f_208[&quot;get_status_list&quot;] --&gt;|url| f_331[&quot;urlopen&quot;]
+    class f_208 func;
+    class f_331 func;
+    f_208[&quot;get_status_list&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_208 func;
+    class f_318 func;
+    f_198[&quot;get_recent_changes&quot;] --&gt; f_208[&quot;get_status_list&quot;]
+    class f_198 func;
+    class f_208 func;
+    f_175[&quot;get_all_entries&quot;] --&gt;|url| f_331[&quot;urlopen&quot;]
+    class f_175 func;
+    class f_331 func;
+    f_175[&quot;get_all_entries&quot;] --&gt; f_270[&quot;readlines&quot;]
+    class f_175 func;
+    class f_270 func;
+    f_176[&quot;get_all_obsolete&quot;] --&gt;|url| f_331[&quot;urlopen&quot;]
+    class f_176 func;
+    class f_331 func;
+    f_176[&quot;get_all_obsolete&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_176 func;
+    class f_316 func;
+    f_176[&quot;get_all_obsolete&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_176 func;
+    class f_314 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt;|file_format| f_77[&quot;_print_default_format_warning&quot;]
+    class f_276 func;
+    class f_77 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_276 func;
+    class f_239 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt;|archive_dict| f_236[&quot;join&quot;]
+    class f_276 func;
+    class f_236 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt;|path| f_236[&quot;join&quot;]
+    class f_276 func;
+    class f_236 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt;|path&lt;br&gt;archive| f_236[&quot;join&quot;]
+    class f_276 func;
+    class f_236 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt; f_330[&quot;urlcleanup&quot;]
+    class f_276 func;
+    class f_330 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt;|url&lt;br&gt;filename| f_332[&quot;urlretrieve&quot;]
+    class f_276 func;
+    class f_332 func;
+    f_276[&quot;retrieve_pdb_file&quot;] --&gt;|gz| f_340[&quot;writelines&quot;]
+    class f_276 func;
+    class f_340 func;
+    f_328[&quot;update_pdb&quot;] --&gt;|file_format| f_77[&quot;_print_default_format_warning&quot;]
+    class f_328 func;
+    class f_77 func;
+    f_328[&quot;update_pdb&quot;] --&gt; f_198[&quot;get_recent_changes&quot;]
+    class f_328 func;
+    class f_198 func;
+    f_328[&quot;update_pdb&quot;] --&gt;|pdb_code| f_276[&quot;retrieve_pdb_file&quot;]
+    class f_328 func;
+    class f_276 func;
+    f_328[&quot;update_pdb&quot;] --&gt; f_174[&quot;get_all_assemblies&quot;]
+    class f_328 func;
+    class f_174 func;
+    f_328[&quot;update_pdb&quot;] --&gt;|pdb_code&lt;br&gt;assembly_num| f_275[&quot;retrieve_assembly_file&quot;]
+    class f_328 func;
+    class f_275 func;
+    f_328[&quot;update_pdb&quot;] --&gt; f_236[&quot;join&quot;]
+    class f_328 func;
+    class f_236 func;
+    f_328[&quot;update_pdb&quot;] --&gt;|new_dir| f_236[&quot;join&quot;]
+    class f_328 func;
+    class f_236 func;
+    f_162[&quot;download_pdb_files&quot;] --&gt;|file_format| f_77[&quot;_print_default_format_warning&quot;]
+    class f_162 func;
+    class f_77 func;
+    f_162[&quot;download_pdb_files&quot;] --&gt;|pdb_codes| f_243[&quot;map&quot;]
+    class f_162 func;
+    class f_243 func;
+    f_174[&quot;get_all_assemblies&quot;] --&gt;|request| f_331[&quot;urlopen&quot;]
+    class f_174 func;
+    class f_331 func;
+    f_174[&quot;get_all_assemblies&quot;] --&gt; f_267[&quot;read&quot;]
+    class f_174 func;
+    class f_267 func;
+    f_322[&quot;transform&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_322 func;
+    class f_314 func;
+    f_322[&quot;transform&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_322 func;
+    class f_239 func;
+    f_174[&quot;get_all_assemblies&quot;] --&gt;|transform&lt;br&gt;assemblies| f_243[&quot;map&quot;]
+    class f_174 func;
+    class f_243 func;
+    f_275[&quot;retrieve_assembly_file&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_275 func;
+    class f_239 func;
+    f_275[&quot;retrieve_assembly_file&quot;] --&gt;|file_format| f_77[&quot;_print_default_format_warning&quot;]
+    class f_275 func;
+    class f_77 func;
+    f_275[&quot;retrieve_assembly_file&quot;] --&gt;|path| f_236[&quot;join&quot;]
+    class f_275 func;
+    class f_236 func;
+    f_275[&quot;retrieve_assembly_file&quot;] --&gt;|path&lt;br&gt;archive_fn| f_236[&quot;join&quot;]
+    class f_275 func;
+    class f_236 func;
+    f_275[&quot;retrieve_assembly_file&quot;] --&gt; f_330[&quot;urlcleanup&quot;]
+    class f_275 func;
+    class f_330 func;
+    f_275[&quot;retrieve_assembly_file&quot;] --&gt;|url&lt;br&gt;assembly_gz_file| f_332[&quot;urlretrieve&quot;]
+    class f_275 func;
+    class f_332 func;
+    f_275[&quot;retrieve_assembly_file&quot;] --&gt;|gz| f_340[&quot;writelines&quot;]
+    class f_275 func;
+    class f_340 func;
+    f_158[&quot;download_all_assemblies&quot;] --&gt;|file_format| f_77[&quot;_print_default_format_warning&quot;]
+    class f_158 func;
+    class f_77 func;
+    f_158[&quot;download_all_assemblies&quot;] --&gt; f_174[&quot;get_all_assemblies&quot;]
+    class f_158 func;
+    class f_174 func;
+    f_158[&quot;download_all_assemblies&quot;] --&gt;|pdb_code&lt;br&gt;assembly_num| f_320[&quot;submit&quot;]
+    class f_158 func;
+    class f_320 func;
+    f_158[&quot;download_all_assemblies&quot;] --&gt; f_340[&quot;writelines&quot;]
+    class f_158 func;
+    class f_340 func;
+    f_160[&quot;download_entire_pdb&quot;] --&gt;|file_format| f_77[&quot;_print_default_format_warning&quot;]
+    class f_160 func;
+    class f_77 func;
+    f_160[&quot;download_entire_pdb&quot;] --&gt; f_175[&quot;get_all_entries&quot;]
+    class f_160 func;
+    class f_175 func;
+    f_160[&quot;download_entire_pdb&quot;] --&gt;|entries| f_243[&quot;map&quot;]
+    class f_160 func;
+    class f_243 func;
+    f_160[&quot;download_entire_pdb&quot;] --&gt; f_340[&quot;writelines&quot;]
+    class f_160 func;
+    class f_340 func;
+    f_161[&quot;download_obsolete_entries&quot;] --&gt;|file_format| f_77[&quot;_print_default_format_warning&quot;]
+    class f_161 func;
+    class f_77 func;
+    f_161[&quot;download_obsolete_entries&quot;] --&gt; f_176[&quot;get_all_obsolete&quot;]
+    class f_161 func;
+    class f_176 func;
+    f_161[&quot;download_obsolete_entries&quot;] --&gt;|entries| f_243[&quot;map&quot;]
+    class f_161 func;
+    class f_243 func;
+    f_161[&quot;download_obsolete_entries&quot;] --&gt; f_340[&quot;writelines&quot;]
+    class f_161 func;
+    class f_340 func;
+    f_204[&quot;get_seqres_file&quot;] --&gt;|url&lt;br&gt;savefile| f_332[&quot;urlretrieve&quot;]
+    class f_204 func;
+    class f_332 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_328[&quot;update_pdb&quot;]
+    class f_1 main;
+    class f_328 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_160[&quot;download_entire_pdb&quot;]
+    class f_1 main;
+    class f_160 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_158[&quot;download_all_assemblies&quot;]
+    class f_1 main;
+    class f_158 func;
+    f_1[&quot;Main_Script&quot;] --&gt;|pdb_path| f_161[&quot;download_obsolete_entries&quot;]
+    class f_1 main;
+    class f_161 func;
+    f_1[&quot;Main_Script&quot;] --&gt;|pdb_code| f_276[&quot;retrieve_pdb_file&quot;]
+    class f_1 main;
+    class f_276 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_174[&quot;get_all_assemblies&quot;]
+    class f_1 main;
+    class f_174 func;
+    f_1[&quot;Main_Script&quot;] --&gt;|pdb_code&lt;br&gt;assembly_num| f_275[&quot;retrieve_assembly_file&quot;]
+    class f_1 main;
+    class f_275 func;
+    f_1[&quot;Main_Script&quot;] --&gt;|pdb_id| f_276[&quot;retrieve_pdb_file&quot;]
+    class f_1 main;
+    class f_276 func;
+    f_1[&quot;Main_Script&quot;] --&gt;|pdb_id&lt;br&gt;assembly_num| f_275[&quot;retrieve_assembly_file&quot;]
+    class f_1 main;
+    class f_275 func;
+    f_74[&quot;_parse_resolution_from&quot;] --&gt;|candidate&lt;br&gt;namespaces| f_167[&quot;find&quot;]
+    class f_74 func;
+    class f_167 func;
+    f_70[&quot;_parse_header_from&quot;] --&gt;|namespaces| f_167[&quot;find&quot;]
+    class f_70 func;
+    class f_167 func;
+    f_70[&quot;_parse_header_from&quot;] --&gt;|tree&lt;br&gt;namespaces| f_74[&quot;_parse_resolution_from&quot;]
+    class f_70 func;
+    class f_74 func;
+    f_68[&quot;_parse_atom_from&quot;] --&gt;|namespaces| f_167[&quot;find&quot;]
+    class f_68 func;
+    class f_167 func;
+    f_73[&quot;_parse_residue_id_from&quot;] --&gt;|namespaces| f_167[&quot;find&quot;]
+    class f_73 func;
+    class f_167 func;
+    f_210[&quot;get_structure&quot;] --&gt; f_287[&quot;seek&quot;]
+    class f_210 func;
+    class f_287 func;
+    f_210[&quot;get_structure&quot;] --&gt;|tree&lt;br&gt;namespaces| f_70[&quot;_parse_header_from&quot;]
+    class f_210 func;
+    class f_70 func;
+    f_210[&quot;get_structure&quot;] --&gt; f_228[&quot;init_structure&quot;]
+    class f_210 func;
+    class f_228 func;
+    f_210[&quot;get_structure&quot;] --&gt;|header| f_301[&quot;set_header&quot;]
+    class f_210 func;
+    class f_301 func;
+    f_210[&quot;get_structure&quot;] --&gt;|namespaces| f_167[&quot;find&quot;]
+    class f_210 func;
+    class f_167 func;
+    f_210[&quot;get_structure&quot;] --&gt;|element&lt;br&gt;namespaces| f_73[&quot;_parse_residue_id_from&quot;]
+    class f_210 func;
+    class f_73 func;
+    f_210[&quot;get_structure&quot;] --&gt;|builder_model_count&lt;br&gt;model_number| f_225[&quot;init_model&quot;]
+    class f_210 func;
+    class f_225 func;
+    f_210[&quot;get_structure&quot;] --&gt;|chain_id| f_223[&quot;init_chain&quot;]
+    class f_210 func;
+    class f_223 func;
+    f_210[&quot;get_structure&quot;] --&gt;|component_id| f_226[&quot;init_residue&quot;]
+    class f_210 func;
+    class f_226 func;
+    f_210[&quot;get_structure&quot;] --&gt; f_221[&quot;init_atom&quot;]
+    class f_210 func;
+    class f_221 func;
+    f_210[&quot;get_structure&quot;] --&gt;|element&lt;br&gt;namespaces| f_68[&quot;_parse_atom_from&quot;]
+    class f_210 func;
+    class f_68 func;
+    f_210[&quot;get_structure&quot;] --&gt;|id| f_228[&quot;init_structure&quot;]
+    class f_210 func;
+    class f_228 func;
+    f_210[&quot;get_structure&quot;] --&gt;|file| f_121[&quot;as_handle&quot;]
+    class f_210 func;
+    class f_121 func;
+    f_210[&quot;get_structure&quot;] --&gt; f_270[&quot;readlines&quot;]
+    class f_210 func;
+    class f_270 func;
+    f_210[&quot;get_structure&quot;] --&gt;|lines| f_67[&quot;_parse&quot;]
+    class f_210 func;
+    class f_67 func;
+    f_67[&quot;_parse&quot;] --&gt;|header_coords_trailer| f_47[&quot;_get_header&quot;]
+    class f_67 func;
+    class f_47 func;
+    f_67[&quot;_parse&quot;] --&gt;|coords_trailer| f_69[&quot;_parse_coordinates&quot;]
+    class f_67 func;
+    class f_69 func;
+    f_47[&quot;_get_header&quot;] --&gt; f_304[&quot;set_line_counter&quot;]
+    class f_47 func;
+    class f_304 func;
+    f_47[&quot;_get_header&quot;] --&gt;|header| f_71[&quot;_parse_pdb_header_list&quot;]
+    class f_47 func;
+    class f_71 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt; f_280[&quot;rstrip&quot;]
+    class f_69 func;
+    class f_280 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|global_line_counter| f_304[&quot;set_line_counter&quot;]
+    class f_69 func;
+    class f_304 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_69 func;
+    class f_318 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|current_model_id| f_225[&quot;init_model&quot;]
+    class f_69 func;
+    class f_225 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_69 func;
+    class f_314 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|global_line_counter| f_55[&quot;_handle_PDB_exception&quot;]
+    class f_69 func;
+    class f_55 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|message&lt;br&gt;global_line_counter| f_55[&quot;_handle_PDB_exception&quot;]
+    class f_69 func;
+    class f_55 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_69 func;
+    class f_329 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|current_segid| f_227[&quot;init_seg&quot;]
+    class f_69 func;
+    class f_227 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|current_chain_id| f_223[&quot;init_chain&quot;]
+    class f_69 func;
+    class f_223 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|resname&lt;br&gt;hetero_flag&lt;br&gt;resseq&lt;br&gt;icode| f_226[&quot;init_residue&quot;]
+    class f_69 func;
+    class f_226 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|name&lt;br&gt;coord&lt;br&gt;bfactor&lt;br&gt;occupancy&lt;br&gt;altloc&lt;br&gt;fullname&lt;br&gt;serial_number&lt;br&gt;element| f_221[&quot;init_atom&quot;]
+    class f_69 func;
+    class f_221 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|name&lt;br&gt;coord&lt;br&gt;pqr_charge&lt;br&gt;radius&lt;br&gt;altloc&lt;br&gt;fullname&lt;br&gt;serial_number&lt;br&gt;element&lt;br&gt;pqr_charge&lt;br&gt;radius| f_221[&quot;init_atom&quot;]
+    class f_69 func;
+    class f_221 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|anisou_array| f_295[&quot;set_anisou&quot;]
+    class f_69 func;
+    class f_295 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|current_model_id&lt;br&gt;serial_num| f_225[&quot;init_model&quot;]
+    class f_69 func;
+    class f_225 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|siguij_array| f_310[&quot;set_siguij&quot;]
+    class f_69 func;
+    class f_310 func;
+    f_69[&quot;_parse_coordinates&quot;] --&gt;|sigatm_array| f_309[&quot;set_sigatm&quot;]
+    class f_69 func;
+    class f_309 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_71[&quot;_parse_pdb_header_list&quot;]
+    class f_268 func;
+    class f_71 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_268 func;
+    class f_288 func;
+    f_146[&quot;default_hedron&quot;] --&gt;|rhcl| f_236[&quot;join&quot;]
+    class f_146 func;
+    class f_236 func;
+    f_145[&quot;default_dihedron&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_145 func;
+    class f_108 func;
+    f_112[&quot;ake_recurse&quot;] --&gt;|ak| f_229[&quot;insert&quot;]
+    class f_112 func;
+    class f_229 func;
+    f_111[&quot;ak_expand&quot;] --&gt; f_315[&quot;split_akl&quot;]
+    class f_111 func;
+    class f_315 func;
+    f_110[&quot;ak_add&quot;] --&gt;|ak| f_108[&quot;add&quot;]
+    class f_110 func;
+    class f_108 func;
+    f_168[&quot;finish_chain&quot;] --&gt;|shl12&lt;br&gt;sha&lt;br&gt;shl23&lt;br&gt;sda&lt;br&gt;bfacs| f_56[&quot;_hedraDict2chain&quot;]
+    class f_168 func;
+    class f_56 func;
+    f_268[&quot;read_PIC&quot;] --&gt;|file| f_121[&quot;as_handle&quot;]
+    class f_268 func;
+    class f_121 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_270[&quot;readlines&quot;]
+    class f_268 func;
+    class f_270 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_268 func;
+    class f_316 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_268 func;
+    class f_318 func;
+    f_268[&quot;read_PIC&quot;] --&gt;|header_dict| f_301[&quot;set_header&quot;]
+    class f_268 func;
+    class f_301 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_226[&quot;init_residue&quot;]
+    class f_268 func;
+    class f_226 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_268 func;
+    class f_233 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_268 func;
+    class f_333 func;
+    f_268[&quot;read_PIC&quot;] --&gt;|ak| f_108[&quot;add&quot;]
+    class f_268 func;
+    class f_108 func;
+    f_268[&quot;read_PIC&quot;] --&gt;|coord| f_221[&quot;init_atom&quot;]
+    class f_268 func;
+    class f_221 func;
+    f_268[&quot;read_PIC&quot;] --&gt; f_210[&quot;get_structure&quot;]
+    class f_268 func;
+    class f_210 func;
+    f_269[&quot;read_PIC_seq&quot;] --&gt; f_272[&quot;replace&quot;]
+    class f_269 func;
+    class f_272 func;
+    f_269[&quot;read_PIC_seq&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_269 func;
+    class f_314 func;
+    f_269[&quot;read_PIC_seq&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_269 func;
+    class f_329 func;
+    f_269[&quot;read_PIC_seq&quot;] --&gt;|output| f_336[&quot;write&quot;]
+    class f_269 func;
+    class f_336 func;
+    f_269[&quot;read_PIC_seq&quot;] --&gt; f_287[&quot;seek&quot;]
+    class f_269 func;
+    class f_287 func;
+    f_269[&quot;read_PIC_seq&quot;] --&gt;|sp| f_268[&quot;read_PIC&quot;]
+    class f_269 func;
+    class f_268 func;
+    f_98[&quot;_wpr&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_98 func;
+    class f_173 func;
+    f_98[&quot;_wpr&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_98 func;
+    class f_336 func;
+    f_98[&quot;_wpr&quot;] --&gt;|pdbid&lt;br&gt;chainid| f_100[&quot;_write_PIC&quot;]
+    class f_98 func;
+    class f_100 func;
+    f_98[&quot;_wpr&quot;] --&gt;|entity| f_84[&quot;_residue_string&quot;]
+    class f_98 func;
+    class f_84 func;
+    f_34[&quot;_enumerate_entity_atoms&quot;] --&gt; f_180[&quot;get_atoms&quot;]
+    class f_34 func;
+    class f_180 func;
+    f_34[&quot;_enumerate_entity_atoms&quot;] --&gt; f_206[&quot;get_serial_number&quot;]
+    class f_34 func;
+    class f_206 func;
+    f_34[&quot;_enumerate_entity_atoms&quot;] --&gt; f_199[&quot;get_residues&quot;]
+    class f_34 func;
+    class f_199 func;
+    f_34[&quot;_enumerate_entity_atoms&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_34 func;
+    class f_233 func;
+    f_34[&quot;_enumerate_entity_atoms&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_34 func;
+    class f_333 func;
+    f_34[&quot;_enumerate_entity_atoms&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_34 func;
+    class f_215 func;
+    f_34[&quot;_enumerate_entity_atoms&quot;] --&gt;|anum| f_308[&quot;set_serial_number&quot;]
+    class f_34 func;
+    class f_308 func;
+    f_165[&quot;enumerate_atoms&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_165 func;
+    class f_195 func;
+    f_165[&quot;enumerate_atoms&quot;] --&gt;|mdl| f_34[&quot;_enumerate_entity_atoms&quot;]
+    class f_165 func;
+    class f_34 func;
+    f_165[&quot;enumerate_atoms&quot;] --&gt;|entity| f_34[&quot;_enumerate_entity_atoms&quot;]
+    class f_165 func;
+    class f_34 func;
+    f_338[&quot;write_PIC&quot;] --&gt;|entity| f_165[&quot;enumerate_atoms&quot;]
+    class f_338 func;
+    class f_165 func;
+    f_338[&quot;write_PIC&quot;] --&gt;|file| f_121[&quot;as_handle&quot;]
+    class f_338 func;
+    class f_121 func;
+    f_338[&quot;write_PIC&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_338 func;
+    class f_233 func;
+    f_338[&quot;write_PIC&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_338 func;
+    class f_333 func;
+    f_338[&quot;write_PIC&quot;] --&gt;|r&lt;br&gt;fp&lt;br&gt;pdbid&lt;br&gt;chainid| f_98[&quot;_wpr&quot;]
+    class f_338 func;
+    class f_98 func;
+    f_338[&quot;write_PIC&quot;] --&gt;|entity&lt;br&gt;fp&lt;br&gt;pdbid&lt;br&gt;chainid| f_98[&quot;_wpr&quot;]
+    class f_338 func;
+    class f_98 func;
+    f_338[&quot;write_PIC&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_338 func;
+    class f_173 func;
+    f_338[&quot;write_PIC&quot;] --&gt; f_254[&quot;pdb_date&quot;]
+    class f_338 func;
+    class f_254 func;
+    f_338[&quot;write_PIC&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_338 func;
+    class f_336 func;
+    f_338[&quot;write_PIC&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_338 func;
+    class f_329 func;
+    f_283[&quot;run_psea&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_283 func;
+    class f_314 func;
+    f_283[&quot;run_psea&quot;] --&gt;|cmd| f_281[&quot;run&quot;]
+    class f_283 func;
+    class f_281 func;
+    f_283[&quot;run_psea&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_283 func;
+    class f_318 func;
+    f_263[&quot;psea&quot;] --&gt;|pname| f_283[&quot;run_psea&quot;]
+    class f_263 func;
+    class f_283 func;
+    f_118[&quot;annotate&quot;] --&gt; f_191[&quot;get_list&quot;]
+    class f_118 func;
+    class f_191 func;
+    f_118[&quot;annotate&quot;] --&gt;|res| f_231[&quot;is_aa&quot;]
+    class f_118 func;
+    class f_231 func;
+    f_9[&quot;__init__&quot;] --&gt;|filename| f_263[&quot;psea&quot;]
+    class f_9 func;
+    class f_263 func;
+    f_9[&quot;__init__&quot;] --&gt;|ss_seq| f_264[&quot;psea2HEC&quot;]
+    class f_9 func;
+    class f_264 func;
+    f_9[&quot;__init__&quot;] --&gt;|model&lt;br&gt;ss_seq| f_118[&quot;annotate&quot;]
+    class f_9 func;
+    class f_118 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_235[&quot;items&quot;]
+    class f_1 main;
+    class f_235 func;
+    f_231[&quot;is_aa&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_231 func;
+    class f_200 func;
+    f_231[&quot;is_aa&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_231 func;
+    class f_329 func;
+    f_234[&quot;is_nucleic&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_234 func;
+    class f_200 func;
+    f_234[&quot;is_nucleic&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_234 func;
+    class f_329 func;
+    f_196[&quot;get_phi_psi_list&quot;] --&gt; f_216[&quot;get_vector&quot;]
+    class f_196 func;
+    class f_216 func;
+    f_196[&quot;get_phi_psi_list&quot;] --&gt;|cp&lt;br&gt;n&lt;br&gt;ca&lt;br&gt;c| f_134[&quot;calc_dihedral&quot;]
+    class f_196 func;
+    class f_134 func;
+    f_196[&quot;get_phi_psi_list&quot;] --&gt;|n&lt;br&gt;ca&lt;br&gt;c&lt;br&gt;nn| f_134[&quot;calc_dihedral&quot;]
+    class f_196 func;
+    class f_134 func;
+    f_212[&quot;get_tau_list&quot;] --&gt; f_182[&quot;get_ca_list&quot;]
+    class f_212 func;
+    class f_182 func;
+    f_212[&quot;get_tau_list&quot;] --&gt; f_216[&quot;get_vector&quot;]
+    class f_212 func;
+    class f_216 func;
+    f_212[&quot;get_tau_list&quot;] --&gt;|v1&lt;br&gt;v2&lt;br&gt;v3&lt;br&gt;v4| f_134[&quot;calc_dihedral&quot;]
+    class f_212 func;
+    class f_134 func;
+    f_212[&quot;get_tau_list&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_212 func;
+    class f_195 func;
+    f_213[&quot;get_theta_list&quot;] --&gt; f_182[&quot;get_ca_list&quot;]
+    class f_213 func;
+    class f_182 func;
+    f_213[&quot;get_theta_list&quot;] --&gt; f_216[&quot;get_vector&quot;]
+    class f_213 func;
+    class f_216 func;
+    f_213[&quot;get_theta_list&quot;] --&gt;|v1&lt;br&gt;v2&lt;br&gt;v3| f_133[&quot;calc_angle&quot;]
+    class f_213 func;
+    class f_133 func;
+    f_213[&quot;get_theta_list&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_213 func;
+    class f_195 func;
+    f_205[&quot;get_sequence&quot;] --&gt; f_236[&quot;join&quot;]
+    class f_205 func;
+    class f_236 func;
+    f_205[&quot;get_sequence&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_205 func;
+    class f_173 func;
+    f_205[&quot;get_sequence&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_205 func;
+    class f_200 func;
+    f_16[&quot;_accept&quot;] --&gt;|residue| f_231[&quot;is_aa&quot;]
+    class f_16 func;
+    class f_231 func;
+    f_16[&quot;_accept&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_16 func;
+    class f_200 func;
+    f_131[&quot;build_peptides&quot;] --&gt; f_190[&quot;get_level&quot;]
+    class f_131 func;
+    class f_190 func;
+    f_131[&quot;build_peptides&quot;] --&gt; f_191[&quot;get_list&quot;]
+    class f_131 func;
+    class f_191 func;
+    f_59[&quot;_is_connected&quot;] --&gt; f_217[&quot;has_id&quot;]
+    class f_59 func;
+    class f_217 func;
+    f_59[&quot;_is_connected&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_59 func;
+    class f_233 func;
+    f_59[&quot;_is_connected&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_59 func;
+    class f_153 func;
+    f_59[&quot;_is_connected&quot;] --&gt; f_177[&quot;get_altloc&quot;]
+    class f_59 func;
+    class f_177 func;
+    f_59[&quot;_is_connected&quot;] --&gt;|c_altloc| f_156[&quot;disordered_select&quot;]
+    class f_59 func;
+    class f_156 func;
+    f_59[&quot;_is_connected&quot;] --&gt;|n_altloc| f_156[&quot;disordered_select&quot;]
+    class f_59 func;
+    class f_156 func;
+    f_14[&quot;__repr__&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_14 func;
+    class f_200 func;
+    f_108[&quot;add&quot;] --&gt;|atom_id| f_217[&quot;has_id&quot;]
+    class f_108 func;
+    class f_217 func;
+    f_108[&quot;add&quot;] --&gt; f_151[&quot;disordered_get&quot;]
+    class f_108 func;
+    class f_151 func;
+    f_108[&quot;add&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_108 func;
+    class f_233 func;
+    f_108[&quot;add&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_108 func;
+    class f_200 func;
+    f_313[&quot;sort&quot;] --&gt; f_153[&quot;disordered_get_list&quot;]
+    class f_313 func;
+    class f_153 func;
+    f_150[&quot;disordered_add&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_150 func;
+    class f_200 func;
+    f_150[&quot;disordered_add&quot;] --&gt;|chain| f_306[&quot;set_parent&quot;]
+    class f_150 func;
+    class f_306 func;
+    f_150[&quot;disordered_add&quot;] --&gt;|resname| f_154[&quot;disordered_has_id&quot;]
+    class f_150 func;
+    class f_154 func;
+    f_150[&quot;disordered_add&quot;] --&gt;|resname| f_156[&quot;disordered_select&quot;]
+    class f_150 func;
+    class f_156 func;
+    f_155[&quot;disordered_remove&quot;] --&gt;|child| f_156[&quot;disordered_select&quot;]
+    class f_155 func;
+    class f_156 func;
+    f_42[&quot;_get_atom_radius&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_42 func;
+    class f_316 func;
+    f_42[&quot;_get_atom_radius&quot;] --&gt; f_164[&quot;endswith&quot;]
+    class f_42 func;
+    class f_164 func;
+    f_79[&quot;_read_vertex_array&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_79 func;
+    class f_314 func;
+    f_211[&quot;get_surface&quot;] --&gt;|model| f_324[&quot;unfold_entities&quot;]
+    class f_211 func;
+    class f_324 func;
+    f_211[&quot;get_surface&quot;] --&gt;|atom| f_42[&quot;_get_atom_radius&quot;]
+    class f_211 func;
+    class f_42 func;
+    f_211[&quot;get_surface&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_211 func;
+    class f_336 func;
+    f_211[&quot;get_surface&quot;] --&gt;|surface_file| f_79[&quot;_read_vertex_array&quot;]
+    class f_211 func;
+    class f_79 func;
+    f_274[&quot;residue_depth&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_274 func;
+    class f_215 func;
+    f_274[&quot;residue_depth&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_274 func;
+    class f_184 func;
+    f_274[&quot;residue_depth&quot;] --&gt;|coord&lt;br&gt;surface| f_244[&quot;min_dist&quot;]
+    class f_274 func;
+    class f_244 func;
+    f_132[&quot;ca_depth&quot;] --&gt; f_217[&quot;has_id&quot;]
+    class f_132 func;
+    class f_217 func;
+    f_132[&quot;ca_depth&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_132 func;
+    class f_184 func;
+    f_132[&quot;ca_depth&quot;] --&gt;|coord&lt;br&gt;surface| f_244[&quot;min_dist&quot;]
+    class f_132 func;
+    class f_244 func;
+    f_9[&quot;__init__&quot;] --&gt;|model| f_324[&quot;unfold_entities&quot;]
+    class f_9 func;
+    class f_324 func;
+    f_9[&quot;__init__&quot;] --&gt;|model| f_211[&quot;get_surface&quot;]
+    class f_9 func;
+    class f_211 func;
+    f_9[&quot;__init__&quot;] --&gt;|residue| f_231[&quot;is_aa&quot;]
+    class f_9 func;
+    class f_231 func;
+    f_9[&quot;__init__&quot;] --&gt;|residue&lt;br&gt;surface| f_274[&quot;residue_depth&quot;]
+    class f_9 func;
+    class f_274 func;
+    f_9[&quot;__init__&quot;] --&gt;|residue&lt;br&gt;surface| f_132[&quot;ca_depth&quot;]
+    class f_9 func;
+    class f_132 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_326[&quot;update&quot;]
+    class f_1 main;
+    class f_326 func;
+    f_9[&quot;__init__&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_9 func;
+    class f_143 func;
+    f_9[&quot;__init__&quot;] --&gt;|radii_dict| f_326[&quot;update&quot;]
+    class f_9 func;
+    class f_326 func;
+    f_9[&quot;__init__&quot;] --&gt; f_30[&quot;_compute_sphere&quot;]
+    class f_9 func;
+    class f_30 func;
+    f_141[&quot;compute&quot;] --&gt; f_180[&quot;get_atoms&quot;]
+    class f_141 func;
+    class f_180 func;
+    f_141[&quot;compute&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_141 func;
+    class f_288 func;
+    f_141[&quot;compute&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_141 func;
+    class f_143 func;
+    f_141[&quot;compute&quot;] --&gt;|twice_maxradii| f_285[&quot;search&quot;]
+    class f_141 func;
+    class f_285 func;
+    f_141[&quot;compute&quot;] --&gt; f_285[&quot;search&quot;]
+    class f_141 func;
+    class f_285 func;
+    f_141[&quot;compute&quot;] --&gt;|atoms| f_288[&quot;set&quot;]
+    class f_141 func;
+    class f_288 func;
+    f_88[&quot;_scale_residue&quot;] --&gt;|scaleMtx| f_120[&quot;applyMtx&quot;]
+    class f_88 func;
+    class f_120 func;
+    f_339[&quot;write_SCAD&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_339 func;
+    class f_183 func;
+    f_339[&quot;write_SCAD&quot;] --&gt; f_125[&quot;atom_to_internal_coordinates&quot;]
+    class f_339 func;
+    class f_125 func;
+    f_339[&quot;write_SCAD&quot;] --&gt; f_230[&quot;internal_to_atom_coordinates&quot;]
+    class f_339 func;
+    class f_230 func;
+    f_339[&quot;write_SCAD&quot;] --&gt;|scale| f_218[&quot;homog_scale_mtx&quot;]
+    class f_339 func;
+    class f_218 func;
+    f_339[&quot;write_SCAD&quot;] --&gt;|file| f_121[&quot;as_handle&quot;]
+    class f_339 func;
+    class f_121 func;
+    f_339[&quot;write_SCAD&quot;] --&gt;|peptide_scad| f_336[&quot;write&quot;]
+    class f_339 func;
+    class f_336 func;
+    f_339[&quot;write_SCAD&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_339 func;
+    class f_173 func;
+    f_339[&quot;write_SCAD&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_339 func;
+    class f_336 func;
+    f_339[&quot;write_SCAD&quot;] --&gt;|fp| f_101[&quot;_write_SCAD&quot;]
+    class f_339 func;
+    class f_101 func;
+    f_325[&quot;uniqueify&quot;] --&gt;|items| f_288[&quot;set&quot;]
+    class f_325 func;
+    class f_288 func;
+    f_214[&quot;get_unique_parents&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_214 func;
+    class f_195 func;
+    f_324[&quot;unfold_entities&quot;] --&gt; f_190[&quot;get_level&quot;]
+    class f_324 func;
+    class f_190 func;
+    f_324[&quot;unfold_entities&quot;] --&gt;|target_level| f_220[&quot;index&quot;]
+    class f_324 func;
+    class f_220 func;
+    f_324[&quot;unfold_entities&quot;] --&gt;|level| f_220[&quot;index&quot;]
+    class f_324 func;
+    class f_220 func;
+    f_324[&quot;unfold_entities&quot;] --&gt; f_195[&quot;get_parent&quot;]
+    class f_324 func;
+    class f_195 func;
+    f_183[&quot;get_chains&quot;] --&gt; f_192[&quot;get_models&quot;]
+    class f_183 func;
+    class f_192 func;
+    f_9[&quot;__init__&quot;] --&gt;|m1| f_324[&quot;unfold_entities&quot;]
+    class f_9 func;
+    class f_324 func;
+    f_9[&quot;__init__&quot;] --&gt;|m2| f_324[&quot;unfold_entities&quot;]
+    class f_9 func;
+    class f_324 func;
+    f_9[&quot;__init__&quot;] --&gt;|r1&lt;br&gt;aa1| f_94[&quot;_test_equivalence&quot;]
+    class f_9 func;
+    class f_94 func;
+    f_9[&quot;__init__&quot;] --&gt;|r2&lt;br&gt;aa2| f_94[&quot;_test_equivalence&quot;]
+    class f_9 func;
+    class f_94 func;
+    f_94[&quot;_test_equivalence&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_94 func;
+    class f_200 func;
+    f_58[&quot;_is_completely_disordered&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_58 func;
+    class f_215 func;
+    f_58[&quot;_is_completely_disordered&quot;] --&gt; f_177[&quot;get_altloc&quot;]
+    class f_58 func;
+    class f_177 func;
+    f_225[&quot;init_model&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_225 func;
+    class f_108 func;
+    f_223[&quot;init_chain&quot;] --&gt;|chain_id| f_217[&quot;has_id&quot;]
+    class f_223 func;
+    class f_217 func;
+    f_223[&quot;init_chain&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_223 func;
+    class f_108 func;
+    f_226[&quot;init_residue&quot;] --&gt;|res_id| f_217[&quot;has_id&quot;]
+    class f_226 func;
+    class f_217 func;
+    f_226[&quot;init_residue&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_226 func;
+    class f_233 func;
+    f_226[&quot;init_residue&quot;] --&gt;|resname| f_154[&quot;disordered_has_id&quot;]
+    class f_226 func;
+    class f_154 func;
+    f_226[&quot;init_residue&quot;] --&gt;|resname| f_156[&quot;disordered_select&quot;]
+    class f_226 func;
+    class f_156 func;
+    f_226[&quot;init_residue&quot;] --&gt;|new_residue| f_150[&quot;disordered_add&quot;]
+    class f_226 func;
+    class f_150 func;
+    f_226[&quot;init_residue&quot;] --&gt;|duplicate_residue| f_58[&quot;_is_completely_disordered&quot;]
+    class f_226 func;
+    class f_58 func;
+    f_226[&quot;init_residue&quot;] --&gt;|res_id| f_147[&quot;detach_child&quot;]
+    class f_226 func;
+    class f_147 func;
+    f_226[&quot;init_residue&quot;] --&gt;|disordered_residue| f_108[&quot;add&quot;]
+    class f_226 func;
+    class f_108 func;
+    f_226[&quot;init_residue&quot;] --&gt;|duplicate_residue| f_150[&quot;disordered_add&quot;]
+    class f_226 func;
+    class f_150 func;
+    f_226[&quot;init_residue&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_226 func;
+    class f_108 func;
+    f_221[&quot;init_atom&quot;] --&gt;|name| f_217[&quot;has_id&quot;]
+    class f_221 func;
+    class f_217 func;
+    f_221[&quot;init_atom&quot;] --&gt; f_186[&quot;get_fullname&quot;]
+    class f_221 func;
+    class f_186 func;
+    f_221[&quot;init_atom&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_221 func;
+    class f_233 func;
+    f_221[&quot;init_atom&quot;] --&gt; f_150[&quot;disordered_add&quot;]
+    class f_221 func;
+    class f_150 func;
+    f_221[&quot;init_atom&quot;] --&gt;|name| f_147[&quot;detach_child&quot;]
+    class f_221 func;
+    class f_147 func;
+    f_221[&quot;init_atom&quot;] --&gt;|disordered_atom| f_108[&quot;add&quot;]
+    class f_221 func;
+    class f_108 func;
+    f_221[&quot;init_atom&quot;] --&gt;|duplicate_atom| f_150[&quot;disordered_add&quot;]
+    class f_221 func;
+    class f_150 func;
+    f_221[&quot;init_atom&quot;] --&gt; f_170[&quot;flag_disordered&quot;]
+    class f_221 func;
+    class f_170 func;
+    f_221[&quot;init_atom&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_221 func;
+    class f_108 func;
+    f_296[&quot;set_atoms&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_296 func;
+    class f_184 func;
+    f_296[&quot;set_atoms&quot;] --&gt;|fixed_coord&lt;br&gt;moving_coord| f_288[&quot;set&quot;]
+    class f_296 func;
+    class f_288 func;
+    f_296[&quot;set_atoms&quot;] --&gt; f_281[&quot;run&quot;]
+    class f_296 func;
+    class f_281 func;
+    f_296[&quot;set_atoms&quot;] --&gt; f_201[&quot;get_rms&quot;]
+    class f_296 func;
+    class f_201 func;
+    f_296[&quot;set_atoms&quot;] --&gt; f_202[&quot;get_rotran&quot;]
+    class f_296 func;
+    class f_202 func;
+    f_119[&quot;apply&quot;] --&gt;|rot&lt;br&gt;tran| f_322[&quot;transform&quot;]
+    class f_119 func;
+    class f_322 func;
+    f_197[&quot;get_predictions&quot;] --&gt;|url| f_331[&quot;urlopen&quot;]
+    class f_197 func;
+    class f_331 func;
+    f_197[&quot;get_predictions&quot;] --&gt; f_267[&quot;read&quot;]
+    class f_197 func;
+    class f_267 func;
+    f_51[&quot;_get_mmcif_file_path_for&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_51 func;
+    class f_314 func;
+    f_51[&quot;_get_mmcif_file_path_for&quot;] --&gt;|directory&lt;br&gt;file_name| f_236[&quot;join&quot;]
+    class f_51 func;
+    class f_236 func;
+    f_159[&quot;download_cif_for&quot;] --&gt;|prediction&lt;br&gt;directory| f_51[&quot;_get_mmcif_file_path_for&quot;]
+    class f_159 func;
+    class f_51 func;
+    f_159[&quot;download_cif_for&quot;] --&gt;|cif_url| f_331[&quot;urlopen&quot;]
+    class f_159 func;
+    class f_331 func;
+    f_159[&quot;download_cif_for&quot;] --&gt; f_267[&quot;read&quot;]
+    class f_159 func;
+    class f_267 func;
+    f_159[&quot;download_cif_for&quot;] --&gt;|data| f_336[&quot;write&quot;]
+    class f_159 func;
+    class f_336 func;
+    f_209[&quot;get_structural_models_for&quot;] --&gt;|qualifier| f_197[&quot;get_predictions&quot;]
+    class f_209 func;
+    class f_197 func;
+    f_209[&quot;get_structural_models_for&quot;] --&gt;|prediction&lt;br&gt;directory| f_51[&quot;_get_mmcif_file_path_for&quot;]
+    class f_209 func;
+    class f_51 func;
+    f_209[&quot;get_structural_models_for&quot;] --&gt;|prediction&lt;br&gt;directory| f_159[&quot;download_cif_for&quot;]
+    class f_209 func;
+    class f_159 func;
+    f_209[&quot;get_structural_models_for&quot;] --&gt;|qualifier&lt;br&gt;mmcif_path| f_210[&quot;get_structure&quot;]
+    class f_209 func;
+    class f_210 func;
+    f_187[&quot;get_guide_coord_from_structure&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_187 func;
+    class f_183 func;
+    f_307[&quot;set_reference&quot;] --&gt;|structure| f_187[&quot;get_guide_coord_from_structure&quot;]
+    class f_307 func;
+    class f_187 func;
+    f_113[&quot;align&quot;] --&gt;|structure| f_187[&quot;get_guide_coord_from_structure&quot;]
+    class f_113 func;
+    class f_187 func;
+    f_113[&quot;align&quot;] --&gt;|coordsA&lt;br&gt;coordsB| f_288[&quot;set&quot;]
+    class f_113 func;
+    class f_288 func;
+    f_113[&quot;align&quot;] --&gt; f_281[&quot;run&quot;]
+    class f_113 func;
+    class f_281 func;
+    f_113[&quot;align&quot;] --&gt;|best_alignment| f_66[&quot;_optimize&quot;]
+    class f_113 func;
+    class f_66 func;
+    f_113[&quot;align&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_113 func;
+    class f_183 func;
+    f_113[&quot;align&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_113 func;
+    class f_215 func;
+    f_113[&quot;align&quot;] --&gt;|rotmtx&lt;br&gt;trvec| f_322[&quot;transform&quot;]
+    class f_113 func;
+    class f_322 func;
+    f_66[&quot;_optimize&quot;] --&gt;|coordsA&lt;br&gt;coordsB| f_288[&quot;set&quot;]
+    class f_66 func;
+    class f_288 func;
+    f_66[&quot;_optimize&quot;] --&gt; f_281[&quot;run&quot;]
+    class f_66 func;
+    class f_281 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt;|verbose| f_125[&quot;atom_to_internal_coordinates&quot;]
+    class f_319 func;
+    class f_125 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt;|entity&lt;br&gt;sp| f_338[&quot;write_PIC&quot;]
+    class f_319 func;
+    class f_338 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt; f_287[&quot;seek&quot;]
+    class f_319 func;
+    class f_287 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt;|sp| f_268[&quot;read_PIC&quot;]
+    class f_319 func;
+    class f_268 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_319 func;
+    class f_183 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt;|pdb2| f_273[&quot;report_IC&quot;]
+    class f_319 func;
+    class f_273 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt;|verbose| f_230[&quot;internal_to_atom_coordinates&quot;]
+    class f_319 func;
+    class f_230 func;
+    f_319[&quot;structure_rebuild_test&quot;] --&gt;|entity&lt;br&gt;pdb2| f_140[&quot;compare_residues&quot;]
+    class f_319 func;
+    class f_140 func;
+    f_273[&quot;report_IC&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_273 func;
+    class f_173 func;
+    f_0[&quot;IC_duplicate&quot;] --&gt; f_199[&quot;get_residues&quot;]
+    class f_0 func;
+    class f_199 func;
+    f_0[&quot;IC_duplicate&quot;] --&gt; f_125[&quot;atom_to_internal_coordinates&quot;]
+    class f_0 func;
+    class f_125 func;
+    f_0[&quot;IC_duplicate&quot;] --&gt;|entity&lt;br&gt;sp| f_338[&quot;write_PIC&quot;]
+    class f_0 func;
+    class f_338 func;
+    f_0[&quot;IC_duplicate&quot;] --&gt; f_287[&quot;seek&quot;]
+    class f_0 func;
+    class f_287 func;
+    f_0[&quot;IC_duplicate&quot;] --&gt;|sp| f_268[&quot;read_PIC&quot;]
+    class f_0 func;
+    class f_268 func;
+    f_22[&quot;_atmfid_d2h&quot;] --&gt; f_185[&quot;get_full_id&quot;]
+    class f_22 func;
+    class f_185 func;
+    f_28[&quot;_cmp_atm&quot;] --&gt; f_185[&quot;get_full_id&quot;]
+    class f_28 func;
+    class f_185 func;
+    f_28[&quot;_cmp_atm&quot;] --&gt;|a0| f_22[&quot;_atmfid_d2h&quot;]
+    class f_28 func;
+    class f_22 func;
+    f_28[&quot;_cmp_atm&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_28 func;
+    class f_184 func;
+    f_29[&quot;_cmp_res&quot;] --&gt;|ak| f_173[&quot;get&quot;]
+    class f_29 func;
+    class f_173 func;
+    f_29[&quot;_cmp_res&quot;] --&gt;|aknd| f_173[&quot;get&quot;]
+    class f_29 func;
+    class f_173 func;
+    f_29[&quot;_cmp_res&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_29 func;
+    class f_233 func;
+    f_29[&quot;_cmp_res&quot;] --&gt;|r0&lt;br&gt;r1&lt;br&gt;a0&lt;br&gt;a1&lt;br&gt;verbose&lt;br&gt;cmpdict| f_28[&quot;_cmp_atm&quot;]
+    class f_29 func;
+    class f_28 func;
+    f_29[&quot;_cmp_res&quot;] --&gt;|r0&lt;br&gt;r1&lt;br&gt;verbose&lt;br&gt;cmpdict| f_28[&quot;_cmp_atm&quot;]
+    class f_29 func;
+    class f_28 func;
+    f_29[&quot;_cmp_res&quot;] --&gt;|da0k| f_173[&quot;get&quot;]
+    class f_29 func;
+    class f_173 func;
+    f_29[&quot;_cmp_res&quot;] --&gt; f_185[&quot;get_full_id&quot;]
+    class f_29 func;
+    class f_185 func;
+    f_140[&quot;compare_residues&quot;] --&gt; f_185[&quot;get_full_id&quot;]
+    class f_140 func;
+    class f_185 func;
+    f_140[&quot;compare_residues&quot;] --&gt; f_183[&quot;get_chains&quot;]
+    class f_140 func;
+    class f_183 func;
+    f_140[&quot;compare_residues&quot;] --&gt; f_199[&quot;get_residues&quot;]
+    class f_140 func;
+    class f_199 func;
+    f_140[&quot;compare_residues&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_140 func;
+    class f_233 func;
+    f_140[&quot;compare_residues&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_140 func;
+    class f_333 func;
+    f_140[&quot;compare_residues&quot;] --&gt;|dr0&lt;br&gt;dr1&lt;br&gt;verbose&lt;br&gt;cmpdict| f_29[&quot;_cmp_res&quot;]
+    class f_140 func;
+    class f_29 func;
+    f_140[&quot;compare_residues&quot;] --&gt;|r0&lt;br&gt;r1&lt;br&gt;verbose&lt;br&gt;cmpdict| f_29[&quot;_cmp_res&quot;]
+    class f_140 func;
+    class f_29 func;
+    f_337[&quot;write_PDB&quot;] --&gt;|entity| f_165[&quot;enumerate_atoms&quot;]
+    class f_337 func;
+    class f_165 func;
+    f_337[&quot;write_PDB&quot;] --&gt;|file| f_121[&quot;as_handle&quot;]
+    class f_337 func;
+    class f_121 func;
+    f_337[&quot;write_PDB&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_337 func;
+    class f_173 func;
+    f_337[&quot;write_PDB&quot;] --&gt; f_254[&quot;pdb_date&quot;]
+    class f_337 func;
+    class f_254 func;
+    f_337[&quot;write_PDB&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_337 func;
+    class f_336 func;
+    f_337[&quot;write_PDB&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_337 func;
+    class f_329 func;
+    f_337[&quot;write_PDB&quot;] --&gt;|entity| f_311[&quot;set_structure&quot;]
+    class f_337 func;
+    class f_311 func;
+    f_337[&quot;write_PDB&quot;] --&gt;|fp| f_284[&quot;save&quot;]
+    class f_337 func;
+    class f_284 func;
+    f_9[&quot;__init__&quot;] --&gt;|verbose| f_91[&quot;_set_residues&quot;]
+    class f_9 func;
+    class f_91 func;
+    f_3[&quot;__deepcopy__&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_3 func;
+    class f_173 func;
+    f_3[&quot;__deepcopy__&quot;] --&gt; f_13[&quot;__new__&quot;]
+    class f_3 func;
+    class f_13 func;
+    f_3[&quot;__deepcopy__&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_3 func;
+    class f_143 func;
+    f_289[&quot;setResAtmVws&quot;] --&gt; f_180[&quot;get_atoms&quot;]
+    class f_289 func;
+    class f_180 func;
+    f_289[&quot;setResAtmVws&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_289 func;
+    class f_233 func;
+    f_289[&quot;setResAtmVws&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_289 func;
+    class f_333 func;
+    f_3[&quot;__deepcopy__&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_3 func;
+    class f_333 func;
+    f_76[&quot;_peptide_check&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_76 func;
+    class f_173 func;
+    f_76[&quot;_peptide_check&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_76 func;
+    class f_233 func;
+    f_76[&quot;_peptide_check&quot;] --&gt;|Natom&lt;br&gt;pCatom| f_21[&quot;_atm_dist_chk&quot;]
+    class f_76 func;
+    class f_21 func;
+    f_76[&quot;_peptide_check&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_76 func;
+    class f_333 func;
+    f_76[&quot;_peptide_check&quot;] --&gt;|n&lt;br&gt;c| f_21[&quot;_atm_dist_chk&quot;]
+    class f_76 func;
+    class f_21 func;
+    f_137[&quot;clear_ic&quot;] --&gt; f_199[&quot;get_residues&quot;]
+    class f_137 func;
+    class f_199 func;
+    f_18[&quot;_add_residue&quot;] --&gt;|res| f_76[&quot;_peptide_check&quot;]
+    class f_18 func;
+    class f_76 func;
+    f_18[&quot;_add_residue&quot;] --&gt; f_259[&quot;pretty_str&quot;]
+    class f_18 func;
+    class f_259 func;
+    f_18[&quot;_add_residue&quot;] --&gt;|str| f_135[&quot;cast&quot;]
+    class f_18 func;
+    class f_135 func;
+    f_18[&quot;_add_residue&quot;] --&gt; f_315[&quot;split_akl&quot;]
+    class f_18 func;
+    class f_315 func;
+    f_91[&quot;_set_residues&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_91 func;
+    class f_288 func;
+    f_91[&quot;_set_residues&quot;] --&gt; f_199[&quot;get_residues&quot;]
+    class f_91 func;
+    class f_199 func;
+    f_91[&quot;_set_residues&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_91 func;
+    class f_233 func;
+    f_91[&quot;_set_residues&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_91 func;
+    class f_333 func;
+    f_91[&quot;_set_residues&quot;] --&gt;|r&lt;br&gt;last_res&lt;br&gt;last_ord_res&lt;br&gt;verbose| f_18[&quot;_add_residue&quot;]
+    class f_91 func;
+    class f_18 func;
+    f_91[&quot;_set_residues&quot;] --&gt; f_326[&quot;update&quot;]
+    class f_91 func;
+    class f_326 func;
+    f_91[&quot;_set_residues&quot;] --&gt;|res&lt;br&gt;last_res&lt;br&gt;last_ord_res&lt;br&gt;verbose| f_18[&quot;_add_residue&quot;]
+    class f_91 func;
+    class f_18 func;
+    f_290[&quot;setResAtms&quot;] --&gt; f_180[&quot;get_atoms&quot;]
+    class f_290 func;
+    class f_180 func;
+    f_290[&quot;setResAtms&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_290 func;
+    class f_233 func;
+    f_290[&quot;setResAtms&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_290 func;
+    class f_333 func;
+    f_129[&quot;build_atomArray&quot;] --&gt; f_23[&quot;_build_rak_cache&quot;]
+    class f_129 func;
+    class f_23 func;
+    f_130[&quot;build_edraArrays&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_130 func;
+    class f_143 func;
+    f_130[&quot;build_edraArrays&quot;] --&gt; f_235[&quot;items&quot;]
+    class f_130 func;
+    class f_235 func;
+    f_130[&quot;build_edraArrays&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_130 func;
+    class f_333 func;
+    f_130[&quot;build_edraArrays&quot;] --&gt; f_237[&quot;keys&quot;]
+    class f_130 func;
+    class f_237 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_180[&quot;get_atoms&quot;]
+    class f_56 func;
+    class f_180 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_56 func;
+    class f_233 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_56 func;
+    class f_333 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_315[&quot;split_akl&quot;]
+    class f_56 func;
+    class f_315 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_60[&quot;_link_dihedra&quot;]
+    class f_56 func;
+    class f_60 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_129[&quot;build_atomArray&quot;]
+    class f_56 func;
+    class f_129 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_235[&quot;items&quot;]
+    class f_56 func;
+    class f_235 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_56 func;
+    class f_173 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|atm| f_217[&quot;has_id&quot;]
+    class f_56 func;
+    class f_217 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|altloc| f_154[&quot;disordered_has_id&quot;]
+    class f_56 func;
+    class f_154 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|newAtom| f_108[&quot;add&quot;]
+    class f_56 func;
+    class f_108 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|disordered_atom| f_108[&quot;add&quot;]
+    class f_56 func;
+    class f_108 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|newAtom| f_150[&quot;disordered_add&quot;]
+    class f_56 func;
+    class f_150 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_170[&quot;flag_disordered&quot;]
+    class f_56 func;
+    class f_170 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|altloc| f_156[&quot;disordered_select&quot;]
+    class f_56 func;
+    class f_156 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|bfac| f_297[&quot;set_bfactor&quot;]
+    class f_56 func;
+    class f_297 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt;|occ| f_305[&quot;set_occupancy&quot;]
+    class f_56 func;
+    class f_305 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_206[&quot;get_serial_number&quot;]
+    class f_56 func;
+    class f_206 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_237[&quot;keys&quot;]
+    class f_56 func;
+    class f_237 func;
+    f_56[&quot;_hedraDict2chain&quot;] --&gt; f_130[&quot;build_edraArrays&quot;]
+    class f_56 func;
+    class f_130 func;
+    f_123[&quot;assemble_residues&quot;] --&gt;|workSet| f_245[&quot;multi_coord_space&quot;]
+    class f_123 func;
+    class f_245 func;
+    f_124[&quot;assemble_residues_ser&quot;] --&gt; f_122[&quot;assemble&quot;]
+    class f_124 func;
+    class f_122 func;
+    f_124[&quot;assemble_residues_ser&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_124 func;
+    class f_288 func;
+    f_124[&quot;assemble_residues_ser&quot;] --&gt; f_237[&quot;keys&quot;]
+    class f_124 func;
+    class f_237 func;
+    f_224[&quot;init_edra&quot;] --&gt; f_31[&quot;_create_edra&quot;]
+    class f_224 func;
+    class f_31 func;
+    f_224[&quot;init_edra&quot;] --&gt; f_129[&quot;build_atomArray&quot;]
+    class f_224 func;
+    class f_129 func;
+    f_224[&quot;init_edra&quot;] --&gt; f_237[&quot;keys&quot;]
+    class f_224 func;
+    class f_237 func;
+    f_224[&quot;init_edra&quot;] --&gt; f_130[&quot;build_edraArrays&quot;]
+    class f_224 func;
+    class f_130 func;
+    f_222[&quot;init_atom_coords&quot;] --&gt;|a4shift| f_108[&quot;add&quot;]
+    class f_222 func;
+    class f_108 func;
+    f_222[&quot;init_atom_coords&quot;] --&gt; f_247[&quot;multi_rot_Z&quot;]
+    class f_222 func;
+    class f_247 func;
+    f_327[&quot;update_dCoordSpace&quot;] --&gt; f_123[&quot;assemble_residues&quot;]
+    class f_327 func;
+    class f_123 func;
+    f_327[&quot;update_dCoordSpace&quot;] --&gt;|workSet| f_245[&quot;multi_coord_space&quot;]
+    class f_327 func;
+    class f_245 func;
+    f_262[&quot;propagate_changes&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_262 func;
+    class f_288 func;
+    f_262[&quot;propagate_changes&quot;] --&gt;|pos| f_108[&quot;add&quot;]
+    class f_262 func;
+    class f_108 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_262[&quot;propagate_changes&quot;]
+    class f_230 func;
+    class f_262 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_222[&quot;init_atom_coords&quot;]
+    class f_230 func;
+    class f_222 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_123[&quot;assemble_residues&quot;]
+    class f_230 func;
+    class f_123 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_230 func;
+    class f_333 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_259[&quot;pretty_str&quot;]
+    class f_230 func;
+    class f_259 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_315[&quot;split_akl&quot;]
+    class f_230 func;
+    class f_315 func;
+    f_230[&quot;internal_to_atom_coordinates&quot;] --&gt; f_124[&quot;assemble_residues_ser&quot;]
+    class f_230 func;
+    class f_124 func;
+    f_125[&quot;atom_to_internal_coordinates&quot;] --&gt; f_224[&quot;init_edra&quot;]
+    class f_125 func;
+    class f_224 func;
+    f_125[&quot;atom_to_internal_coordinates&quot;] --&gt; f_249[&quot;norm&quot;]
+    class f_125 func;
+    class f_249 func;
+    f_125[&quot;atom_to_internal_coordinates&quot;] --&gt;|dha| f_245[&quot;multi_coord_space&quot;]
+    class f_125 func;
+    class f_245 func;
+    f_125[&quot;atom_to_internal_coordinates&quot;] --&gt; f_92[&quot;_spec_glyCB&quot;]
+    class f_125 func;
+    class f_92 func;
+    f_92[&quot;_spec_glyCB&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_92 func;
+    class f_333 func;
+    f_92[&quot;_spec_glyCB&quot;] --&gt; f_266[&quot;rak&quot;]
+    class f_92 func;
+    class f_266 func;
+    f_92[&quot;_spec_glyCB&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_92 func;
+    class f_173 func;
+    f_102[&quot;_write_mtx&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_102 func;
+    class f_336 func;
+    f_99[&quot;_writeSCAD_dihed&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_99 func;
+    class f_336 func;
+    f_99[&quot;_writeSCAD_dihed&quot;] --&gt;|fp| f_102[&quot;_write_mtx&quot;]
+    class f_99 func;
+    class f_102 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_101 func;
+    class f_336 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_235[&quot;items&quot;]
+    class f_101 func;
+    class f_235 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_101 func;
+    class f_288 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_138[&quot;clear_transforms&quot;]
+    class f_101 func;
+    class f_138 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_122[&quot;assemble&quot;]
+    class f_101 func;
+    class f_122 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_232[&quot;is_backbone&quot;]
+    class f_101 func;
+    class f_232 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|fp&lt;br&gt;d&lt;br&gt;hedraNdx&lt;br&gt;hedraSet| f_99[&quot;_writeSCAD_dihed&quot;]
+    class f_101 func;
+    class f_99 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_101 func;
+    class f_108 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_293[&quot;set_accuracy_95&quot;]
+    class f_101 func;
+    class f_293 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|atm| f_173[&quot;get&quot;]
+    class f_101 func;
+    class f_173 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|res| f_173[&quot;get&quot;]
+    class f_101 func;
+    class f_173 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|ak| f_108[&quot;add&quot;]
+    class f_101 func;
+    class f_108 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|atom_str| f_336[&quot;write&quot;]
+    class f_101 func;
+    class f_336 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|atom_done_str| f_336[&quot;write&quot;]
+    class f_101 func;
+    class f_336 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|wstr| f_336[&quot;write&quot;]
+    class f_101 func;
+    class f_336 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_230[&quot;internal_to_atom_coordinates&quot;]
+    class f_101 func;
+    class f_230 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt; f_142[&quot;coord_space&quot;]
+    class f_101 func;
+    class f_142 func;
+    f_101[&quot;_write_SCAD&quot;] --&gt;|fp&lt;br&gt;mtr| f_102[&quot;_write_mtx&quot;]
+    class f_101 func;
+    class f_102 func;
+    f_157[&quot;distance_plot&quot;] --&gt; f_249[&quot;norm&quot;]
+    class f_157 func;
+    class f_249 func;
+    f_242[&quot;make_extended&quot;] --&gt; f_294[&quot;set_angle&quot;]
+    class f_242 func;
+    class f_294 func;
+    f_9[&quot;__init__&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_9 func;
+    class f_288 func;
+    f_9[&quot;__init__&quot;] --&gt; f_180[&quot;get_atoms&quot;]
+    class f_9 func;
+    class f_180 func;
+    f_9[&quot;__init__&quot;] --&gt; f_17[&quot;_add_atom&quot;]
+    class f_9 func;
+    class f_17 func;
+    f_9[&quot;__init__&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_9 func;
+    class f_333 func;
+    f_9[&quot;__init__&quot;] --&gt;|atm| f_17[&quot;_add_atom&quot;]
+    class f_9 func;
+    class f_17 func;
+    f_9[&quot;__init__&quot;] --&gt;|atom| f_17[&quot;_add_atom&quot;]
+    class f_9 func;
+    class f_17 func;
+    f_9[&quot;__init__&quot;] --&gt; f_23[&quot;_build_rak_cache&quot;]
+    class f_9 func;
+    class f_23 func;
+    f_3[&quot;__deepcopy__&quot;] --&gt; f_326[&quot;update&quot;]
+    class f_3 func;
+    class f_326 func;
+    f_23[&quot;_build_rak_cache&quot;] --&gt;|atmName| f_173[&quot;get&quot;]
+    class f_23 func;
+    class f_173 func;
+    f_17[&quot;_add_atom&quot;] --&gt;|atm| f_266[&quot;rak&quot;]
+    class f_17 func;
+    class f_266 func;
+    f_17[&quot;_add_atom&quot;] --&gt;|ak| f_108[&quot;add&quot;]
+    class f_17 func;
+    class f_108 func;
+    f_60[&quot;_link_dihedra&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_60 func;
+    class f_333 func;
+    f_60[&quot;_link_dihedra&quot;] --&gt; f_326[&quot;update&quot;]
+    class f_60 func;
+    class f_326 func;
+    f_60[&quot;_link_dihedra&quot;] --&gt; f_23[&quot;_build_rak_cache&quot;]
+    class f_60 func;
+    class f_23 func;
+    f_60[&quot;_link_dihedra&quot;] --&gt; f_315[&quot;split_akl&quot;]
+    class f_60 func;
+    class f_315 func;
+    f_299[&quot;set_flexible&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_299 func;
+    class f_333 func;
+    f_299[&quot;set_flexible&quot;] --&gt; f_164[&quot;endswith&quot;]
+    class f_299 func;
+    class f_164 func;
+    f_299[&quot;set_flexible&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_299 func;
+    class f_316 func;
+    f_300[&quot;set_hbond&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_300 func;
+    class f_333 func;
+    f_32[&quot;_default_startpos&quot;] --&gt;|akl| f_173[&quot;get&quot;]
+    class f_32 func;
+    class f_173 func;
+    f_53[&quot;_get_startpos&quot;] --&gt; f_32[&quot;_default_startpos&quot;]
+    class f_53 func;
+    class f_32 func;
+    f_138[&quot;clear_transforms&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_138 func;
+    class f_333 func;
+    f_122[&quot;assemble&quot;] --&gt; f_315[&quot;split_akl&quot;]
+    class f_122 func;
+    class f_315 func;
+    f_122[&quot;assemble&quot;] --&gt; f_266[&quot;rak&quot;]
+    class f_122 func;
+    class f_266 func;
+    f_122[&quot;assemble&quot;] --&gt; f_32[&quot;_default_startpos&quot;]
+    class f_122 func;
+    class f_32 func;
+    f_122[&quot;assemble&quot;] --&gt; f_53[&quot;_get_startpos&quot;]
+    class f_122 func;
+    class f_53 func;
+    f_122[&quot;assemble&quot;] --&gt;|HKT| f_135[&quot;cast&quot;]
+    class f_122 func;
+    class f_135 func;
+    f_122[&quot;assemble&quot;] --&gt; f_258[&quot;pop&quot;]
+    class f_122 func;
+    class f_258 func;
+    f_122[&quot;assemble&quot;] --&gt;|h1k| f_173[&quot;get&quot;]
+    class f_122 func;
+    class f_173 func;
+    f_122[&quot;assemble&quot;] --&gt; f_142[&quot;coord_space&quot;]
+    class f_122 func;
+    class f_142 func;
+    f_122[&quot;assemble&quot;] --&gt;|a| f_173[&quot;get&quot;]
+    class f_122 func;
+    class f_173 func;
+    f_315[&quot;split_akl&quot;] --&gt; f_288[&quot;set&quot;]
+    class f_315 func;
+    class f_288 func;
+    f_315[&quot;split_akl&quot;] --&gt;|ak2| f_114[&quot;altloc_match&quot;]
+    class f_315 func;
+    class f_114 func;
+    f_315[&quot;split_akl&quot;] --&gt;|altloc| f_108[&quot;add&quot;]
+    class f_315 func;
+    class f_108 func;
+    f_37[&quot;_gen_edra&quot;] --&gt;|tlst| f_315[&quot;split_akl&quot;]
+    class f_37 func;
+    class f_315 func;
+    f_31[&quot;_create_edra&quot;] --&gt; f_266[&quot;rak&quot;]
+    class f_31 func;
+    class f_266 func;
+    f_31[&quot;_create_edra&quot;] --&gt; f_315[&quot;split_akl&quot;]
+    class f_31 func;
+    class f_315 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|ak| f_108[&quot;add&quot;]
+    class f_31 func;
+    class f_108 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|ak| f_114[&quot;altloc_match&quot;]
+    class f_31 func;
+    class f_114 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|rn_ak| f_108[&quot;add&quot;]
+    class f_31 func;
+    class f_108 func;
+    f_31[&quot;_create_edra&quot;] --&gt; f_37[&quot;_gen_edra&quot;]
+    class f_31 func;
+    class f_37 func;
+    f_31[&quot;_create_edra&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_31 func;
+    class f_173 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|nCB| f_108[&quot;add&quot;]
+    class f_31 func;
+    class f_108 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|atom| f_266[&quot;rak&quot;]
+    class f_31 func;
+    class f_266 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|r_edra| f_37[&quot;_gen_edra&quot;]
+    class f_31 func;
+    class f_37 func;
+    f_31[&quot;_create_edra&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_31 func;
+    class f_108 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|sCB| f_108[&quot;add&quot;]
+    class f_31 func;
+    class f_108 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|htpl| f_37[&quot;_gen_edra&quot;]
+    class f_31 func;
+    class f_37 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|dtpl| f_37[&quot;_gen_edra&quot;]
+    class f_31 func;
+    class f_37 func;
+    f_31[&quot;_create_edra&quot;] --&gt; f_90[&quot;_set_hedra&quot;]
+    class f_31 func;
+    class f_90 func;
+    f_31[&quot;_create_edra&quot;] --&gt;|verbose| f_60[&quot;_link_dihedra&quot;]
+    class f_31 func;
+    class f_60 func;
+    f_31[&quot;_create_edra&quot;] --&gt; f_235[&quot;items&quot;]
+    class f_31 func;
+    class f_235 func;
+    f_75[&quot;_pdb_atom_string&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_75 func;
+    class f_233 func;
+    f_75[&quot;_pdb_atom_string&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_75 func;
+    class f_333 func;
+    f_255[&quot;pdb_residue_string&quot;] --&gt; f_75[&quot;_pdb_atom_string&quot;]
+    class f_255 func;
+    class f_75 func;
+    f_84[&quot;_residue_string&quot;] --&gt; f_203[&quot;get_segid&quot;]
+    class f_84 func;
+    class f_203 func;
+    f_84[&quot;_residue_string&quot;] --&gt; f_185[&quot;get_full_id&quot;]
+    class f_84 func;
+    class f_185 func;
+    f_1[&quot;Main_Script&quot;] --&gt; f_248[&quot;namedtuple&quot;]
+    class f_1 main;
+    class f_248 func;
+    f_103[&quot;_write_pic_bfac&quot;] --&gt;|atm| f_266[&quot;rak&quot;]
+    class f_103 func;
+    class f_266 func;
+    f_103[&quot;_write_pic_bfac&quot;] --&gt; f_181[&quot;get_bfactor&quot;]
+    class f_103 func;
+    class f_181 func;
+    f_100[&quot;_write_PIC&quot;] --&gt; f_84[&quot;_residue_string&quot;]
+    class f_100 func;
+    class f_84 func;
+    f_100[&quot;_write_PIC&quot;] --&gt; f_256[&quot;pick_angle&quot;]
+    class f_100 func;
+    class f_256 func;
+    f_100[&quot;_write_PIC&quot;] --&gt; f_75[&quot;_pdb_atom_string&quot;]
+    class f_100 func;
+    class f_75 func;
+    f_100[&quot;_write_PIC&quot;] --&gt; f_333[&quot;values&quot;]
+    class f_100 func;
+    class f_333 func;
+    f_100[&quot;_write_PIC&quot;] --&gt; f_126[&quot;bits&quot;]
+    class f_100 func;
+    class f_126 func;
+    f_100[&quot;_write_PIC&quot;] --&gt; f_180[&quot;get_atoms&quot;]
+    class f_100 func;
+    class f_180 func;
+    f_100[&quot;_write_PIC&quot;] --&gt; f_233[&quot;is_disordered&quot;]
+    class f_100 func;
+    class f_233 func;
+    f_100[&quot;_write_PIC&quot;] --&gt;|s&lt;br&gt;col| f_103[&quot;_write_pic_bfac&quot;]
+    class f_100 func;
+    class f_103 func;
+    f_100[&quot;_write_PIC&quot;] --&gt;|atm&lt;br&gt;s&lt;br&gt;col| f_103[&quot;_write_pic_bfac&quot;]
+    class f_100 func;
+    class f_103 func;
+    f_100[&quot;_write_PIC&quot;] --&gt;|a&lt;br&gt;s&lt;br&gt;col| f_103[&quot;_write_pic_bfac&quot;]
+    class f_100 func;
+    class f_103 func;
+    f_39[&quot;_get_ak_tuple&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_39 func;
+    class f_314 func;
+    f_39[&quot;_get_ak_tuple&quot;] --&gt; f_266[&quot;rak&quot;]
+    class f_39 func;
+    class f_266 func;
+    f_39[&quot;_get_ak_tuple&quot;] --&gt;|a| f_266[&quot;rak&quot;]
+    class f_39 func;
+    class f_266 func;
+    f_40[&quot;_get_angle_for_tuple&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_40 func;
+    class f_173 func;
+    f_40[&quot;_get_angle_for_tuple&quot;] --&gt;|DKT&lt;br&gt;angle_key| f_135[&quot;cast&quot;]
+    class f_40 func;
+    class f_135 func;
+    f_40[&quot;_get_angle_for_tuple&quot;] --&gt;|HKT&lt;br&gt;angle_key| f_135[&quot;cast&quot;]
+    class f_40 func;
+    class f_135 func;
+    f_256[&quot;pick_angle&quot;] --&gt;|angle_key| f_40[&quot;_get_angle_for_tuple&quot;]
+    class f_256 func;
+    class f_40 func;
+    f_256[&quot;pick_angle&quot;] --&gt;|EKT| f_135[&quot;cast&quot;]
+    class f_256 func;
+    class f_135 func;
+    f_256[&quot;pick_angle&quot;] --&gt; f_39[&quot;_get_ak_tuple&quot;]
+    class f_256 func;
+    class f_39 func;
+    f_256[&quot;pick_angle&quot;] --&gt;|str&lt;br&gt;angle_key| f_135[&quot;cast&quot;]
+    class f_256 func;
+    class f_135 func;
+    f_256[&quot;pick_angle&quot;] --&gt; f_266[&quot;rak&quot;]
+    class f_256 func;
+    class f_266 func;
+    f_256[&quot;pick_angle&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_256 func;
+    class f_173 func;
+    f_256[&quot;pick_angle&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_256 func;
+    class f_316 func;
+    f_256[&quot;pick_angle&quot;] --&gt;|a| f_266[&quot;rak&quot;]
+    class f_256 func;
+    class f_266 func;
+    f_256[&quot;pick_angle&quot;] --&gt;|DKT| f_135[&quot;cast&quot;]
+    class f_256 func;
+    class f_135 func;
+    f_256[&quot;pick_angle&quot;] --&gt;|tklst| f_173[&quot;get&quot;]
+    class f_256 func;
+    class f_173 func;
+    f_178[&quot;get_angle&quot;] --&gt;|angle_key| f_256[&quot;pick_angle&quot;]
+    class f_178 func;
+    class f_256 func;
+    f_294[&quot;set_angle&quot;] --&gt;|angle_key| f_256[&quot;pick_angle&quot;]
+    class f_294 func;
+    class f_256 func;
+    f_294[&quot;set_angle&quot;] --&gt;|v| f_116[&quot;angle_dif&quot;]
+    class f_294 func;
+    class f_116 func;
+    f_294[&quot;set_angle&quot;] --&gt;|edron&lt;br&gt;delta| f_33[&quot;_do_bond_rotate&quot;]
+    class f_294 func;
+    class f_33 func;
+    f_127[&quot;bond_rotate&quot;] --&gt;|angle_key| f_256[&quot;pick_angle&quot;]
+    class f_127 func;
+    class f_256 func;
+    f_127[&quot;bond_rotate&quot;] --&gt;|base&lt;br&gt;delta| f_33[&quot;_do_bond_rotate&quot;]
+    class f_127 func;
+    class f_33 func;
+    f_128[&quot;bond_set&quot;] --&gt;|angle_key| f_256[&quot;pick_angle&quot;]
+    class f_128 func;
+    class f_256 func;
+    f_128[&quot;bond_set&quot;] --&gt;|val| f_116[&quot;angle_dif&quot;]
+    class f_128 func;
+    class f_116 func;
+    f_128[&quot;bond_set&quot;] --&gt;|base&lt;br&gt;delta| f_33[&quot;_do_bond_rotate&quot;]
+    class f_128 func;
+    class f_33 func;
+    f_257[&quot;pick_length&quot;] --&gt;|BKT| f_135[&quot;cast&quot;]
+    class f_257 func;
+    class f_135 func;
+    f_257[&quot;pick_length&quot;] --&gt;|ak_spec| f_39[&quot;_get_ak_tuple&quot;]
+    class f_257 func;
+    class f_39 func;
+    f_257[&quot;pick_length&quot;] --&gt; f_235[&quot;items&quot;]
+    class f_257 func;
+    class f_235 func;
+    f_189[&quot;get_length&quot;] --&gt;|ak_spec| f_257[&quot;pick_length&quot;]
+    class f_189 func;
+    class f_257 func;
+    f_303[&quot;set_length&quot;] --&gt;|ak_spec| f_257[&quot;pick_length&quot;]
+    class f_303 func;
+    class f_257 func;
+    f_120[&quot;applyMtx&quot;] --&gt;|k| f_173[&quot;get&quot;]
+    class f_120 func;
+    class f_173 func;
+    f_120[&quot;applyMtx&quot;] --&gt; f_237[&quot;keys&quot;]
+    class f_120 func;
+    class f_237 func;
+    f_172[&quot;gen_tuple&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_172 func;
+    class f_314 func;
+    f_9[&quot;__init__&quot;] --&gt;|atomkeys| f_171[&quot;gen_key&quot;]
+    class f_9 func;
+    class f_171 func;
+    f_9[&quot;__init__&quot;] --&gt; f_108[&quot;add&quot;]
+    class f_9 func;
+    class f_108 func;
+    f_9[&quot;__init__&quot;] --&gt; f_144[&quot;cr_class&quot;]
+    class f_9 func;
+    class f_144 func;
+    f_7[&quot;__gt__&quot;] --&gt;|other| f_27[&quot;_cmp&quot;]
+    class f_7 func;
+    class f_27 func;
+    f_7[&quot;__gt__&quot;] --&gt;|rslt| f_135[&quot;cast&quot;]
+    class f_7 func;
+    class f_135 func;
+    f_5[&quot;__ge__&quot;] --&gt;|other| f_27[&quot;_cmp&quot;]
+    class f_5 func;
+    class f_27 func;
+    f_5[&quot;__ge__&quot;] --&gt;|rslt| f_135[&quot;cast&quot;]
+    class f_5 func;
+    class f_135 func;
+    f_12[&quot;__lt__&quot;] --&gt;|other| f_27[&quot;_cmp&quot;]
+    class f_12 func;
+    class f_27 func;
+    f_12[&quot;__lt__&quot;] --&gt;|rslt| f_135[&quot;cast&quot;]
+    class f_12 func;
+    class f_135 func;
+    f_11[&quot;__le__&quot;] --&gt;|other| f_27[&quot;_cmp&quot;]
+    class f_11 func;
+    class f_27 func;
+    f_11[&quot;__le__&quot;] --&gt;|rslt| f_135[&quot;cast&quot;]
+    class f_11 func;
+    class f_135 func;
+    f_303[&quot;set_length&quot;] --&gt; f_57[&quot;_invalidate_atoms&quot;]
+    class f_303 func;
+    class f_57 func;
+    f_9[&quot;__init__&quot;] --&gt;|HKT| f_135[&quot;cast&quot;]
+    class f_9 func;
+    class f_135 func;
+    f_9[&quot;__init__&quot;] --&gt; f_89[&quot;_setPrimary&quot;]
+    class f_9 func;
+    class f_89 func;
+    f_48[&quot;_get_hedron&quot;] --&gt;|id3| f_173[&quot;get&quot;]
+    class f_48 func;
+    class f_173 func;
+    f_90[&quot;_set_hedra&quot;] --&gt;|res&lt;br&gt;h1key| f_48[&quot;_get_hedron&quot;]
+    class f_90 func;
+    class f_48 func;
+    f_90[&quot;_set_hedra&quot;] --&gt;|HKT| f_135[&quot;cast&quot;]
+    class f_90 func;
+    class f_135 func;
+    f_90[&quot;_set_hedra&quot;] --&gt;|res&lt;br&gt;h2key| f_48[&quot;_get_hedron&quot;]
+    class f_90 func;
+    class f_48 func;
+    f_117[&quot;angle_pop_sd&quot;] --&gt;|alst&lt;br&gt;avg| f_116[&quot;angle_dif&quot;]
+    class f_117 func;
+    class f_116 func;
+    f_149[&quot;difference&quot;] --&gt; f_116[&quot;angle_dif&quot;]
+    class f_149 func;
+    class f_116 func;
+    f_126[&quot;bits&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_126 func;
+    class f_173 func;
+    f_9[&quot;__init__&quot;] --&gt; f_243[&quot;map&quot;]
+    class f_9 func;
+    class f_243 func;
+    f_9[&quot;__init__&quot;] --&gt;|k| f_173[&quot;get&quot;]
+    class f_9 func;
+    class f_173 func;
+    f_9[&quot;__init__&quot;] --&gt; f_173[&quot;get&quot;]
+    class f_9 func;
+    class f_173 func;
+    f_27[&quot;_cmp&quot;] --&gt;|s| f_173[&quot;get&quot;]
+    class f_27 func;
+    class f_173 func;
+    f_27[&quot;_cmp&quot;] --&gt;|o| f_173[&quot;get&quot;]
+    class f_27 func;
+    class f_173 func;
+    f_284[&quot;save&quot;] --&gt;|fp&lt;br&gt;select&lt;br&gt;preserve_atom_numbering| f_87[&quot;_save_structure&quot;]
+    class f_284 func;
+    class f_87 func;
+    f_284[&quot;save&quot;] --&gt;|fp| f_86[&quot;_save_dict&quot;]
+    class f_284 func;
+    class f_86 func;
+    f_86[&quot;_save_dict&quot;] --&gt;|key| f_314[&quot;split&quot;]
+    class f_86 func;
+    class f_314 func;
+    f_86[&quot;_save_dict&quot;] --&gt; f_235[&quot;items&quot;]
+    class f_86 func;
+    class f_235 func;
+    f_86[&quot;_save_dict&quot;] --&gt;|i| f_220[&quot;index&quot;]
+    class f_86 func;
+    class f_220 func;
+    f_86[&quot;_save_dict&quot;] --&gt; f_336[&quot;write&quot;]
+    class f_86 func;
+    class f_336 func;
+    f_86[&quot;_save_dict&quot;] --&gt;|value_no_list| f_36[&quot;_format_mmcif_col&quot;]
+    class f_86 func;
+    class f_36 func;
+    f_86[&quot;_save_dict&quot;] --&gt;|val| f_81[&quot;_requires_quote&quot;]
+    class f_86 func;
+    class f_81 func;
+    f_86[&quot;_save_dict&quot;] --&gt;|val| f_80[&quot;_requires_newline&quot;]
+    class f_86 func;
+    class f_80 func;
+    f_86[&quot;_save_dict&quot;] --&gt; f_36[&quot;_format_mmcif_col&quot;]
+    class f_86 func;
+    class f_36 func;
+    f_36[&quot;_format_mmcif_col&quot;] --&gt;|val| f_80[&quot;_requires_newline&quot;]
+    class f_36 func;
+    class f_80 func;
+    f_36[&quot;_format_mmcif_col&quot;] --&gt;|val| f_81[&quot;_requires_quote&quot;]
+    class f_36 func;
+    class f_81 func;
+    f_81[&quot;_requires_quote&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_81 func;
+    class f_316 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_191[&quot;get_list&quot;]
+    class f_87 func;
+    class f_191 func;
+    f_87[&quot;_save_structure&quot;] --&gt;|model| f_106[&quot;accept_model&quot;]
+    class f_87 func;
+    class f_106 func;
+    f_87[&quot;_save_structure&quot;] --&gt;|chain| f_105[&quot;accept_chain&quot;]
+    class f_87 func;
+    class f_105 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_188[&quot;get_id&quot;]
+    class f_87 func;
+    class f_188 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_215[&quot;get_unpacked_list&quot;]
+    class f_87 func;
+    class f_215 func;
+    f_87[&quot;_save_structure&quot;] --&gt;|residue| f_107[&quot;accept_residue&quot;]
+    class f_87 func;
+    class f_107 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_200[&quot;get_resname&quot;]
+    class f_87 func;
+    class f_200 func;
+    f_87[&quot;_save_structure&quot;] --&gt;|entity_id| f_50[&quot;_get_label_asym_id&quot;]
+    class f_87 func;
+    class f_50 func;
+    f_87[&quot;_save_structure&quot;] --&gt;|atom| f_104[&quot;accept_atom&quot;]
+    class f_87 func;
+    class f_104 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_206[&quot;get_serial_number&quot;]
+    class f_87 func;
+    class f_206 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_87 func;
+    class f_318 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_193[&quot;get_name&quot;]
+    class f_87 func;
+    class f_193 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_177[&quot;get_altloc&quot;]
+    class f_87 func;
+    class f_177 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_184[&quot;get_coord&quot;]
+    class f_87 func;
+    class f_184 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_194[&quot;get_occupancy&quot;]
+    class f_87 func;
+    class f_194 func;
+    f_87[&quot;_save_structure&quot;] --&gt; f_181[&quot;get_bfactor&quot;]
+    class f_87 func;
+    class f_181 func;
+    f_87[&quot;_save_structure&quot;] --&gt;|c| f_272[&quot;replace&quot;]
+    class f_87 func;
+    class f_272 func;
+    f_87[&quot;_save_structure&quot;] --&gt;|out_file| f_86[&quot;_save_dict&quot;]
+    class f_87 func;
+    class f_86 func;
+    f_44[&quot;_get_biomoltrans&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_44 func;
+    class f_316 func;
+    f_44[&quot;_get_biomoltrans&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_44 func;
+    class f_314 func;
+    f_44[&quot;_get_biomoltrans&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_44 func;
+    class f_318 func;
+    f_44[&quot;_get_biomoltrans&quot;] --&gt; f_272[&quot;replace&quot;]
+    class f_44 func;
+    class f_272 func;
+    f_49[&quot;_get_journal&quot;] --&gt;|line| f_285[&quot;search&quot;]
+    class f_49 func;
+    class f_285 func;
+    f_49[&quot;_get_journal&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_49 func;
+    class f_239 func;
+    f_52[&quot;_get_references&quot;] --&gt;|line| f_285[&quot;search&quot;]
+    class f_52 func;
+    class f_285 func;
+    f_52[&quot;_get_references&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_52 func;
+    class f_239 func;
+    f_35[&quot;_format_date&quot;] --&gt; f_220[&quot;index&quot;]
+    class f_35 func;
+    class f_220 func;
+    f_65[&quot;_nice_case&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_65 func;
+    class f_239 func;
+    f_65[&quot;_nice_case&quot;] --&gt; f_329[&quot;upper&quot;]
+    class f_65 func;
+    class f_329 func;
+    f_252[&quot;parse_pdb_header&quot;] --&gt;|infile| f_121[&quot;as_handle&quot;]
+    class f_252 func;
+    class f_121 func;
+    f_252[&quot;parse_pdb_header&quot;] --&gt;|header| f_71[&quot;_parse_pdb_header_list&quot;]
+    class f_252 func;
+    class f_71 func;
+    f_72[&quot;_parse_remark_465&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_72 func;
+    class f_314 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|header| f_52[&quot;_get_references&quot;]
+    class f_71 func;
+    class f_52 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|header| f_49[&quot;_get_journal&quot;]
+    class f_71 func;
+    class f_49 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|header| f_44[&quot;_get_biomoltrans&quot;]
+    class f_71 func;
+    class f_44 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_318[&quot;strip&quot;]
+    class f_71 func;
+    class f_318 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_239[&quot;lower&quot;]
+    class f_71 func;
+    class f_239 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|tail| f_25[&quot;_chop_end_codes&quot;]
+    class f_71 func;
+    class f_25 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_236[&quot;join&quot;]
+    class f_71 func;
+    class f_236 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|tail| f_285[&quot;search&quot;]
+    class f_71 func;
+    class f_285 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_35[&quot;_format_date&quot;]
+    class f_71 func;
+    class f_35 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_65[&quot;_nice_case&quot;]
+    class f_71 func;
+    class f_65 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|tail| f_26[&quot;_chop_end_misc&quot;]
+    class f_71 func;
+    class f_26 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|tt| f_285[&quot;search&quot;]
+    class f_71 func;
+    class f_285 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_314[&quot;split&quot;]
+    class f_71 func;
+    class f_314 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|hh| f_285[&quot;search&quot;]
+    class f_71 func;
+    class f_285 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_25[&quot;_chop_end_codes&quot;]
+    class f_71 func;
+    class f_25 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_316[&quot;startswith&quot;]
+    class f_71 func;
+    class f_316 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt;|tail| f_72[&quot;_parse_remark_465&quot;]
+    class f_71 func;
+    class f_72 func;
+    f_71[&quot;_parse_pdb_header_list&quot;] --&gt; f_272[&quot;replace&quot;]
+    class f_71 func;
+    class f_272 func;
+    f_9[&quot;__init__&quot;] --&gt; f_83[&quot;_reset_properties&quot;]
+    class f_9 func;
+    class f_83 func;
+    f_296[&quot;set_atoms&quot;] --&gt;|fix_coord&lt;br&gt;mov_coord| f_288[&quot;set&quot;]
+    class f_296 func;
+    class f_288 func;
+    f_288[&quot;set&quot;] --&gt; f_83[&quot;_reset_properties&quot;]
+    class f_288 func;
+    class f_83 func;
+    f_281[&quot;run&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_281 func;
+    class f_143 func;
+    f_281[&quot;run&quot;] --&gt;|coords_ref&lt;br&gt;coords| f_265[&quot;qcp&quot;]
+    class f_281 func;
+    class f_265 func;
+    f_240[&quot;m2rotaxis&quot;] --&gt; f_250[&quot;normalize&quot;]
+    class f_240 func;
+    class f_250 func;
+    f_334[&quot;vector_to_axis&quot;] --&gt; f_251[&quot;normalized&quot;]
+    class f_334 func;
+    class f_251 func;
+    f_334[&quot;vector_to_axis&quot;] --&gt; f_249[&quot;norm&quot;]
+    class f_334 func;
+    class f_249 func;
+    f_334[&quot;vector_to_axis&quot;] --&gt;|point| f_115[&quot;angle&quot;]
+    class f_334 func;
+    class f_115 func;
+    f_278[&quot;rotaxis2m&quot;] --&gt; f_251[&quot;normalized&quot;]
+    class f_278 func;
+    class f_251 func;
+    f_278[&quot;rotaxis2m&quot;] --&gt; f_179[&quot;get_array&quot;]
+    class f_278 func;
+    class f_179 func;
+    f_271[&quot;refmat&quot;] --&gt; f_251[&quot;normalized&quot;]
+    class f_271 func;
+    class f_251 func;
+    f_271[&quot;refmat&quot;] --&gt; f_249[&quot;norm&quot;]
+    class f_271 func;
+    class f_249 func;
+    f_271[&quot;refmat&quot;] --&gt; f_250[&quot;normalize&quot;]
+    class f_271 func;
+    class f_250 func;
+    f_271[&quot;refmat&quot;] --&gt; f_179[&quot;get_array&quot;]
+    class f_271 func;
+    class f_179 func;
+    f_279[&quot;rotmat&quot;] --&gt;|q| f_271[&quot;refmat&quot;]
+    class f_279 func;
+    class f_271 func;
+    f_279[&quot;rotmat&quot;] --&gt;|p| f_271[&quot;refmat&quot;]
+    class f_279 func;
+    class f_271 func;
+    f_133[&quot;calc_angle&quot;] --&gt;|v3| f_115[&quot;angle&quot;]
+    class f_133 func;
+    class f_115 func;
+    f_134[&quot;calc_dihedral&quot;] --&gt;|v| f_115[&quot;angle&quot;]
+    class f_134 func;
+    class f_115 func;
+    f_134[&quot;calc_dihedral&quot;] --&gt;|w| f_115[&quot;angle&quot;]
+    class f_134 func;
+    class f_115 func;
+    f_250[&quot;normalize&quot;] --&gt; f_249[&quot;norm&quot;]
+    class f_250 func;
+    class f_249 func;
+    f_251[&quot;normalized&quot;] --&gt; f_143[&quot;copy&quot;]
+    class f_251 func;
+    class f_143 func;
+    f_251[&quot;normalized&quot;] --&gt; f_250[&quot;normalize&quot;]
+    class f_251 func;
+    class f_250 func;
+    f_115[&quot;angle&quot;] --&gt; f_249[&quot;norm&quot;]
+    class f_115 func;
+    class f_249 func;
+    f_207[&quot;get_spherical_coordinates&quot;] --&gt;|xyz| f_249[&quot;norm&quot;]
+    class f_207 func;
+    class f_249 func;
+    f_207[&quot;get_spherical_coordinates&quot;] --&gt; f_43[&quot;_get_azimuth&quot;]
+    class f_207 func;
+    class f_43 func;
+    f_142[&quot;coord_space&quot;] --&gt;|tm| f_302[&quot;set_homog_trans_mtx&quot;]
+    class f_142 func;
+    class f_302 func;
+    f_142[&quot;coord_space&quot;] --&gt;|p| f_207[&quot;get_spherical_coordinates&quot;]
+    class f_142 func;
+    class f_207 func;
+    f_142[&quot;coord_space&quot;] --&gt;|mrz| f_292[&quot;set_Z_homog_rot_mtx&quot;]
+    class f_142 func;
+    class f_292 func;
+    f_142[&quot;coord_space&quot;] --&gt;|mry| f_291[&quot;set_Y_homog_rot_mtx&quot;]
+    class f_142 func;
+    class f_291 func;
+    f_142[&quot;coord_space&quot;] --&gt; f_43[&quot;_get_azimuth&quot;]
+    class f_142 func;
+    class f_43 func;
+    f_142[&quot;coord_space&quot;] --&gt;|mrz2| f_292[&quot;set_Z_homog_rot_mtx&quot;]
+    class f_142 func;
+    class f_292 func;
+    f_142[&quot;coord_space&quot;] --&gt;|azimuth2&lt;br&gt;mrz2| f_292[&quot;set_Z_homog_rot_mtx&quot;]
+    class f_142 func;
+    class f_292 func;
+    f_245[&quot;multi_coord_space&quot;] --&gt;|p| f_249[&quot;norm&quot;]
+    class f_245 func;
+    class f_249 func;
+    f_245[&quot;multi_coord_space&quot;] --&gt; f_247[&quot;multi_rot_Z&quot;]
+    class f_245 func;
+    class f_247 func;
+    f_245[&quot;multi_coord_space&quot;] --&gt; f_246[&quot;multi_rot_Y&quot;]
+    class f_245 func;
+    class f_246 func;
+    f_245[&quot;multi_coord_space&quot;] --&gt;|azimuth2| f_247[&quot;multi_rot_Z&quot;]
+    class f_245 func;
+    class f_247 func;
+    f_245[&quot;multi_coord_space&quot;] --&gt;|polar_angle| f_246[&quot;multi_rot_Y&quot;]
+    class f_245 func;
+    class f_246 func;
+    f_245[&quot;multi_coord_space&quot;] --&gt;|azimuth| f_247[&quot;multi_rot_Z&quot;]
+    class f_245 func;
+    class f_247 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>__init__</code>:</h4>
+<blockquote>You need these <b>137</b> components:</blockquote>
+<code>__init__, _add_atom, _add_residue, _assign_atom_mass, _assign_element, _atm_dist_chk, _build_rak_cache, _compute_sphere, _format_mmcif_col, _generate_full_id, _get_atom_radius, _get_cb, _get_gly_cb_vector, _get_label_asym_id, _is_completely_disordered, _make_dssp_dict, _make_fragment_list, _map, _map_fragment_list, _peptide_check, _read_fragments, _read_vertex_array, _requires_newline, _requires_quote, _reset_full_id, _reset_properties, _revert_write, _save_dict, _save_structure, _setPrimary, _set_residues, _splitline, _test_equivalence, _tokenize, _translate_id, accept_atom, accept_chain, accept_model, accept_residue, add, add_residue, altloc_match, angle, annotate, as_handle, build_peptides, ca_depth, cast, close, copy, cr_class, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_id_list, disordered_get_list, disordered_has_id, disordered_select, dssp_dict_from_pdb_file, endswith, find, flag_disorder, gen_key, get, get_altloc, get_atoms, get_bfactor, get_chains, get_coord, get_full_id, get_id, get_level, get_list, get_models, get_name, get_occupancy, get_parent, get_residues, get_resname, get_serial_number, get_surface, get_unpacked_list, get_vector, has_id, index, init_chain, init_model, init_residue, init_seg, init_structure, is_aa, is_disordered, items, join, left_multiply, lower, make_dssp_dict, map, min_dist, norm, normalize, pretty_str, process_asa_data, process_rsa_data, psea, psea2HEC, qcp, rak, readlines, replace, residue_depth, rotaxis, rstrip, run, run_naccess, run_psea, save, search, seek, set, set_coord, set_parent, set_structure, sort, split, split_akl, startswith, strip, tell, truncate, unfold_entities, update, upper, values, version, write</code><br>
+<br>
+<h4>To extract <code>_hedraDict2chain</code>:</h4>
+<blockquote>You need these <b>45</b> components:</blockquote>
+<code>_build_rak_cache, _generate_full_id, _hedraDict2chain, _link_dihedra, _reset_full_id, _reset_properties, _translate_id, add, altloc_match, build_atomArray, build_edraArrays, copy, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, flag_disordered, get, get_altloc, get_atoms, get_chains, get_coord, get_full_id, get_id, get_models, get_occupancy, get_parent, get_residues, get_resname, get_serial_number, has_id, is_disordered, items, keys, set, set_bfactor, set_coord, set_occupancy, set_parent, split_akl, update, values</code><br>
+<br>
+<h4>To extract <code>_save_structure</code>:</h4>
+<blockquote>You need these <b>46</b> components:</blockquote>
+<code>_format_mmcif_col, _generate_full_id, _get_label_asym_id, _requires_newline, _requires_quote, _reset_full_id, _save_dict, _save_structure, _translate_id, accept_atom, accept_chain, accept_model, accept_residue, add, copy, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, get_altloc, get_bfactor, get_coord, get_full_id, get_id, get_list, get_name, get_occupancy, get_parent, get_resname, get_serial_number, get_unpacked_list, has_id, index, is_disordered, items, replace, set_coord, set_parent, split, startswith, strip, values, write</code><br>
+<br>
+<h4>To extract <code>get_structure</code>:</h4>
+<blockquote>You need these <b>81</b> components:</blockquote>
+<code>_build_structure, _chop_end_codes, _chop_end_misc, _format_date, _generate_full_id, _get_biomoltrans, _get_header, _get_journal, _get_references, _handle_PDB_exception, _is_completely_disordered, _nice_case, _parse, _parse_atom_from, _parse_coordinates, _parse_header_from, _parse_pdb_header_list, _parse_remark_465, _parse_residue_id_from, _parse_resolution_from, _reset_full_id, _translate_id, _update_header_entry, add, as_handle, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, find, flag_disorder, flag_disordered, get, get_altloc, get_coord, get_full_id, get_fullname, get_id, get_level, get_list, get_occupancy, get_parent, get_resname, get_structure, get_unpacked_list, has_id, index, init_atom, init_chain, init_model, init_residue, init_seg, init_structure, is_disordered, join, lower, map, readlines, replace, rstrip, search, seek, set_anisou, set_coord, set_header, set_line_counter, set_parent, set_sigatm, set_siguij, set_symmetry, split, startswith, strip, unfold_entities, update, upper, values</code><br>
+<br>
+<h4>To extract <code>_parse_pdb_header_list</code>:</h4>
+<blockquote>You need these <b>21</b> components:</blockquote>
+<code>_chop_end_codes, _chop_end_misc, _format_date, _get_biomoltrans, _get_journal, _get_references, _nice_case, _parse_pdb_header_list, _parse_remark_465, get_level, get_parent, index, join, lower, replace, search, split, startswith, strip, unfold_entities, upper</code><br>
+<br>
+<h4>To extract <code>_build_structure</code>:</h4>
+<blockquote>You need these <b>45</b> components:</blockquote>
+<code>_build_structure, _generate_full_id, _is_completely_disordered, _reset_full_id, _translate_id, add, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, flag_disordered, get_altloc, get_coord, get_full_id, get_fullname, get_id, get_list, get_occupancy, get_parent, get_resname, get_unpacked_list, has_id, init_atom, init_chain, init_model, init_residue, init_seg, init_structure, is_disordered, map, set_anisou, set_coord, set_line_counter, set_parent, set_symmetry, startswith, strip, update, upper, values</code><br>
+<br>
+<h4>To extract <code>_parse_coordinates</code>:</h4>
+<blockquote>You need these <b>45</b> components:</blockquote>
+<code>_generate_full_id, _handle_PDB_exception, _is_completely_disordered, _parse_coordinates, _reset_full_id, _translate_id, add, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, flag_disordered, get_altloc, get_coord, get_full_id, get_fullname, get_id, get_list, get_occupancy, get_parent, get_resname, get_unpacked_list, has_id, init_atom, init_chain, init_model, init_residue, init_seg, is_disordered, rstrip, set_anisou, set_coord, set_line_counter, set_parent, set_sigatm, set_siguij, split, strip, upper, values</code><br>
+<br>
+<h4>To extract <code>read_PIC</code>:</h4>
+<blockquote>You need these <b>84</b> components:</blockquote>
+<code>_build_structure, _chop_end_codes, _chop_end_misc, _format_date, _generate_full_id, _get_biomoltrans, _get_header, _get_journal, _get_references, _handle_PDB_exception, _is_completely_disordered, _nice_case, _parse, _parse_atom_from, _parse_coordinates, _parse_header_from, _parse_pdb_header_list, _parse_remark_465, _parse_residue_id_from, _parse_resolution_from, _reset_full_id, _reset_properties, _translate_id, _update_header_entry, add, as_handle, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, find, flag_disorder, flag_disordered, get, get_altloc, get_coord, get_full_id, get_fullname, get_id, get_level, get_list, get_occupancy, get_parent, get_resname, get_structure, get_unpacked_list, has_id, index, init_atom, init_chain, init_model, init_residue, init_seg, init_structure, is_disordered, join, lower, map, read_PIC, readlines, replace, rstrip, search, seek, set, set_anisou, set_coord, set_header, set_line_counter, set_parent, set_sigatm, set_siguij, set_symmetry, split, startswith, strip, unfold_entities, update, upper, values</code><br>
+<br>
+<h4>To extract <code>_write_SCAD</code>:</h4>
+<blockquote>You need these <b>52</b> components:</blockquote>
+<code>_default_startpos, _generate_full_id, _get_azimuth, _get_startpos, _reset_full_id, _reset_properties, _translate_id, _writeSCAD_dihed, _write_SCAD, _write_mtx, add, altloc_match, assemble, assemble_residues, assemble_residues_ser, cast, clear_transforms, coord_space, disordered_get, disordered_get_list, get, get_chains, get_full_id, get_id, get_models, get_parent, get_resname, get_spherical_coordinates, has_id, init_atom_coords, internal_to_atom_coordinates, is_backbone, is_disordered, items, keys, multi_coord_space, multi_rot_Y, multi_rot_Z, norm, pop, pretty_str, propagate_changes, rak, set, set_Y_homog_rot_mtx, set_Z_homog_rot_mtx, set_accuracy_95, set_homog_trans_mtx, set_parent, split_akl, values, write</code><br>
+<br>
+<h4>To extract <code>save</code>:</h4>
+<blockquote>You need these <b>52</b> components:</blockquote>
+<code>_format_mmcif_col, _generate_full_id, _get_label_asym_id, _requires_newline, _requires_quote, _reset_full_id, _revert_write, _save_dict, _save_structure, _translate_id, accept_atom, accept_chain, accept_model, accept_residue, add, close, copy, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, get_altloc, get_bfactor, get_coord, get_full_id, get_id, get_list, get_name, get_occupancy, get_parent, get_resname, get_serial_number, get_unpacked_list, has_id, index, is_disordered, items, replace, save, seek, set_coord, set_parent, split, startswith, strip, tell, truncate, values, write</code><br>
+<br>
+<h4>To extract <code>Main_Script</code>:</h4>
+<blockquote>You need these <b>103</b> components:</blockquote>
+<code>Main_Script, _build_structure, _chop_end_codes, _chop_end_misc, _format_date, _generate_full_id, _get_biomoltrans, _get_header, _get_journal, _get_references, _handle_PDB_exception, _is_completely_disordered, _nice_case, _parse, _parse_atom_from, _parse_coordinates, _parse_header_from, _parse_pdb_header_list, _parse_remark_465, _parse_residue_id_from, _parse_resolution_from, _print_default_format_warning, _reset_full_id, _translate_id, _update_header_entry, add, as_handle, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, download_all_assemblies, download_entire_pdb, download_obsolete_entries, find, flag_disorder, flag_disordered, get, get_all_assemblies, get_all_entries, get_all_obsolete, get_altloc, get_coord, get_full_id, get_fullname, get_id, get_level, get_list, get_occupancy, get_parent, get_recent_changes, get_resname, get_status_list, get_structure, get_unpacked_list, has_id, index, init_atom, init_chain, init_model, init_residue, init_seg, init_structure, is_disordered, items, join, lower, map, namedtuple, read, readlines, replace, retrieve_assembly_file, retrieve_pdb_file, rstrip, search, seek, set_anisou, set_coord, set_header, set_line_counter, set_parent, set_sigatm, set_siguij, set_symmetry, split, startswith, strip, submit, unfold_entities, update, update_pdb, upper, urlcleanup, urlopen, urlretrieve, values, write, writelines</code><br>
+<br>
+<h4>To extract <code>write_PIC</code>:</h4>
+<blockquote>You need these <b>55</b> components:</blockquote>
+<code>_enumerate_entity_atoms, _generate_full_id, _get_ak_tuple, _get_angle_for_tuple, _pdb_atom_string, _reset_full_id, _residue_string, _translate_id, _wpr, _write_PIC, _write_pic_bfac, add, as_handle, bits, cast, copy, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, enumerate_atoms, flag_disorder, get, get_altloc, get_atoms, get_bfactor, get_chains, get_coord, get_full_id, get_id, get_list, get_models, get_occupancy, get_parent, get_residues, get_resname, get_segid, get_serial_number, get_unpacked_list, has_id, is_disordered, pdb_date, pick_angle, rak, set_coord, set_parent, set_serial_number, split, startswith, upper, values, write, write_PIC</code><br>
+<br>
+<h4>To extract <code>internal_to_atom_coordinates</code>:</h4>
+<blockquote>You need these <b>44</b> components:</blockquote>
+<code>_default_startpos, _generate_full_id, _get_azimuth, _get_startpos, _reset_full_id, _reset_properties, _translate_id, add, altloc_match, assemble, assemble_residues, assemble_residues_ser, cast, coord_space, disordered_get, disordered_get_list, get, get_chains, get_full_id, get_id, get_models, get_parent, get_resname, get_spherical_coordinates, has_id, init_atom_coords, internal_to_atom_coordinates, is_disordered, keys, multi_coord_space, multi_rot_Y, multi_rot_Z, norm, pop, pretty_str, propagate_changes, rak, set, set_Y_homog_rot_mtx, set_Z_homog_rot_mtx, set_homog_trans_mtx, set_parent, split_akl, values</code><br>
+<br>
+<h4>To extract <code>_create_edra</code>:</h4>
+<blockquote>You need these <b>29</b> components:</blockquote>
+<code>_build_rak_cache, _create_edra, _gen_edra, _generate_full_id, _get_hedron, _link_dihedra, _reset_full_id, _reset_properties, _set_hedra, _translate_id, add, altloc_match, cast, disordered_get, disordered_get_list, get, get_full_id, get_id, get_parent, get_resname, has_id, is_disordered, items, rak, set, set_parent, split_akl, update, values</code><br>
+<br>
+<h4>To extract <code>disordered_add</code>:</h4>
+<blockquote>You need these <b>15</b> components:</blockquote>
+<code>_generate_full_id, _reset_full_id, disordered_add, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, get_altloc, get_full_id, get_id, get_occupancy, get_parent, get_resname, set_parent, values</code><br>
+<br>
+<h4>To extract <code>write_SCAD</code>:</h4>
+<blockquote>You need these <b>77</b> components:</blockquote>
+<code>_build_rak_cache, _create_edra, _default_startpos, _gen_edra, _generate_full_id, _get_azimuth, _get_hedron, _get_startpos, _link_dihedra, _reset_full_id, _reset_properties, _set_hedra, _spec_glyCB, _translate_id, _writeSCAD_dihed, _write_SCAD, _write_mtx, add, altloc_match, as_handle, assemble, assemble_residues, assemble_residues_ser, atom_to_internal_coordinates, build_atomArray, build_edraArrays, cast, clear_transforms, coord_space, copy, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, get, get_altloc, get_chains, get_coord, get_full_id, get_id, get_models, get_occupancy, get_parent, get_resname, get_spherical_coordinates, has_id, homog_scale_mtx, init_atom_coords, init_edra, internal_to_atom_coordinates, is_backbone, is_disordered, items, keys, multi_coord_space, multi_rot_Y, multi_rot_Z, norm, pop, pretty_str, propagate_changes, rak, set, set_Y_homog_rot_mtx, set_Z_homog_rot_mtx, set_accuracy_95, set_coord, set_homog_trans_mtx, set_parent, split_akl, update, values, write, write_SCAD</code><br>
+<br>
+<h4>To extract <code>init_residue</code>:</h4>
+<blockquote>You need these <b>29</b> components:</blockquote>
+<code>_generate_full_id, _is_completely_disordered, _reset_full_id, _translate_id, add, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, flag_disorder, get_altloc, get_coord, get_full_id, get_id, get_list, get_occupancy, get_parent, get_resname, get_unpacked_list, has_id, init_residue, is_disordered, set_coord, set_parent, values</code><br>
+<br>
+<h4>To extract <code>structure_rebuild_test</code>:</h4>
+<blockquote>You need these <b>149</b> components:</blockquote>
+<code>_atmfid_d2h, _build_rak_cache, _build_structure, _chop_end_codes, _chop_end_misc, _cmp_atm, _cmp_res, _create_edra, _default_startpos, _enumerate_entity_atoms, _format_date, _gen_edra, _generate_full_id, _get_ak_tuple, _get_angle_for_tuple, _get_azimuth, _get_biomoltrans, _get_header, _get_hedron, _get_journal, _get_references, _get_startpos, _handle_PDB_exception, _is_completely_disordered, _link_dihedra, _nice_case, _parse, _parse_atom_from, _parse_coordinates, _parse_header_from, _parse_pdb_header_list, _parse_remark_465, _parse_residue_id_from, _parse_resolution_from, _pdb_atom_string, _reset_full_id, _reset_properties, _residue_string, _set_hedra, _spec_glyCB, _translate_id, _update_header_entry, _wpr, _write_PIC, _write_pic_bfac, add, altloc_match, as_handle, assemble, assemble_residues, assemble_residues_ser, atom_to_internal_coordinates, bits, build_atomArray, build_edraArrays, cast, compare_residues, coord_space, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, enumerate_atoms, find, flag_disorder, flag_disordered, get, get_altloc, get_atoms, get_bfactor, get_chains, get_coord, get_full_id, get_fullname, get_id, get_level, get_list, get_models, get_occupancy, get_parent, get_residues, get_resname, get_segid, get_serial_number, get_spherical_coordinates, get_structure, get_unpacked_list, has_id, index, init_atom, init_atom_coords, init_chain, init_edra, init_model, init_residue, init_seg, init_structure, internal_to_atom_coordinates, is_disordered, items, join, keys, lower, map, multi_coord_space, multi_rot_Y, multi_rot_Z, norm, pdb_date, pick_angle, pop, pretty_str, propagate_changes, rak, read_PIC, readlines, replace, report_IC, rstrip, search, seek, set, set_Y_homog_rot_mtx, set_Z_homog_rot_mtx, set_anisou, set_coord, set_header, set_homog_trans_mtx, set_line_counter, set_parent, set_serial_number, set_sigatm, set_siguij, set_symmetry, split, split_akl, startswith, strip, structure_rebuild_test, unfold_entities, update, upper, values, write, write_PIC</code><br>
+<br>
+<h4>To extract <code>write_PDB</code>:</h4>
+<blockquote>You need these <b>72</b> components:</blockquote>
+<code>_enumerate_entity_atoms, _format_mmcif_col, _generate_full_id, _get_label_asym_id, _is_completely_disordered, _requires_newline, _requires_quote, _reset_full_id, _revert_write, _save_dict, _save_structure, _translate_id, accept_atom, accept_chain, accept_model, accept_residue, add, as_handle, close, copy, detach_child, detach_parent, disordered_add, disordered_get, disordered_get_list, disordered_has_id, disordered_select, enumerate_atoms, flag_disorder, get, get_altloc, get_atoms, get_bfactor, get_chains, get_coord, get_full_id, get_id, get_list, get_models, get_name, get_occupancy, get_parent, get_residues, get_resname, get_serial_number, get_unpacked_list, has_id, index, init_chain, init_model, init_residue, init_seg, init_structure, is_disordered, items, pdb_date, replace, save, seek, set_coord, set_parent, set_serial_number, set_structure, split, startswith, strip, tell, truncate, upper, values, write, write_PDB</code><br>
+<br>
+<h4>To extract <code>assemble</code>:</h4>
+<blockquote>You need these <b>32</b> components:</blockquote>
+<code>_default_startpos, _generate_full_id, _get_azimuth, _get_startpos, _reset_full_id, _reset_properties, _translate_id, add, altloc_match, assemble, cast, coord_space, disordered_get, disordered_get_list, get, get_full_id, get_id, get_parent, get_resname, get_spherical_coordinates, has_id, is_disordered, norm, pop, rak, set, set_Y_homog_rot_mtx, set_Z_homog_rot_mtx, set_homog_trans_mtx, set_parent, split_akl, values</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>calc_angle(v1, v2, v3)</code></h4>
+<blockquote>Calculate angle method.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Calculate angle method.
+
+Calculate the angle between 3 vectors
+representing 3 connected points.
+
+:param v1, v2, v3: the tree points that define the angle
+:type v1, v2, v3: L{Vector}
+
+:return: angle
+:rtype: float</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>calc_dihedral(v1, v2, v3, v4)</code></h4>
+<blockquote>Calculate dihedral angle method.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Calculate dihedral angle method.
+
+Calculate the dihedral angle between 4 vectors
+representing 4 connected points. The angle is in
+]-pi, pi].
+
+:param v1, v2, v3, v4: the four points that define the dihedral angle
+:type v1, v2, v3, v4: L{Vector}</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>extract(structure, chain_id, start, end, filename)</code></h4>
+<blockquote>Write out selected portion to filename.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Write out selected portion to filename.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>get_surface(model, MSMS=&#x27;msms&#x27;)</code></h4>
+<blockquote>Represent molecular surface as a vertex list array.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Represent molecular surface as a vertex list array.
+
+Return a NumPy array that represents the vertex list of the
+molecular surface.
+
+Arguments:
+ - model - BioPython PDB model object (used to get atoms for input model)
+ - MSMS - msms executable (used as argument to subprocess.call)</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>is_aa(residue, standard=False)</code></h4>
+<blockquote>Return True if residue object/string is an amino acid.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Return True if residue object/string is an amino acid.
+
+:param residue: a L{Residue} object OR a three letter amino acid code
+:type residue: L{Residue} or string
+
+:param standard: flag to check for the 20 AA (default false)
+:type standard: boolean
+
+&gt;&gt;&gt; is_aa(&#x27;ALA&#x27;)
+True
+
+Known three letter codes for modified amino acids are supported,
+
+&gt;&gt;&gt; is_aa(&#x27;FME&#x27;)
+True
+&gt;&gt;&gt; is_aa(&#x27;FME&#x27;, standard=True)
+False</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>is_nucleic(residue, standard=False)</code></h4>
+<blockquote>Return True if residue object/string is a nucleic acid.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Return True if residue object/string is a nucleic acid.
+
+:param residue: a L{Residue} object OR a three letter code
+:type residue: L{Residue} or string
+
+:param standard: flag to check for the 8 (DNA + RNA) canonical bases.
+    Default is False.
+:type standard: boolean
+
+&gt;&gt;&gt; is_nucleic(&#x27;DA &#x27;)
+True
+
+&gt;&gt;&gt; is_nucleic(&#x27;A  &#x27;)
+True
+
+Known three letter codes for modified nucleotides are supported,
+
+&gt;&gt;&gt; is_nucleic(&#x27;A2L&#x27;)
+True
+&gt;&gt;&gt; is_nucleic(&#x27;A2L&#x27;, standard=True)
+False</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>m2rotaxis(m)</code></h4>
+<blockquote>Return angles, axis pair that corresponds to rotation matrix m.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Return angles, axis pair that corresponds to rotation matrix m.
+
+The case where ``m`` is the identity matrix corresponds to a singularity
+where any rotation axis is valid. In that case, ``Vector([1, 0, 0])``,
+is returned.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>make_dssp_dict(filename)</code></h4>
+<blockquote>DSSP dictionary mapping identifiers to properties.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>DSSP dictionary mapping identifiers to properties.
+
+Return a DSSP dictionary that maps (chainid, resid) to
+aa, ss and accessibility, from a DSSP file.
+
+Parameters
+----------
+filename : string
+    the DSSP output file</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>parse_pdb_header(infile)</code></h4>
+<blockquote>Return the header lines of a pdb file as a dictionary.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Return the header lines of a pdb file as a dictionary.
+
+Dictionary keys are: head, deposition_date, release_date, structure_method,
+resolution, structure_reference, journal_reference, author and
+compound.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>refmat(p, q)</code></h4>
+<blockquote>Return a (left multiplying) matrix that mirrors p onto q.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Return a (left multiplying) matrix that mirrors p onto q.
+
+:type p,q: L{Vector}
+:return: The mirror operation, a 3x3 NumPy array.
+
+Examples
+--------
+&gt;&gt;&gt; from Bio.PDB.vectors import refmat
+&gt;&gt;&gt; p, q = Vector(1, 2, 3), Vector(2, 3, 5)
+&gt;&gt;&gt; mirror = refmat(p, q)
+&gt;&gt;&gt; qq = p.left_multiply(mirror)
+&gt;&gt;&gt; print(q)
+&lt;Vector 2.00, 3.00, 5.00&gt;
+&gt;&gt;&gt; print(qq)
+&lt;Vector 1.21, 1.82, 3.03&gt;</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>rotaxis(theta, vector)</code></h4>
+<blockquote>Calculate left multiplying rotation matrix.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Calculate left multiplying rotation matrix.
+
+Calculate a left multiplying rotation matrix that rotates
+theta rad around vector.
+
+:type theta: float
+:param theta: the rotation angle
+
+:type vector: L{Vector}
+:param vector: the rotation axis
+
+:return: The rotation matrix, a 3x3 NumPy array.
+
+Examples
+--------
+&gt;&gt;&gt; from numpy import pi
+&gt;&gt;&gt; from Bio.PDB.vectors import rotaxis2m
+&gt;&gt;&gt; from Bio.PDB.vectors import Vector
+&gt;&gt;&gt; m = rotaxis2m(pi, Vector(1, 0, 0))
+&gt;&gt;&gt; Vector(1, 2, 3).left_multiply(m)
+&lt;Vector 1.00, -2.00, -3.00&gt;</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>rotaxis2m(theta, vector)</code></h4>
+<blockquote>Calculate left multiplying rotation matrix.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Calculate left multiplying rotation matrix.
+
+Calculate a left multiplying rotation matrix that rotates
+theta rad around vector.
+
+:type theta: float
+:param theta: the rotation angle
+
+:type vector: L{Vector}
+:param vector: the rotation axis
+
+:return: The rotation matrix, a 3x3 NumPy array.
+
+Examples
+--------
+&gt;&gt;&gt; from numpy import pi
+&gt;&gt;&gt; from Bio.PDB.vectors import rotaxis2m
+&gt;&gt;&gt; from Bio.PDB.vectors import Vector
+&gt;&gt;&gt; m = rotaxis2m(pi, Vector(1, 0, 0))
+&gt;&gt;&gt; Vector(1, 2, 3).left_multiply(m)
+&lt;Vector 1.00, -2.00, -3.00&gt;</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>rotmat(p, q)</code></h4>
+<blockquote>Return a (left multiplying) matrix that rotates p onto q.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Return a (left multiplying) matrix that rotates p onto q.
+
+:param p: moving vector
+:type p: L{Vector}
+
+:param q: fixed vector
+:type q: L{Vector}
+
+:return: rotation matrix that rotates p onto q
+:rtype: 3x3 NumPy array
+
+Examples
+--------
+&gt;&gt;&gt; from Bio.PDB.vectors import rotmat
+&gt;&gt;&gt; p, q = Vector(1, 2, 3), Vector(2, 3, 5)
+&gt;&gt;&gt; r = rotmat(p, q)
+&gt;&gt;&gt; print(q)
+&lt;Vector 2.00, 3.00, 5.00&gt;
+&gt;&gt;&gt; print(p)
+&lt;Vector 1.00, 2.00, 3.00&gt;
+&gt;&gt;&gt; p.left_multiply(r)
+&lt;Vector 1.21, 1.82, 3.03&gt;</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>vector_to_axis(line, point)</code></h4>
+<blockquote>Vector to axis method.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Vector to axis method.
+
+Return the vector between a point and
+the closest point on a line (ie. the perpendicular
+projection of the point on the line).
+
+:type line: L{Vector}
+:param line: vector defining a line
+
+:type point: L{Vector}
+:param point: vector defining the point</code></pre>
+<br>
+</details><br>
+<br>
+<h3>📦 Classes</h3>
+<h4><code>class CEAligner(window_size=8, max_gap=30)</code></h4>
+Protein Structure Alignment by Combinatorial Extension.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, window_size=8, max_gap=30)</code></td><td>Superimpose one set of atoms onto another using structural data.</td></tr><tr><td><b>align</b></td><td><code>(self, structure, transform=True, *, final_optimization=True)</code></td><td>Align the input structure onto the reference structure.</td></tr><tr><td><b>get_guide_coord_from_structure</b></td><td><code>(self, structure)</code></td><td>Return the coordinates of guide atoms in the structure.</td></tr><tr><td><b>set_reference</b></td><td><code>(self, structure)</code></td><td>Define a reference structure onto which all others will be aligned.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class CaPPBuilder(radius=4.3)</code></h4>
+Use CA--CA distance to find polypeptides.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, radius=4.3)</code></td><td>Initialize the class.</td></tr><tr><td><b>build_peptides</b></td><td><code>(self, entity, aa_only=1)</code></td><td>Build and return a list of Polypeptide objects.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class DSSP(model, in_file, dssp=&#x27;dssp&#x27;, acc_array=&#x27;Sander&#x27;, file_type=&#x27;&#x27;)</code></h4>
+Run DSSP and parse secondary structure and accessibility.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, model, in_file, dssp=&#x27;dssp&#x27;, acc_array=&#x27;Sander&#x27;, file_type=&#x27;&#x27;)</code></td><td>Create a DSSP object.</td></tr><tr><td><b>keys</b></td><td><code>(self)</code></td><td>Return the list of residues.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class ExposureCN(model, radius=12.0, offset=0)</code></h4>
+Residue exposure as number of CA atoms around its CA atom.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, model, radius=12.0, offset=0)</code></td><td>Initialize class.</td></tr><tr><td><b>keys</b></td><td><code>(self)</code></td><td>Return the list of residues.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class FastMMCIFParser(structure_builder=None, auth_chains=True, auth_residues=True, QUIET=False)</code></h4>
+Parse an MMCIF file and return a Structure object.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, structure_builder=None, auth_chains=True, auth_residues=True, QUIET=False)</code></td><td>Create a FastMMCIFParser object.</td></tr><tr><td><b>get_structure</b></td><td><code>(self, structure_id, filename)</code></td><td>Return the structure.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class FragmentMapper(model, lsize=20, flength=5, fdir=&#x27;.&#x27;)</code></h4>
+Map polypeptides in a model to lists of representative fragments.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, model, lsize=20, flength=5, fdir=&#x27;.&#x27;)</code></td><td>Create instance of FragmentMapper.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class HSExposureCA(model, radius=12, offset=0)</code></h4>
+Class to calculate HSE based on the approximate CA-CB vectors.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, model, radius=12, offset=0)</code></td><td>Initialize class.</td></tr><tr><td><b>keys</b></td><td><code>(self)</code></td><td>Return the list of residues.</td></tr><tr><td><b>pcb_vectors_pymol</b></td><td><code>(self, filename=&#x27;hs_exp.py&#x27;)</code></td><td>Write PyMol script for visualization.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class HSExposureCB(model, radius=12, offset=0)</code></h4>
+Class to calculate HSE based on the real CA-CB vectors.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, model, radius=12, offset=0)</code></td><td>Initialize class.</td></tr><tr><td><b>keys</b></td><td><code>(self)</code></td><td>Return the list of residues.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class MMCIFIO()</code></h4>
+Write a Structure object or a mmCIF dictionary as a mmCIF file.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self)</code></td><td>Initialise.</td></tr><tr><td><b>save</b></td><td><code>(self, filepath, select=&lt;Select all&gt;, preserve_atom_numbering=False)</code></td><td>Save the structure to a file.</td></tr><tr><td><b>set_dict</b></td><td><code>(self, dic)</code></td><td>Set the mmCIF dictionary to be written out.</td></tr><tr><td><b>set_structure</b></td><td><code>(self, pdb_object)</code></td><td>Check what the user is providing and build a structure.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class MMCIFParser(structure_builder=None, auth_chains=True, auth_residues=True, QUIET=False)</code></h4>
+Parse a mmCIF file and return a Structure object.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, structure_builder=None, auth_chains=True, auth_residues=True, QUIET=False)</code></td><td>Create a PDBParser object.</td></tr><tr><td><b>get_structure</b></td><td><code>(self, structure_id, filename)</code></td><td>Return the structure.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class NeighborSearch(atom_list, bucket_size=10)</code></h4>
+Class for neighbor searching.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, atom_list, bucket_size=10)</code></td><td>Create the object.</td></tr><tr><td><b>search</b></td><td><code>(self, center, radius, level=&#x27;A&#x27;)</code></td><td>Neighbor search.</td></tr><tr><td><b>search_all</b></td><td><code>(self, radius, level=&#x27;A&#x27;)</code></td><td>All neighbor search.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class PDBIO(use_model_flag=0, is_pqr=False)</code></h4>
+Write a Structure object (or a subset of a Structure object) as a PDB or PQR file.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, use_model_flag=0, is_pqr=False)</code></td><td>Create the PDBIO object.</td></tr><tr><td><b>save</b></td><td><code>(self, file, select=&lt;Select all&gt;, write_end=True, preserve_atom_numbering=False)</code></td><td>Save structure to a file.</td></tr><tr><td><b>set_structure</b></td><td><code>(self, pdb_object)</code></td><td>Check what the user is providing and build a structure.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class PDBList(server=&#x27;https://files.wwpdb.org&#x27;, pdb=None, obsolete_pdb=None, verbose=True)</code></h4>
+Quick access to the structure lists on the PDB or its mirrors.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, server=&#x27;https://files.wwpdb.org&#x27;, pdb=None, obsolete_pdb=None, verbose=True)</code></td><td>Initialize the class with the default server or a custom one.</td></tr><tr><td><b>download_all_assemblies</b></td><td><code>(self, listfile: Optional[str] = None, file_format: Optional[str] = None, max_num_threads: Optional[int] = None)</code></td><td>Retrieve all biological assemblies not in the local PDB copy.</td></tr><tr><td><b>download_entire_pdb</b></td><td><code>(self, listfile: Optional[str] = None, file_format: Optional[str] = None, max_num_threads: Optional[int] = None)</code></td><td>Retrieve all PDB entries not present in the local PDB copy.</td></tr><tr><td><b>download_obsolete_entries</b></td><td><code>(self, listfile: Optional[str] = None, file_format: Optional[str] = None, max_num_threads: Optional[int] = None)</code></td><td>Retrieve all obsolete PDB entries not present in local obsolete PDB copy.</td></tr><tr><td><b>download_pdb_files</b></td><td><code>(self, pdb_codes: list[str], obsolete: bool = False, pdir: Optional[str] = None, file_format: Optional[str] = None, overwrite: bool = False, max_num_threads: Optional[int] = None)</code></td><td>Fetch set of PDB structure files from the PDB server and store them locally.</td></tr><tr><td><b>get_all_assemblies</b></td><td><code>(self, file_format: str = &#x27;&#x27;) -&gt; list[tuple[str, str]]</code></td><td>Retrieve the list of PDB entries with an associated bio assembly.</td></tr><tr><td><b>get_all_entries</b></td><td><code>(self)</code></td><td>Retrieve the big file containing all the PDB entries and some annotation.</td></tr><tr><td><b>get_all_obsolete</b></td><td><code>(self)</code></td><td>Return a list of all obsolete entries ever in the PDB.</td></tr><tr><td><b>get_recent_changes</b></td><td><code>(self)</code></td><td>Return three lists of the newest weekly files (added,mod,obsolete).</td></tr><tr><td><b>get_seqres_file</b></td><td><code>(self, savefile=&#x27;pdb_seqres.txt&#x27;)</code></td><td>Retrieve and save a (big) file containing all the sequences of PDB entries.</td></tr><tr><td><b>get_status_list</b></td><td><code>(url)</code></td><td>Retrieve a list of pdb codes in the weekly pdb status file from given URL.</td></tr><tr><td><b>retrieve_assembly_file</b></td><td><code>(self, pdb_code, assembly_num, pdir=None, file_format=None, overwrite=False)</code></td><td>Fetch one or more assembly structures associated with a PDB entry.</td></tr><tr><td><b>retrieve_pdb_file</b></td><td><code>(self, pdb_code, obsolete=False, pdir=None, file_format=None, overwrite=False)</code></td><td>Fetch PDB structure file from PDB server, and store it locally.</td></tr><tr><td><b>update_pdb</b></td><td><code>(self, file_format=None, with_assemblies=False)</code></td><td>Update your local copy of the PDB files.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class PDBMLParser()</code></h4>
+A parser for PDBML (PDB XML) files. See https://pdbml.wwpdb.org/.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self)</code></td><td>Initialize a PDBML parser.</td></tr><tr><td><b>get_structure</b></td><td><code>(self, source: Union[int, str, bytes, os.PathLike, TextIO]) -&gt; Bio.PDB.Structure.Structure</code></td><td>Parse and return the PDB structure from XML source.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class PDBParser(PERMISSIVE=True, get_header=False, structure_builder=None, QUIET=False, is_pqr=False)</code></h4>
+Parse a PDB file and return a Structure object.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, PERMISSIVE=True, get_header=False, structure_builder=None, QUIET=False, is_pqr=False)</code></td><td>Create a PDBParser object.</td></tr><tr><td><b>get_header</b></td><td><code>(self)</code></td><td>Return the header.</td></tr><tr><td><b>get_structure</b></td><td><code>(self, id, file)</code></td><td>Return the structure.</td></tr><tr><td><b>get_trailer</b></td><td><code>(self)</code></td><td>Return the trailer.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class PPBuilder(radius=1.8)</code></h4>
+Use C--N distance to find polypeptides.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, radius=1.8)</code></td><td>Initialize the class.</td></tr><tr><td><b>build_peptides</b></td><td><code>(self, entity, aa_only=1)</code></td><td>Build and return a list of Polypeptide objects.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class ResidueDepth(model, msms_exec=None)</code></h4>
+Calculate residue and CA depth for all residues.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, model, msms_exec=None)</code></td><td>Initialize the class.</td></tr><tr><td><b>keys</b></td><td><code>(self)</code></td><td>Return the list of residues.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class Select()</code></h4>
+Select everything for PDB output (for use as a base class).<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>accept_atom</b></td><td><code>(self, atom)</code></td><td>Overload this to reject atoms for output.</td></tr><tr><td><b>accept_chain</b></td><td><code>(self, chain)</code></td><td>Overload this to reject chains for output.</td></tr><tr><td><b>accept_model</b></td><td><code>(self, model)</code></td><td>Overload this to reject models for output.</td></tr><tr><td><b>accept_residue</b></td><td><code>(self, residue)</code></td><td>Overload this to reject residues for output.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class ShrakeRupley(probe_radius=1.4, n_points=100, radii_dict=None)</code></h4>
+Calculates SASAs using the Shrake-Rupley algorithm.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, probe_radius=1.4, n_points=100, radii_dict=None)</code></td><td>Initialize the class.</td></tr><tr><td><b>compute</b></td><td><code>(self, entity, level=&#x27;A&#x27;)</code></td><td>Calculate surface accessibility surface area for an entity.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class StructureAlignment(fasta_align, m1, m2, si=0, sj=1)</code></h4>
+Class to align two structures based on an alignment of their sequences.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, fasta_align, m1, m2, si=0, sj=1)</code></td><td>Initialize.</td></tr><tr><td><b>get_iterator</b></td><td><code>(self)</code></td><td>Create an iterator over all residue pairs.</td></tr><tr><td><b>get_maps</b></td><td><code>(self)</code></td><td>Map residues between the structures.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class Superimposer()</code></h4>
+Rotate/translate one set of atoms on top of another to minimize RMSD.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self)</code></td><td>Initialize the class.</td></tr><tr><td><b>apply</b></td><td><code>(self, atom_list)</code></td><td>Rotate/translate a list of atoms.</td></tr><tr><td><b>set_atoms</b></td><td><code>(self, fixed, moving)</code></td><td>Prepare translation/rotation to minimize RMSD between atoms.</td></tr></tbody></table>
+<br>
+<br>
+<h4><code>class Vector(x, y=None, z=None)</code></h4>
+3D vector.<br>
+<br>
+<table><thead><tr><th>Method</th><th>Signature</th><th>Description</th></tr></thead><tbody><tr><td><b>__init__</b></td><td><code>(self, x, y=None, z=None)</code></td><td>Initialize the class.</td></tr><tr><td><b>angle</b></td><td><code>(self, other)</code></td><td>Return angle between two vectors.</td></tr><tr><td><b>copy</b></td><td><code>(self)</code></td><td>Return a deep copy of the Vector.</td></tr><tr><td><b>get_array</b></td><td><code>(self)</code></td><td>Return (a copy of) the array of coordinates.</td></tr><tr><td><b>left_multiply</b></td><td><code>(self, matrix)</code></td><td>Return Vector=Matrix x Vector.</td></tr><tr><td><b>norm</b></td><td><code>(self)</code></td><td>Return vector norm.</td></tr><tr><td><b>normalize</b></td><td><code>(self)</code></td><td>Normalize the Vector object.</td></tr><tr><td><b>normalized</b></td><td><code>(self)</code></td><td>Return a normalized copy of the Vector.</td></tr><tr><td><b>normsq</b></td><td><code>(self)</code></td><td>Return square of vector norm.</td></tr><tr><td><b>right_multiply</b></td><td><code>(self, matrix)</code></td><td>Return Vector=Vector x Matrix.</td></tr></tbody></table>
+<br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    
