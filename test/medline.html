@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: Bio.Medline</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>Bio.Medline</code></h1>
+<b>File Path:</b> <code>/home/nicai_zht/miniconda3/envs/zht/lib/python3.13/site-packages/Bio/Medline/__init__.py</code><br>
+<br>
+<h2>Module Docstring</h2>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Code to work with Medline from the NCBI.
+
+Classes:
+ - Record           A dictionary holding Medline data.
+
+Functions:
+ - read             Reads one Medline record
+ - parse            Allows you to iterate over a bunch of Medline records</code></pre>
+<br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+- ✅ <b>Script Entry Point</b>: This module contains an <code>if __name__ == &#x27;__main__&#x27;:</code> block, meaning it can be run directly.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>Bio.Medline.parse</b>(<b>handle</b>)</td><td>Read Medline records one by one from the handle.</td></tr><tr><td><code>ƒ</code></td><td><b>Bio.Medline.read</b>(<b>handle</b>)</td><td>Read a single Medline record from the handle.</td></tr><tr><td><code>C</code></td><td><b>Bio.Medline.Record</b>(...)</td><td>A dictionary holding information from a Medline record.</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import Bio.Medline
+
+# --- Top 20 Ranked Functions ---
+# 1. parse
+result_1 = Bio.Medline.parse(handle=...)
+
+# 2. read
+result_2 = Bio.Medline.read(handle=...)
+
+# --- Top 20 Core Classes Initialization ---</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>_frozen_importlib_external</b></td><td>1</td></tr><tr><td><b>_frozen_importlib</b></td><td>1</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>_frozen_importlib_external</code></td><td>0.3701</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib</code></td><td>0.3701</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>Bio.Medline</code></td><td>0.2597</td><td>Internal</td><td>Utility / Core</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_1[&quot;Medline&quot;] -.-&gt; id_4[&quot;_frozen_importlib_external&quot;]
+    class id_1 core;
+    class id_4 external;
+    id_1[&quot;Medline&quot;] -.-&gt; id_0[&quot;_frozen_importlib&quot;]
+    class id_1 core;
+    class id_0 external;
+    id_3[&quot;Record&quot;] ==&gt; id_2[&quot;dict&quot;]
+    class id_3 core;
+    class id_2 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_1[&quot;read&quot;] --&gt;|handle| f_0[&quot;parse&quot;]
+    class f_1 func;
+    class f_0 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>read</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>parse, read</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>parse(handle)</code></h4>
+<blockquote>Read Medline records one by one from the handle.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Read Medline records one by one from the handle.
+
+The handle is either is a Medline file, a file-like object, or a list
+of lines describing one or more Medline records.
+
+Typical usage::
+
+    &gt;&gt;&gt; from Bio import Medline
+    &gt;&gt;&gt; with open(&quot;Medline/pubmed_result2.txt&quot;) as handle:
+    ...     records = Medline.parse(handle)
+    ...     for record in records:
+    ...         print(record[&#x27;TI&#x27;])
+    ...
+    A high level interface to SCOP and ASTRAL ...
+    GenomeDiagram: a python package for the visualization of ...
+    Open source clustering software.
+    PDB file parser and structure class implemented in Python.</code></pre>
+<br>
+</details><br>
+<br>
+<h4><code>read(handle)</code></h4>
+<blockquote>Read a single Medline record from the handle.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Read a single Medline record from the handle.
+
+The handle is either is a Medline file, a file-like object, or a list
+of lines describing a Medline record.
+
+Typical usage:
+
+    &gt;&gt;&gt; from Bio import Medline
+    &gt;&gt;&gt; with open(&quot;Medline/pubmed_result1.txt&quot;) as handle:
+    ...     record = Medline.read(handle)
+    ...     print(record[&#x27;TI&#x27;])
+    ...
+    The Bio* toolkits--a brief overview.</code></pre>
+<br>
+</details><br>
+<br>
+<h3>📦 Classes</h3>
+<h4><code>class Record(...)</code></h4>
+A dictionary holding information from a Medline record.<br>
+<br>
+<br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    

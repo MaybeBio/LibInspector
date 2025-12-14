@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: Bio.Geo</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>Bio.Geo</code></h1>
+<b>File Path:</b> <code>/home/nicai_zht/miniconda3/envs/zht/lib/python3.13/site-packages/Bio/Geo/__init__.py</code><br>
+<br>
+<h2>Module Docstring</h2>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Parser for files from NCBI&#x27;s Gene Expression Omnibus (GEO).
+
+http://www.ncbi.nlm.nih.gov/geo/</code></pre>
+<br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+- ℹ️ <b>No Direct Entry Point</b>: This module seems to be a library intended for import, not direct execution.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>Bio.Geo.parse</b>(<b>handle</b>)</td><td>Read Gene Expression Omnibus records from file handle.</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import Bio.Geo
+
+# --- Top 20 Ranked Functions ---
+# 1. parse
+result_1 = Bio.Geo.parse(handle=...)</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>_frozen_importlib_external</b></td><td>2</td></tr><tr><td><b>_frozen_importlib</b></td><td>2</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>_frozen_importlib_external</code></td><td>0.3246</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib</code></td><td>0.3246</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>Bio.Geo</code></td><td>0.1754</td><td>Internal</td><td>Utility / Core</td></tr><tr><td>4</td><td><code>Record</code></td><td>0.1754</td><td>Internal</td><td>Utility / Core</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_3[&quot;Geo&quot;] -.-&gt; id_1[&quot;_frozen_importlib_external&quot;]
+    class id_3 core;
+    class id_1 external;
+    id_3[&quot;Geo&quot;] -.-&gt; id_0[&quot;_frozen_importlib&quot;]
+    class id_3 core;
+    class id_0 external;
+    id_2[&quot;Record&quot;] -.-&gt; id_1[&quot;_frozen_importlib_external&quot;]
+    class id_2 core;
+    class id_1 external;
+    id_2[&quot;Record&quot;] -.-&gt; id_0[&quot;_frozen_importlib&quot;]
+    class id_2 core;
+    class id_0 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_3[&quot;parse&quot;] --&gt;|line| f_1[&quot;_read_key_value&quot;]
+    class f_3 func;
+    class f_1 func;
+    f_0[&quot;__str__&quot;] --&gt; f_2[&quot;out_block&quot;]
+    class f_0 func;
+    class f_2 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>parse</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>_read_key_value, parse</code><br>
+<br>
+<h4>To extract <code>__str__</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>__str__, out_block</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>parse(handle)</code></h4>
+<blockquote>Read Gene Expression Omnibus records from file handle.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Read Gene Expression Omnibus records from file handle.
+
+Returns a generator object which yields Bio.Geo.Record() objects.</code></pre>
+<br>
+</details><br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    
