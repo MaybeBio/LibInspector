@@ -24,6 +24,8 @@ In the era of AI for Science (AI4S) and rapid software development, we often tre
 
 ## 🚀 Key Features
 
+**🆕 Full release notes: [CHANGELOG.md](CHANGELOG.md)**
+
 ### 1. Intelligent Target Resolution (The "Trinity")
 LibInspector understands that code exists in different forms. It automatically detects and handles:
 *   📦 **Standard Libraries:** `pandas`, `requests`, `numpy`.

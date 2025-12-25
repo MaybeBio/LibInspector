@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Report: TensorVis.cli</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 1200px; margin: 0 auto; color: #333; }
+        h1, h2, h3 { color: #24292e; border-bottom: 1px solid #eaecef; padding-bottom: .3em; }
+        code { background-color: #f6f8fa; padding: 0.2em 0.4em; border-radius: 3px; font-family: monospace; }
+        pre { background-color: #f6f8fa; padding: 16px; overflow: auto; border-radius: 6px; }
+        blockquote { border-left: 4px solid #dfe2e5; color: #6a737d; padding-left: 1em; margin-left: 0; }
+        
+        /* Table Styles */
+        table { border-collapse: collapse; width: 100%; margin-bottom: 16px; display: block; overflow-x: auto; }
+        th, td { border: 1px solid #dfe2e5; padding: 6px 13px; }
+        th { background-color: #f6f8fa; font-weight: 600; }
+        tr:nth-child(2n) { background-color: #f6f8fa; }
+        
+        .mermaid { margin: 20px 0; text-align: center; }
+        details { margin-bottom: 10px; border: 1px solid #e1e4e8; border-radius: 6px; padding: 8px; }
+        summary { cursor: pointer; font-weight: bold; outline: none; }
+        
+        .edgeLabel {
+            font-size: 11px !important;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            padding: 2px !important;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation for <code>TensorVis.cli</code></h1>
+<blockquote><b>Discovered via:</b> <code>file</code> (original input: <code>../TensorVis/TensorVis/cli.py</code>)</blockquote>
+<br>
+<blockquote><b>Note:</b> Analyzed local file/package at <code>/data2/TensorVis/TensorVis/cli.py</code>.</blockquote>
+<br>
+<b>File Path:</b> <code>/data2/TensorVis/TensorVis/cli.py</code><br>
+<br>
+<h2>🧾 Metadata &amp; Diagnostics</h2>
+- <b>Used candidate:</b> <code>TensorVis.cli</code> (constructed_from_file)<br>
+<h3>Tried Candidates</h3>
+<table><thead><tr><th>Candidate</th><th>Hint</th><th>Status</th><th>Error</th></tr></thead><tbody><tr><td><code>TensorVis.cli</code></td><td>constructed_from_file</td><td>success</td><td><code></code></td></tr></tbody></table>
+<br>
+- <b>Run Mode:</b> dynamic import (module)<br>
+<h3>sys.path (head)</h3>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>/
+/data2
+/data2/TensorVis
+/data2/TensorVis/TensorVis
+/home/nicai_zht/miniconda3/envs/zht/bin
+/home/nicai_zht/software/AIUPred-2.1.2
+/home/nicai_zht/miniconda3/envs/zht/lib/python313.zip
+/home/nicai_zht/miniconda3/envs/zht/lib/python3.13</code></pre>
+<br>
+<br>
+<h2>🚦 Navigator: How to Drive</h2>
+This section helps you understand how to run this library from the command line or entry points.<br>
+- ✅ <b>Script Entry Point</b>: This module contains an <code>if __name__ == &#x27;__main__&#x27;:</code> block, meaning it can be run directly.<br>
+<br>
+<h3>🐍 Python API Usage (Inferred)</h3>
+Since no CLI entry point was found, here are the likely <b>Python API entry points</b> for your script:<br>
+<br>
+<h4>🚀 Top 20 Recommended Entry Points</h4>
+<table><thead><tr><th>Type</th><th>API</th><th>Description</th></tr></thead><tbody><tr><td><code>ƒ</code></td><td><b>TensorVis.cli.inspect_random</b>(shape, name)</td><td>Generate a random tensor of the specified shape and run the inspector.</td></tr><tr><td><code>ƒ</code></td><td><b>TensorVis.cli.viz_broadcast</b>(shape_a, shape_b)</td><td>Visualize Broadcasting Addition: A + B</td></tr><tr><td><code>ƒ</code></td><td><b>TensorVis.cli.viz_matmul</b>(m, k, n)</td><td>Visualize Matrix Multiplication: (M, K) @ (K, N) -&gt; (M, N)</td></tr><tr><td><code>ƒ</code></td><td><b>TensorVis.cli.viz_relu</b>(shape)</td><td>Visualize ReLU Activation</td></tr><tr><td><code>C</code></td><td><b>TensorVis.cli.DLTensorInspector</b>(<b>tensor</b>, name)</td><td>【深度学习张量全能显微镜】(Deep Learning Tensor Inspector)</td></tr><tr><td><code>C</code></td><td><b>TensorVis.cli.OpVisualizer</b>()</td><td>【张量手术台】(Tensor Operation Visualizer)</td></tr></tbody></table>
+<br>
+<blockquote><b>Note:</b> Bold parameters are required. Others are optional.</blockquote>
+<br>
+<h4>🧩 Code Snippets (Auto-Generated)</h4>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>import TensorVis.cli
+
+# --- Top 20 Ranked Functions ---
+# 1. inspect_random
+result_1 = TensorVis.cli.inspect_random()
+
+# 2. viz_broadcast
+result_2 = TensorVis.cli.viz_broadcast()
+
+# 3. viz_matmul
+result_3 = TensorVis.cli.viz_matmul()
+
+# 4. viz_relu
+result_4 = TensorVis.cli.viz_relu()
+
+# --- Top 20 Core Classes Initialization ---
+# 1. DLTensorInspector
+dltensorinspector = TensorVis.cli.DLTensorInspector(tensor=...)
+
+# 2. OpVisualizer
+opvisualizer = TensorVis.cli.OpVisualizer()</code></pre>
+<br>
+<br>
+_No explicit <code>argparse</code> configuration detected in the main module._<br>
+<br>
+<br>
+<h2>📊 Network &amp; Architecture Analysis</h2>
+<h3>🌍 Top 20 External Dependencies</h3>
+<table><thead><tr><th>Library</th><th>Usage Count</th></tr></thead><tbody><tr><td><b>typer</b></td><td>3</td></tr><tr><td><b>TensorVis</b></td><td>2</td></tr><tr><td><b>_frozen_importlib_external</b></td><td>1</td></tr><tr><td><b>_frozen_importlib</b></td><td>1</td></tr></tbody></table>
+<br>
+<br>
+<h3>🕸️ Network Metrics (Advanced)</h3>
+<h4>👑 Top 20 Modules by PageRank (Authority)</h4>
+<table><thead><tr><th>Rank</th><th>Module</th><th>Score</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td>1</td><td><code>TensorVis</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>2</td><td><code>_frozen_importlib_external</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>3</td><td><code>_frozen_importlib</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>4</td><td><code>typer</code></td><td>0.2073</td><td>External</td><td>External Lib</td></tr><tr><td>5</td><td><code>TensorVis.cli</code></td><td>0.1709</td><td>Internal</td><td>Data Processing</td></tr></tbody></table>
+<br>
+<br>
+<h3>🗺️ Dependency &amp; Architecture Map</h3>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef core fill:#f96,stroke:#333,stroke-width:2px;
+    classDef external fill:#9cf,stroke:#333,stroke-width:1px;
+    id_3[&quot;cli&quot;] -.-&gt; id_4[&quot;TensorVis&quot;]
+    class id_3 core;
+    class id_4 external;
+    id_3[&quot;cli&quot;] -.-&gt; id_2[&quot;_frozen_importlib_external&quot;]
+    class id_3 core;
+    class id_2 external;
+    id_3[&quot;cli&quot;] -.-&gt; id_0[&quot;_frozen_importlib&quot;]
+    class id_3 core;
+    class id_0 external;
+    id_3[&quot;cli&quot;] -.-&gt; id_1[&quot;typer&quot;]
+    class id_3 core;
+    class id_1 external;
+</div>
+<br>
+<br>
+<h2>🚀 Global Execution Flow &amp; Extraction Guide</h2>
+This graph visualizes how data flows between functions across the entire project.<br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+graph TD
+    classDef main fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef func fill:#fff,stroke:#333,stroke-width:1px;
+    f_1[&quot;inspect_random&quot;] --&gt; f_0[&quot;inspect&quot;]
+    class f_1 func;
+    class f_0 func;
+    f_1[&quot;inspect_random&quot;] --&gt; f_2[&quot;visualize&quot;]
+    class f_1 func;
+    class f_2 func;
+    f_6[&quot;viz_matmul&quot;] --&gt;|A&lt;br&gt;B| f_4[&quot;visualize_matmul&quot;]
+    class f_6 func;
+    class f_4 func;
+    f_5[&quot;viz_broadcast&quot;] --&gt;|A&lt;br&gt;B| f_3[&quot;visualize_broadcast_add&quot;]
+    class f_5 func;
+    class f_3 func;
+</div>
+<br>
+<br>
+<h3>✂️ Navigator: Snippet Extractor</h3>
+Want to use a specific function without the whole library? Here is the <b>Dependency Closure</b> for <b>Top 20</b> key functions.<br>
+<h4>To extract <code>inspect_random</code>:</h4>
+<blockquote>You need these <b>3</b> components:</blockquote>
+<code>inspect, inspect_random, visualize</code><br>
+<br>
+<h4>To extract <code>viz_matmul</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>visualize_matmul, viz_matmul</code><br>
+<br>
+<h4>To extract <code>viz_broadcast</code>:</h4>
+<blockquote>You need these <b>2</b> components:</blockquote>
+<code>visualize_broadcast_add, viz_broadcast</code><br>
+<br>
+<h2>📑 Top-Level API Contents &amp; Logic Flow</h2>
+<h3>🔧 Functions</h3>
+<h4><code>inspect_random(shape: List[int] = &lt;typer.models.OptionInfo object at 0x74e1861f5e50&gt;, name: str = &lt;typer.models.OptionInfo object at 0x74e1861f5f90&gt;)</code></h4>
+<blockquote>Generate a random tensor of the specified shape and run the inspector.</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Generate a random tensor of the specified shape and run the inspector.</code></pre>
+<br>
+</details><br>
+<br>
+<br>
+<b>Logic Flow:</b><br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+flowchart TD
+    classDef input fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,rx:5,ry:5;
+    classDef process fill:#fff,stroke:#bdbdbd,stroke-width:1px;
+    classDef core_process fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,rx:5,ry:5;
+    classDef decision fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px,rx:5,ry:5,stroke-dasharray: 5 5;
+    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,rx:5,ry:5;
+    Input([&quot;&lt;b&gt;Input Data&lt;/b&gt;&lt;br/&gt;• shape: List[int]&lt;br/&gt;• name: str&quot;]):::input
+    Node1[&quot;Call: print&quot;]:::process
+    Input --&gt;|&quot;shape&quot;| Node1
+    Node2[&quot;&lt;b&gt;Call:&lt;/b&gt; obj.astype&lt;br/&gt;⬇&lt;br/&gt;data&quot;]:::process
+    Input --&gt;|&quot;shape&quot;| Node2
+    Node3[&quot;Assign&lt;br/&gt;⬇&lt;br/&gt;mask&quot;]:::process
+    Input --&gt;|&quot;shape&quot;| Node3
+    Node4[&quot;&lt;b&gt;Call:&lt;/b&gt; DLTensorInspector&lt;br/&gt;⬇&lt;br/&gt;inspector&quot;]:::process
+    Input --&gt;|&quot;name&quot;| Node4
+    Node2 --&gt;|&quot;data&quot;| Node4
+    Node5[&quot;Call: inspector.inspect&quot;]:::process
+    Node4 --&gt;|&quot;inspector&quot;| Node5
+    Node6[&quot;Call: inspector.visualize&quot;]:::process
+    Node4 --&gt;|&quot;inspector&quot;| Node6
+</div>
+<br>
+<br>
+<h4><code>viz_broadcast(shape_a: List[int] = &lt;typer.models.OptionInfo object at 0x74e1861f6710&gt;, shape_b: List[int] = &lt;typer.models.OptionInfo object at 0x74e1861f6850&gt;)</code></h4>
+<blockquote>Visualize Broadcasting Addition: A + B</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Visualize Broadcasting Addition: A + B</code></pre>
+<br>
+</details><br>
+<br>
+<br>
+<b>Logic Flow:</b><br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+flowchart TD
+    classDef input fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,rx:5,ry:5;
+    classDef process fill:#fff,stroke:#bdbdbd,stroke-width:1px;
+    classDef core_process fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,rx:5,ry:5;
+    classDef decision fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px,rx:5,ry:5,stroke-dasharray: 5 5;
+    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,rx:5,ry:5;
+    Input([&quot;&lt;b&gt;Input Data&lt;/b&gt;&lt;br/&gt;• shape_a: List[int]&lt;br/&gt;• shape_b: List[int]&quot;]):::input
+    Node1[&quot;Call: print&quot;]:::process
+    Input --&gt;|&quot;shape_a&quot;| Node1
+    Input --&gt;|&quot;shape_b&quot;| Node1
+    Node2[&quot;&lt;b&gt;Call:&lt;/b&gt; obj.astype&lt;br/&gt;⬇&lt;br/&gt;A&quot;]:::process
+    Input --&gt;|&quot;shape_a&quot;| Node2
+    Node3[&quot;&lt;b&gt;Call:&lt;/b&gt; obj.astype&lt;br/&gt;⬇&lt;br/&gt;B&quot;]:::process
+    Input --&gt;|&quot;shape_b&quot;| Node3
+    Node4[&quot;Call: OpVisualizer.visualize_broadcast_add&quot;]:::process
+    Node2 --&gt;|&quot;A&quot;| Node4
+    Node3 --&gt;|&quot;B&quot;| Node4
+</div>
+<br>
+<br>
+<h4><code>viz_matmul(m: int = &lt;typer.models.OptionInfo object at 0x74e1861f6210&gt;, k: int = &lt;typer.models.OptionInfo object at 0x74e1861f6350&gt;, n: int = &lt;typer.models.OptionInfo object at 0x74e1861f6490&gt;)</code></h4>
+<blockquote>Visualize Matrix Multiplication: (M, K) @ (K, N) -&gt; (M, N)</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Visualize Matrix Multiplication: (M, K) @ (K, N) -&gt; (M, N)</code></pre>
+<br>
+</details><br>
+<br>
+<br>
+<b>Logic Flow:</b><br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+flowchart TD
+    classDef input fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,rx:5,ry:5;
+    classDef process fill:#fff,stroke:#bdbdbd,stroke-width:1px;
+    classDef core_process fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,rx:5,ry:5;
+    classDef decision fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px,rx:5,ry:5,stroke-dasharray: 5 5;
+    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,rx:5,ry:5;
+    Input([&quot;&lt;b&gt;Input Data&lt;/b&gt;&lt;br/&gt;• m: int&lt;br/&gt;• k: int&lt;br/&gt;• n: int&quot;]):::input
+    Node1[&quot;Call: print&quot;]:::process
+    Input --&gt;|&quot;m&quot;| Node1
+    Input --&gt;|&quot;n&quot;| Node1
+    Input --&gt;|&quot;k&quot;| Node1
+    Node2[&quot;&lt;b&gt;Call:&lt;/b&gt; obj.astype&lt;br/&gt;⬇&lt;br/&gt;A&quot;]:::process
+    Input --&gt;|&quot;m&quot;| Node2
+    Input --&gt;|&quot;k&quot;| Node2
+    Node3[&quot;&lt;b&gt;Call:&lt;/b&gt; obj.astype&lt;br/&gt;⬇&lt;br/&gt;B&quot;]:::process
+    Input --&gt;|&quot;n&quot;| Node3
+    Input --&gt;|&quot;k&quot;| Node3
+    Node4[&quot;Call: OpVisualizer.visualize_matmul&quot;]:::process
+    Node2 --&gt;|&quot;A&quot;| Node4
+    Node3 --&gt;|&quot;B&quot;| Node4
+</div>
+<br>
+<br>
+<h4><code>viz_relu(shape: List[int] = &lt;typer.models.OptionInfo object at 0x74e1861f6990&gt;)</code></h4>
+<blockquote>Visualize ReLU Activation</blockquote>
+<details><summary>Full Docstring</summary><br>
+<br>
+<br>
+<pre style="background:#f4f4f4; padding:10px; border-radius:5px;"><code>Visualize ReLU Activation</code></pre>
+<br>
+</details><br>
+<br>
+<br>
+<b>Logic Flow:</b><br>
+<br>
+<div class="mermaid" style="overflow-x: auto;">
+flowchart TD
+    classDef input fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,rx:5,ry:5;
+    classDef process fill:#fff,stroke:#bdbdbd,stroke-width:1px;
+    classDef core_process fill:#fff9c4,stroke:#fbc02d,stroke-width:2px,rx:5,ry:5;
+    classDef decision fill:#f3e5f5,stroke:#7b1fa2,stroke-width:1px,rx:5,ry:5,stroke-dasharray: 5 5;
+    classDef output fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,rx:5,ry:5;
+    Input([&quot;&lt;b&gt;Input Data&lt;/b&gt;&lt;br/&gt;• shape: List[int]&quot;]):::input
+    Node1[&quot;Call: print&quot;]:::process
+    Input --&gt;|&quot;shape&quot;| Node1
+    Node2[&quot;&lt;b&gt;Op:&lt;/b&gt; Mult&lt;br/&gt;⬇&lt;br/&gt;A&quot;]:::process
+    Input --&gt;|&quot;shape&quot;| Node2
+    Node3[&quot;Call: OpVisualizer.visualize_activation&quot;]:::process
+    Node2 --&gt;|&quot;A&quot;| Node3
+</div>
+<br>
+<br>
+
+    <!-- Import Mermaid.js -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            maxTextSize: 1000000,  
+            maxEdges: 100000, 
+            theme: 'default',
+            flowchart: { 
+                useMaxWidth: false, 
+                htmlLabels: true,
+                rankSpacing: 150, 
+                nodeSpacing: 100,
+                curve: 'basis' 
+            } 
+        });
+    </script>
+</body>
+</html>
+    

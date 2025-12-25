@@ -1300,8 +1300,9 @@ def inspect_library(
     limit_pagerank: Optional[int] = 20,
     limit_dependency_graph: Optional[int] = 100,
     limit_inheritance_graph: Optional[int] = 100,
-    limit_extraction_guide: Optional[int] = 20
-    
+    limit_extraction_guide: Optional[int] = 20,
+    run_all_candidates: bool = True,
+    parent_resolution: Optional[object] = None,
 ):
     """
     Description
@@ -1337,6 +1338,8 @@ def inspect_library(
         Limit for the number of classes in the inheritance graph.
     limit_extraction_guide : int
         Limit for the number of functions in the extraction guide.
+    run_all_candidates : bool
+        If True, attempts to run inspection on all resolved import candidates (for CLI commands or files).
 
     Returns
     --------
@@ -1359,31 +1362,292 @@ def inspect_library(
     # --- 1. Dynamically import the main library (with sys.argv protection) ---
     _old_argv = sys.argv
     sys.argv = [sys.argv[0]]
-    
-    # Handle local file path injection
-    if resolved.target_type == 'file' and resolved.file_path:
-        sys.path.insert(0, resolved.file_path) # Add file directory to sys.path
-        if os.path.isfile(resolved.file_path): # If it was a specific file, add its dir
-             sys.path.insert(0, os.path.dirname(resolved.file_path))
 
     submodules = []
     main_module = None
 
-    try:
+    # Build ordered import candidates to maximize chance of successful import
+    import_candidates = []  # list of (candidate_name, hint)
+    file_candidate = None
+
+    # Prefer the resolved import name
+    if resolved.import_name:
+        import_candidates.append((resolved.import_name, 'resolved'))
+
+    # If this was a CLI command resolution, include the concrete entry module (ep.module)
+    # but append it after the resolved package/module candidates so that
+    # single-run mode prefers the package name first.
+    if resolved.target_type == 'cli_command' and getattr(resolved, 'cli_info', None):
         try:
-            main_module = importlib.import_module(real_lib_name)
-            submodules.append(main_module)
-        except ImportError as e:
-            print(f"❌ Error: Could not import library '{real_lib_name}'. Reason: {e}")
-            if resolved.target_type == 'cli_command':
-                print(f"   (Tip: The CLI command '{library_name}' maps to module '{real_lib_name}', which seems missing or broken.)")
-            return
-        except Exception as e:
-            print(f"❌ Error: An unexpected error occurred while importing '{real_lib_name}': {e}")
+            ep_module = resolved.cli_info.get('module')
+            if ep_module and ep_module not in [c for c, _ in import_candidates]:
+                import_candidates.append((ep_module, 'entry_point_module'))
+        except Exception:
+            pass
+
+    # If target is a file, remember file path and attempt to construct a dotted module name
+    if resolved.target_type == 'file' and resolved.file_path:
+        file_candidate = resolved.file_path
+        abs_fp = os.path.abspath(resolved.file_path)
+        # Candidate: module name relative to repo root if possible
+        try:
+            # repo root guess: look for pyproject.toml or setup.py upwards from file
+            def find_package_root(start_path):
+                cur = os.path.abspath(start_path)
+                last = None
+                while True:
+                    if os.path.exists(os.path.join(cur, 'pyproject.toml')) or os.path.exists(os.path.join(cur, 'setup.py')):
+                        return cur
+                    if os.path.exists(os.path.join(cur, '__init__.py')):
+                        # package dir found; use its parent as root
+                        return os.path.dirname(cur)
+                    parent = os.path.dirname(cur)
+                    if parent == cur or parent == last:
+                        return None
+                    last = cur
+                    cur = parent
+
+            pkg_root = find_package_root(os.path.dirname(abs_fp))
+            if pkg_root:
+                mod_rel = os.path.relpath(abs_fp, pkg_root)
+                mod_name = os.path.splitext(mod_rel)[0].replace(os.sep, '.')
+                if mod_name not in [c for c, _ in import_candidates]:
+                    import_candidates.insert(0, (mod_name, 'constructed_from_file'))
+                # also ensure pkg_root is considered later when importing
+            else:
+                # fallback: use file stem as module
+                mod_name = os.path.splitext(os.path.basename(abs_fp))[0]
+                if mod_name not in [c for c, _ in import_candidates]:
+                    import_candidates.append((mod_name, 'file_stem'))
+        except Exception:
+            pass
+
+    # Ensure uniqueness while preserving order
+    seen = set()
+    uniq_imports = []
+    for name, hint in import_candidates:
+        if name in seen: continue
+        seen.add(name)
+        uniq_imports.append((name, hint))
+
+    # If requested, run inspect on each candidate separately to maximize coverage
+    if run_all_candidates:
+        candidates = [name for name, _ in uniq_imports]
+        if file_candidate:
+            candidates.append(file_candidate)
+
+        if output_path:
+            base, ext = os.path.splitext(output_path)
+            if not ext:
+                ext = '.md'
+        else:
+            base = None
+
+        for i, cand in enumerate(candidates, start=1):
+            if base:
+                safe = re.sub(r'[^a-zA-Z0-9_.-]', '_', os.path.basename(str(cand)))
+                out = f"{base}_candidate_{i}_{safe}{ext}"
+            else:
+                out = None
+            print(f"\n🔁 Running candidate {i}/{len(candidates)}: {cand} -> output={out}")
+            try:
+                inspect_library(
+                    str(cand),
+                    output_path=out,
+                    include_private=include_private,
+                    include_imported=include_imported,
+                    limit_api_recommendations=limit_api_recommendations,
+                    limit_code_snippets=limit_code_snippets,
+                    limit_snippet_args=limit_snippet_args,
+                    limit_external_libs=limit_external_libs,
+                    limit_pagerank=limit_pagerank,
+                    limit_dependency_graph=limit_dependency_graph,
+                    limit_inheritance_graph=limit_inheritance_graph,
+                    limit_extraction_guide=limit_extraction_guide,
+                    run_all_candidates=False,
+                    parent_resolution=resolved,
+                )
+            except Exception as e:
+                print(f"⚠️ Candidate {cand} failed: {e}")
+        return
+
+    try:
+        # Try each import candidate until one succeeds
+        imported_ok = False
+        tried_candidates = []  # records of (name, hint, status, error)
+        used_candidate_name = None
+        used_candidate_hint = None
+        for cand_name, hint in uniq_imports:
+            try:
+                # If file_candidate exists and hint suggests constructed_from_file, add its root to sys.path
+                if file_candidate and hint in ('constructed_from_file', 'file_stem'):
+                    # attempt to find package root again and insert into sys.path
+                    cur_dir = os.path.dirname(os.path.abspath(file_candidate))
+                    # walk up up to 4 levels and add to sys.path for best chance
+                    temp = cur_dir
+                    for _ in range(4):
+                        if temp not in sys.path:
+                            sys.path.insert(0, temp)
+                        temp = os.path.dirname(temp)
+
+                main_module = importlib.import_module(cand_name)
+                submodules.append(main_module)
+                imported_ok = True
+                real_lib_name = cand_name
+                used_candidate_name = cand_name
+                used_candidate_hint = hint
+                tried_candidates.append((cand_name, hint, 'success', ''))
+                break
+            except ImportError as e:
+                tried_candidates.append((cand_name, hint, 'failed', str(e)))
+                # try next candidate
+                continue
+            except Exception as e:
+                tried_candidates.append((cand_name, hint, 'failed', str(e)))
+                continue
+
+        if not imported_ok:
+            # Last resort: if resolved is file and file path exists, try adding its directory to sys.path and import by stem
+            if file_candidate and os.path.isfile(file_candidate):
+                fp_dir = os.path.dirname(os.path.abspath(file_candidate))
+                if fp_dir not in sys.path:
+                    sys.path.insert(0, fp_dir)
+                try:
+                    stem = os.path.splitext(os.path.basename(file_candidate))[0]
+                    main_module = importlib.import_module(stem)
+                    submodules.append(main_module)
+                    imported_ok = True
+                    real_lib_name = stem
+                    used_candidate_name = stem
+                    used_candidate_hint = 'file_stem_attempt'
+                    tried_candidates.append((stem, 'file_stem_attempt', 'success', ''))
+                except Exception as e:
+                    # Still failed; record and abort import-phase (we may still attempt file-level analysis downstream)
+                    tried_candidates.append((file_candidate, 'file_path_attempt', 'failed', str(e)))
+                    print(f"❌ Error: Could not import library '{resolved.import_name if resolved.import_name else library_name}'. Reason: {e}")
+                    if resolved.target_type == 'cli_command':
+                        print(f"   (Tip: The CLI command '{library_name}' maps to module '{resolved.import_name}', which seems missing or broken.)")
+                    # fall through to allow file-level analysis if implemented
+
+        if not imported_ok:
+            # If no import succeeded, attempt a file-level AST fallback (if we have a file path)
+            if file_candidate and os.path.isfile(file_candidate):
+                try:
+                    src = open(file_candidate, 'r', encoding='utf-8').read()
+                    tree = ast.parse(src)
+
+                    fb_lines = []
+                    fb_lines.append(f"# File-level Documentation for `{os.path.basename(file_candidate)}`")
+                    fb_lines.append(f"> **Note:** Import failed; performing AST-only file analysis for `{file_candidate}`.")
+                    fb_lines.append(f"**File Path:** `{file_candidate}`\n")
+                    run_mode = 'AST-only fallback'
+
+                    # Module docstring
+                    file_doc = ast.get_docstring(tree)
+                    if file_doc:
+                        fb_lines.append("## Module Docstring")
+                        fb_lines.append(f"```text\n{file_doc}\n```\n")
+
+                    # Collect imports
+                    import_counter = Counter()
+                    for node in ast.walk(tree):
+                        if isinstance(node, ast.Import):
+                            for n in node.names:
+                                import_counter[n.name] += 1
+                        elif isinstance(node, ast.ImportFrom):
+                            module = node.module if node.module else "<relative>"
+                            import_counter[module] += 1
+
+                    if import_counter:
+                        fb_lines.append("## Top Imports Detected")
+                        fb_lines.append("| Module | Count |")
+                        fb_lines.append("| :--- | :---: |")
+                        for mod, cnt in import_counter.most_common():
+                            fb_lines.append(f"| `{mod}` | {cnt} |")
+                        fb_lines.append("")
+
+                    # Top-level functions and classes
+                    funcs = []
+                    classes = []
+                    for node in tree.body:
+                        if isinstance(node, ast.FunctionDef):
+                            funcs.append(node)
+                        elif isinstance(node, ast.ClassDef):
+                            classes.append(node)
+
+                    if funcs:
+                        fb_lines.append("## Top-level Functions")
+                        for fn in funcs:
+                            # signature approximation
+                            args = []
+                            for a in fn.args.args:
+                                args.append(a.arg)
+                            sig = f"({', '.join(args)})"
+                            fb_lines.append(f"- `{fn.name}{sig}`")
+                        fb_lines.append("")
+
+                        # Include small snippets for each function
+                        for fn in funcs:
+                            fb_lines.append(f"### `{fn.name}`")
+                            try:
+                                src_snip = ast.get_source_segment(src, fn)
+                                if not src_snip:
+                                    src_snip = "# source unavailable"
+                            except Exception:
+                                src_snip = "# source unavailable"
+                            fb_lines.append("```python")
+                            fb_lines.append(src_snip)
+                            fb_lines.append("```")
+                            fb_lines.append("")
+
+                    if classes:
+                        fb_lines.append("## Top-level Classes")
+                        for cl in classes:
+                            fb_lines.append(f"- `{cl.name}`")
+                        fb_lines.append("")
+
+                    # Entry detection
+                    entry_vis = EntryAnalysisVisitor()
+                    try:
+                        entry_vis.visit(tree)
+                        if entry_vis.has_main_block:
+                            fb_lines.append("- ✅ **Script Entry Point**: Contains `if __name__ == '__main__'` block.")
+                    except Exception:
+                        pass
+
+                    md_content = "\n".join(fb_lines)
+                    # Write markdown output
+                    if output_path:
+                        out = output_path
+                        # ensure directory exists
+                        od = os.path.dirname(out)
+                        if od and not os.path.exists(od):
+                            os.makedirs(od, exist_ok=True)
+                        with open(out, 'w', encoding='utf-8') as f:
+                            f.write(md_content)
+                        print(f"✅ Markdown report saved to: {out}")
+                        # Also write HTML version
+                        try:
+                            html_out = os.path.splitext(out)[0] + '.html'
+                            html_content = convert_md_to_html(md_content, title=os.path.basename(out))
+                            with open(html_out, 'w', encoding='utf-8') as hf:
+                                hf.write(html_content)
+                            print(f"📊 Interactive HTML report saved to: {html_out}")
+                        except Exception:
+                            pass
+                    else:
+                        print(md_content)
+
+                    return
+                except Exception as e:
+                    print(f"❌ File-level AST analysis failed for '{file_candidate}': {e}")
+                    return
+            # No file fallback available; abort
+            print(f"❌ Error: Unable to import any candidate modules for target '{library_name}'.")
             return
 
         print(f"🔍 Analyzing dependencies for '{real_lib_name}' (Network Analysis Phase)...")
-        
+
         if hasattr(main_module, "__path__"):
             # Use safe_walk_packages instead of pkgutil.walk_packages
             # This prevents importing 'tests' packages that might have side effects (like missing files)
@@ -1399,31 +1663,102 @@ def inspect_library(
                 except (KeyboardInterrupt, SystemExit):
                     # Allow users to interrupt with Ctrl+C
                     raise
-                except BaseException: 
+                except BaseException:
                     # Exceptions raised by pytest.skip() inherit from BaseException, not Exception
                     # This allows ignoring import errors caused by missing optional dependencies
                     continue
     finally:
         sys.argv = _old_argv
-        # Cleanup sys.path if we modified it
-        if resolved.target_type == 'file' and resolved.file_path:
-            if resolved.file_path in sys.path: sys.path.remove(resolved.file_path)
-            dir_path = os.path.dirname(resolved.file_path)
-            if dir_path in sys.path: sys.path.remove(dir_path)
 
     lines = []
     lines.append(f"# Documentation for `{real_lib_name}`")
-    if resolved.target_type == 'cli_command':
-        lines.append(f"> **Note:** Analyzed via CLI command `{library_name}`.")
-    elif resolved.target_type == 'file':
-        lines.append(f"> **Note:** Analyzed local file/package at `{resolved.original_input}`.")
-        
+
+    # Discovery vs current resolution context
+    if parent_resolution is not None:
+        try:
+            pr_type = getattr(parent_resolution, 'target_type', str(parent_resolution))
+            pr_input = getattr(parent_resolution, 'original_input', None) or getattr(parent_resolution, 'import_name', None)
+            lines.append(f"> **Discovered via:** `{pr_type}` (original input: `{pr_input}`)\n")
+        except Exception:
+            pass
+
+    # Current resolution note
+    try:
+        cur_type = getattr(resolved, 'target_type', 'unknown')
+    except Exception:
+        cur_type = 'unknown'
+
+    if cur_type == 'cli_command':
+        lines.append(f"> **Note:** Analyzed via CLI command `{library_name}` (resolved as CLI entry).\n")
+    elif cur_type == 'file':
+        lines.append(f"> **Note:** Analyzed local file/package at `{resolved.original_input}`.\n")
+    else:
+        lines.append(f"> **Note:** Resolved as `{cur_type}` for `{real_lib_name}`.\n")
+
     lines.append(f"**File Path:** `{getattr(main_module, '__file__', 'Built-in/Unknown')}`\n")
-    
-    doc = inspect.getdoc(main_module)
+
+    doc = None
+    try:
+        doc = inspect.getdoc(main_module)
+    except Exception:
+        doc = None
     if doc:
         lines.append("## Module Docstring")
         lines.append(f"```text\n{doc}\n```\n")
+
+    # ===== Metadata & Diagnostics =====
+    lines.append("## 🧾 Metadata & Diagnostics")
+
+    # Used candidate
+    if 'used_candidate_name' in locals() and used_candidate_name:
+        lines.append(f"- **Used candidate:** `{used_candidate_name}` ({used_candidate_hint})")
+    else:
+        lines.append(f"- **Used candidate:** `None` (will run file-level AST fallback if available)")
+
+    # Tried candidates table
+    if 'tried_candidates' in locals() and tried_candidates:
+        lines.append("### Tried Candidates")
+        lines.append("| Candidate | Hint | Status | Error |")
+        lines.append("| :--- | :--- | :--- | :--- |")
+        for name, hint, status, err in tried_candidates:
+            safe_err = (err.replace('\n', ' ')[:200] if err else '')
+            lines.append(f"| `{name}` | {hint} | {status} | `{safe_err}` |")
+        lines.append("")
+
+    # Package / module version (best-effort)
+    ver = None
+    try:
+        if imported_ok and main_module is not None:
+            ver = getattr(main_module, '__version__', None)
+        if not ver:
+            try:
+                ver = importlib_metadata.version(real_lib_name)
+            except Exception:
+                pass
+    except Exception:
+        ver = None
+    if ver:
+        lines.append(f"- **Package Version:** `{ver}`")
+
+    # Run mode note
+    if 'run_mode' in locals() and run_mode:
+        lines.append(f"- **Run Mode:** {run_mode}")
+    else:
+        if imported_ok:
+            lines.append("- **Run Mode:** dynamic import (module)")
+        else:
+            lines.append("- **Run Mode:** AST-only fallback (no import succeeded)")
+
+    # Sys.path snapshot (helpful for diagnosing import issues)
+    try:
+        sp = sys.path[:10]  # show only top 10 entries
+        lines.append("### sys.path (top 10 entries)")
+        lines.append("```text")
+        for p in sp:
+            lines.append(p)
+        lines.append("```\n")
+    except Exception:
+        pass
 
     # ==========================================
     # Phase 0: Navigator - How to Drive (Enhanced)

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lib-inspector"
-version = "0.1.0"
+version = "0.2.0"
 description = "A CLI tool to inspect Python libraries and generate Markdown documentation."
 license = "MIT" 
 authors = [{name = "Joe Hoye Dow", email = "luxunisgod123@gmail.com"}] 
