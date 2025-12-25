@@ -27,18 +27,19 @@ def main_action(
     Example:
     \b
     # Inspect a CLI tool library (e.g. metapredict-predict-disorder --help)
-    lib-inspector metapredict-predict-disorder --private -o Metapredict_CLI_Docs.md
+    lib-inspector metapredict-predict-disorder --multi-candidate --private -o Metapredict_CLI_Docs.md
     \b
     # Inspect a Standard library module (e.g. import numpy)
-    lib-inspector numpy --imported -o Numpy_Docs.md
+    lib-inspector numpy --multi-candidate --imported -o Numpy_Docs.md
     \b
     # Inspect YOUR local library
-    lib-inspector ./my_project/train.py -o ./reports/train.md
+    lib-inspector ./my_project/train.py --multi-candidate -o ./reports/train.md
 
     \b
     Notes:
     - 1, --private means to include private members, while by default they are excluded if not provided.
     - 2, --imported means to include members imported from other modules, while by default they are excluded if not provided.
+    - 3, Multi-candidate mode tries to maximize code coverage by running multiple analysis candidates; use --no-multi-candidate to disable this behavior.
     """
     # Run inspection; respect CLI flag to disable multi-candidate behavior
     inspect_library(

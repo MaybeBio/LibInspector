@@ -93,47 +93,52 @@ First have a look at the help message !
 
 ```bash
 ❯ lib-inspector --help
-                                                                                                                                                                                                          
- Usage: lib-inspector [OPTIONS] LIBRARY                                                                                                                                                                   
-                                                                                                                                                                                                          
- Inspect a Python library/module and generate Markdown/Html documentation.                                                                                                                                
-                                                                                                                                                                                                          
- Example:                                                                                                                                                                                                 
-                                                                                                                                                                                                          
- # Inspect a CLI tool library (e.g. metapredict-predict-disorder --help)                                                                                                                                  
- lib-inspector metapredict-predict-disorder --private -o Metapredict_CLI_Docs.md                                                                                                                          
-                                                                                                                                                                                                          
- # Inspect a Standard library module (e.g. import numpy)                                                                                                                                                  
- lib-inspector numpy --imported -o Numpy_Docs.md                                                                                                                                                          
-                                                                                                                                                                                                          
- # Inspect YOUR local library                                                                                                                                                                             
- lib-inspector ./my_project/train.py -o ./reports/train.md                                                                                                                                                
-                                                                                                                                                                                                          
- Notes:                                                                                                                                                                                                   
- - 1, --private means to include private members, while by default they are excluded if not provided.                                                                                                     
- - 2, --imported means to include members imported from other modules, while by default they are excluded if not provided.                                                                                
-                                                                                                                                                                                                          
-╭─ Arguments ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ *    library      TEXT  Name of the library to inspect (e.g. 'numpy', 'Bio.PDB'). [required]                                                                                                           │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --output          -o      TEXT     Path to save the Markdown report. If not provided, prints to stdout.                                                                                                │
-│ --private                          Include private members (starting with '_').                                                                                                                        │
-│ --imported                         Include members imported from other modules.                                                                                                                        │
-│ --limit-api               INTEGER  Limit for API recommendations. [default: 20]                                                                                                                        │
-│ --limit-snippets          INTEGER  Limit for code snippets. [default: 20]                                                                                                                              │
-│ --limit-args              INTEGER  Threshold for multi-line arguments in snippets. [default: 3]                                                                                                        │
-│ --limit-ext               INTEGER  Limit for external libraries. [default: 20]                                                                                                                         │
-│ --limit-pr                INTEGER  Limit for PageRank metrics. [default: 20]                                                                                                                           │
-│ --limit-dep               INTEGER  Limit for dependency graph nodes. [default: 100]                                                                                                                    │
-│ --limit-inh               INTEGER  Limit for inheritance graph classes. [default: 100]                                                                                                                 │
-│ --limit-guide             INTEGER  Limit for extraction guide functions. [default: 20]                                                                                                                 │
-│ --help                             Show this message and exit.                                                                                                                                         │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+                                                                                                                                                     
+ Usage: lib-inspector [OPTIONS] LIBRARY                                                                                                              
+                                                                                                                                                     
+ Inspect a Python library/module and generate Markdown/Html documentation.                                                                           
+                                                                                                                                                     
+ Example:                                                                                                                                            
+                                                                                                                                                     
+ # Inspect a CLI tool library (e.g. metapredict-predict-disorder --help)                                                                             
+ lib-inspector metapredict-predict-disorder --multi-candidate --private -o Metapredict_CLI_Docs.md                                                   
+                                                                                                                                                     
+ # Inspect a Standard library module (e.g. import numpy)                                                                                             
+ lib-inspector numpy --multi-candidate --imported -o Numpy_Docs.md                                                                                   
+                                                                                                                                                     
+ # Inspect YOUR local library                                                                                                                        
+ lib-inspector ./my_project/train.py --multi-candidate -o ./reports/train.md                                                                         
+                                                                                                                                                     
+ Notes:                                                                                                                                              
+ - 1, --private means to include private members, while by default they are excluded if not provided.                                                
+ - 2, --imported means to include members imported from other modules, while by default they are excluded if not provided.                           
+ - 3, Multi-candidate mode tries to maximize code coverage by running multiple analysis candidates; use --no-multi-candidate to disable this         
+ behavior.                                                                                                                                           
+                                                                                                                                                     
+╭─ Arguments ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ *    library      TEXT  Name of the library to inspect (e.g. 'numpy', 'Bio.PDB'). [required]                                                      │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Options ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --output           -o                          TEXT     Path to save the Markdown report. If not provided, prints to stdout.                      │
+│ --private                                               Include private members (starting with '_').                                              │
+│ --imported                                              Include members imported from other modules.                                              │
+│ --limit-api                                    INTEGER  Limit for API recommendations. [default: 20]                                              │
+│ --limit-snippets                               INTEGER  Limit for code snippets. [default: 20]                                                    │
+│ --limit-args                                   INTEGER  Threshold for multi-line arguments in snippets. [default: 3]                              │
+│ --limit-ext                                    INTEGER  Limit for external libraries. [default: 20]                                               │
+│ --limit-pr                                     INTEGER  Limit for PageRank metrics. [default: 20]                                                 │
+│ --limit-dep                                    INTEGER  Limit for dependency graph nodes. [default: 100]                                          │
+│ --limit-inh                                    INTEGER  Limit for inheritance graph classes. [default: 100]                                       │
+│ --limit-guide                                  INTEGER  Limit for extraction guide functions. [default: 20]                                       │
+│ --multi-candidate      --no-multi-candidate             Enable multi-candidate (max-coverage) runs; pass --no-multi-candidate to disable.         │
+│                                                         [default: multi-candidate]                                                                │
+│ --help                                                  Show this message and exit.                                                               │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 
 
+⚠️ The cases listed below have been tested and validated for **version 0.1.0**. To ensure the same output results are displayed when using **version 0.2.0**, simply add the `--no-multi-candidate` parameter to your command!
 
 ### Mode A: Analyze an Installed Library
 Perfect for understanding third-party packages.
