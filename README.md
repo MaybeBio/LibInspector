@@ -2,9 +2,9 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
-[![PyPI version](https://img.shields.io/pypi/v/lib-inspector.svg?logo=pypi&logoColor=white)](https://pypi.org/project/lib-inspector/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/lib-inspector.svg?logo=python&logoColor=white)](https://pypi.org/project/lib-inspector/)
-[![Downloads](https://static.pepy.tech/badge/lib-inspector)](https://pepy.tech/project/lib-inspector)
+[![PyPI version](https://img.shields.io/pypi/v/pylib-inspector.svg?logo=pypi&logoColor=white)](https://pypi.org/project/pylib-inspector/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/pylib-inspector.svg?logo=python&logoColor=white)](https://pypi.org/project/pylib-inspector/)
+[![Downloads](https://static.pepy.tech/badge/pylib-inspector)](https://pepy.tech/project/pylib-inspector)
 
 
 ![](./Draft/Inspect.png)
