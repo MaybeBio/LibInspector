@@ -1,3 +1,29 @@
+Metadata-Version: 2.4
+Name: pylib-inspector
+Version: 0.2.0
+Summary: A CLI tool to inspect Python libraries and generate Markdown documentation.
+Author-email: Joe Hoye Dow <luxunisgod123@gmail.com>
+License-Expression: GPL-3.0
+Project-URL: Homepage, https://github.com/MaybeBio/LibInspector
+Project-URL: Issues, https://github.com/MaybeBio/LibInspector/issues
+Keywords: python,code-analysis,static-analysis,dynamic-analysis,library-inspector,dependency-analysis,ast,architecture-visualization,cli-reverse-lookup,code-explorer,pagerank,dependency-graph,code-documentation,ai4s,developer-tools,code-understanding,entry-point-detection,flowchart-generator,mermaid,html-report,code-refactoring
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer
+Requires-Dist: networkx
+Dynamic: license-file
+
 # LibInspector: From "Black Box" to "Glass Box"
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
@@ -76,14 +102,10 @@ LibInspector acts as a bridge between your terminal and the Python runtime. It e
 ## 🛠️ Installation
 
 ```bash
-# 1️⃣ install via pip
-pip install pylib-inspector
-
-
-# 2️⃣ install from source code
 # Clone the repository
 git clone https://github.com/MaybeBio/LibInspector.git
 cd LibInspector
+
 # Install in editable mode (installs dependencies & CLI tool)
 pip install -e .
 ```
