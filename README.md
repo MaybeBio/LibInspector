@@ -1,7 +1,11 @@
 # LibInspector: From "Black Box" to "Glass Box"
 
- ![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg) 
- [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) 
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) 
+[![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com)
+[![PyPI version](https://img.shields.io/pypi/v/lib-inspector.svg?logo=pypi&logoColor=white)](https://pypi.org/project/lib-inspector/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/lib-inspector.svg?logo=python&logoColor=white)](https://pypi.org/project/lib-inspector/)
+[![Downloads](https://static.pepy.tech/badge/lib-inspector)](https://pepy.tech/project/lib-inspector)
+
 
 ![](./Draft/Inspect.png)
 > **Turn passive code reading into active architectural exploration.**

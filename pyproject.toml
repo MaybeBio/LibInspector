@@ -5,16 +5,33 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "lib-inspector"
 version = "0.2.0"
-description = "A CLI tool to inspect Python libraries and generate Markdown documentation."
-license = "MIT" 
 authors = [{name = "Joe Hoye Dow", email = "luxunisgod123@gmail.com"}] 
+description = "A CLI tool to inspect Python libraries and generate Markdown documentation."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+license-files = ["LICENSE"]
+keywords = [
+    "python", "code-analysis", "static-analysis", "dynamic-analysis",
+    "library-inspector", "dependency-analysis", "ast", "architecture-visualization",
+    "cli-reverse-lookup", "code-explorer", "pagerank", "dependency-graph",
+    "code-documentation", "ai4s", "developer-tools",
+    "code-understanding", "entry-point-detection", "flowchart-generator",
+    "mermaid", "html-report", "code-refactoring"
+]
+
 classifiers = [
     "Development Status :: 3 - Alpha", 
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"
 ]
 dependencies = [
     "typer",
@@ -22,11 +39,13 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/MaybeBio/LibInspector"
+Homepage = "https://github.com/MaybeBio/LibInspector"
+Issues = "https://github.com/MaybeBio/LibInspector/issues"
 
 [project.scripts]
-# 这里定义了命令行工具的名称 'lib-inspector' 指向 src.cli 模块中的 main 函数
+# 命令行工具名称 'lib-inspector' 指向 src.cli 模块中的 main 函数
 lib-inspector = "src.cli:main"
 
 [tool.setuptools.packages.find]
-where = ["."]  # 告诉 setuptools 源代码在当前目录（包含 src）
+# 源码在当前目录（包含 src）
+where = ["."]  
