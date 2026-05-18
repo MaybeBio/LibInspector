@@ -1,4 +1,0 @@
-Draft
-dist
-src
-test
